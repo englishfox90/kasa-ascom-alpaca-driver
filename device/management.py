@@ -84,6 +84,7 @@ class configureddevices():
     def on_get(self, req: Request, resp: Response):
         import time
         from .switch import device
+        import uuid
         timeout = 5.0  # seconds
         poll = 0.05
         waited = 0.0
@@ -96,14 +97,16 @@ class configureddevices():
                 logger.warning("configureddevices: device list not ready after waiting 5s")
             confarray = []
         else:
-            confarray = [
-                {
-                    'DeviceName'    : SwitchMetadata.Name,
-                    'DeviceType'    : SwitchMetadata.DeviceType,
-                    'DeviceNumber'  : 0,
-                    'UniqueID'      : SwitchMetadata.DeviceID
-                }
-            ]
+            confarray = []
+            for idx, name in enumerate(device.device_list):
+                # Generate a unique ID for each outlet/device
+                unique_id = str(uuid.uuid5(uuid.NAMESPACE_DNS, name))
+                confarray.append({
+                    'DeviceName': name,
+                    'DeviceType': SwitchMetadata.DeviceType,
+                    'DeviceNumber': idx,
+                    'UniqueID': unique_id
+                })
             if logger:
                 logger.info(f"configureddevices: returning {len(confarray)} device(s)")
         resp.text = PropertyResponse(confarray, req).json
