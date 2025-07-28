@@ -7,7 +7,10 @@ a = Analysis(
     ['device/gui_manager.py'],
     pathex=[],
     binaries=[],
-    datas=[],
+    datas=[
+        ('device/config.toml', 'device'),  # Copy config.toml into device/ in the bundle
+        ('device/*.py', 'device'),         # Copy all device source files
+    ],
     hiddenimports=[
         'keyring',
         'keyring.backends',
@@ -20,6 +23,15 @@ a = Analysis(
         'PIL.ImageTk',
         'PIL.Image',
         'PIL.ImageDraw',
+        'falcon',
+        'kasa',
+        'dateutil',
+        'dateutil.tz',
+        'dateutil.parser',
+        'asyncio',
+        'threading',
+        'logging',
+        'toml',
     ],
     hookspath=[],
     runtime_hooks=[],
