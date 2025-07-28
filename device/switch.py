@@ -506,14 +506,20 @@ class setswitchvalue:
 @before(PreProcessRequest(maxdev))
 class getswitchname:
     def on_get(self, req: Request, resp: Response, devnum: int):
+        if logger:
+            logger.info(f"getswitchname: handler entry (devnum={devnum})")
         if not device.is_connected():
             resp.text = PropertyResponse(None, req, NotConnectedException()).json
+            if logger:
+                logger.info("getswitchname: handler exit (not connected)")
             return
         idstr = get_request_field('Id', req)
         try:
             id = int(idstr)
         except:
             resp.text = MethodResponse(req, InvalidValueException(f'Id {idstr} not a valid integer.')).json
+            if logger:
+                logger.info("getswitchname: handler exit (invalid id)")
             return
         try:
             name = device.device_list[id] if 0 <= id < len(device.device_list) else None
@@ -522,10 +528,18 @@ class getswitchname:
             # Defensive: if name is None, return a clear error
             if name is None:
                 resp.text = PropertyResponse(None, req, InvalidValueException(f'Switch id {id} not found.')).json
+                if logger:
+                    logger.info("getswitchname: handler exit (id not found)")
                 return
             resp.text = PropertyResponse(name, req).json
+            if logger:
+                logger.info("getswitchname: handler exit (success)")
         except Exception as ex:
             resp.text = PropertyResponse(None, req, DriverException(0x500, 'Switch.Getswitchname failed', ex)).json
+            if logger:
+                logger.error(f"getswitchname: handler exit (exception: {ex})")
+            else:
+                print(f"getswitchname: handler exit (exception: {ex})")
 
 # ISwitch getswitchdescription endpoint
 @before(PreProcessRequest(maxdev))
