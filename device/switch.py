@@ -50,7 +50,7 @@ class KasaSwitchController:
         self.connected = False
         self.device_list = []
         self.device_objs = []
-        self.lock = threading.Lock()
+        self.lock = threading.RLock()
         self.loop = asyncio.new_event_loop()
         self.email = None
         self.password = None
