@@ -14,7 +14,6 @@ try:
     TZLOCAL_AVAILABLE = True
 except ImportError:
     TZLOCAL_AVAILABLE = False
-from babel.dates import format_datetime
 from falcon import Request, Response, HTTPBadRequest, before
 from .shr import PropertyResponse, MethodResponse, PreProcessRequest, StateValue, get_request_field, to_bool
 from .exceptions import *
