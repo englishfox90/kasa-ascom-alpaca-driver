@@ -552,7 +552,8 @@ class getswitchdescription:
                     dev_idx = device.gauge_map[id][0]
                 dev = device.device_objs[dev_idx] if dev_idx < len(device.device_objs) else None
                 on_since = getattr(dev, 'on_since', None) if dev else None
-                desc = f"{name}"
+                parent_name = getattr(dev, 'alias', None) if dev else None
+                desc = f"{parent_name} - {name}" if parent_name and parent_name != name else f"{name}"
                 if on_since:
                     try:
                         # Convert to local time and format using locale
