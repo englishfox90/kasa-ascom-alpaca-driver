@@ -6,6 +6,10 @@ Author: Paul Fox-Reeks
 Requires-Python: >=3.7
 Requires-Dist: falcon
 Requires-Dist: toml
+Requires-Dist: python-kasa
+Requires-Dist: keyring
+Requires-Dist: pystray
+Requires-Dist: Pillow
 Dynamic: author
 Dynamic: requires-dist
 Dynamic: requires-python

@@ -1,2 +1,6 @@
 falcon
 toml
+python-kasa
+keyring
+pystray
+Pillow

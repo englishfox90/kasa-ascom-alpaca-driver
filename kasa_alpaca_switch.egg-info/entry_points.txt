@@ -1,2 +1,3 @@
 [console_scripts]
 kasa-switch = device.app:main
+kasa-switch-gui = device.gui_manager:main

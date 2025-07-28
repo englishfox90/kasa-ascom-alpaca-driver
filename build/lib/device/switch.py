@@ -1,11 +1,11 @@
-
-
-
 # --------------------
 # Imports
 # --------------------
-import subprocess
+import asyncio
+import keyring
+from kasa import Discover, SmartPlug
 import threading
+import time
 from falcon import Request, Response, HTTPBadRequest, before
 from logging import Logger
 from .shr import PropertyResponse, MethodResponse, PreProcessRequest, StateValue, get_request_field, to_bool
@@ -33,133 +33,149 @@ class SwitchMetadata:
 # --------------------
 
 class KasaSwitchController:
-    """Manages Kasa switches via KasaCmd CLI."""
+    """Manages Kasa switches via python-kasa library."""
+    METRIC_SUFFIXES = [
+        ("_consumption", "Current Consumption (W)"),
+        ("_voltage", "Voltage (V)"),
+        ("_current", "Current (A)")
+    ]
+
     def __init__(self):
         self.connected = False
         self.device_list = []
+        self.device_objs = []
         self.lock = threading.Lock()
+        self.loop = asyncio.new_event_loop()
+        self.email = None
+        self.password = None
+        self._load_credentials()
+
+    def _load_credentials(self):
+        self.email = keyring.get_password('kasa-alpaca', 'email')
+        self.password = keyring.get_password('kasa-alpaca', 'password')
+        if not self.email or not self.password:
+            self._prompt_and_store_credentials()
+
+    def _prompt_and_store_credentials(self):
+        import getpass
+        print('Enter Kasa account email:')
+        email = input('Email: ')
+        password = getpass.getpass('Password: ')
+        keyring.set_password('kasa-alpaca', 'email', email)
+        keyring.set_password('kasa-alpaca', 'password', password)
+        self.email = email
+        self.password = password
+
+    def update_credentials(self):
+        self._prompt_and_store_credentials()
 
     def connect(self):
-        import time
         global maxdev
         with self.lock:
             start = time.time()
             try:
-                self.device_list = self._get_device_list()
+                self.device_list, self.device_objs = self.loop.run_until_complete(self._get_device_list())
+                # Add virtual gauge switches for each device, only if metrics are available
+                self.gauge_map = {}
+                for idx, dev in enumerate(self.device_objs):
+                    # Check for emeter support
+                    has_emeter = hasattr(dev, 'emeter_realtime') and dev.emeter_realtime is not None
+                    if has_emeter:
+                        for suffix, _ in self.METRIC_SUFFIXES:
+                            # Only add if the metric is present in emeter_realtime
+                            metric_name = suffix[1:]  # e.g. 'consumption' from '_consumption'
+                            metric_attr = {
+                                '_consumption': 'power',
+                                '_voltage': 'voltage',
+                                '_current': 'current',
+                            }[suffix]
+                            if hasattr(dev.emeter_realtime, metric_attr):
+                                self.device_list.append(f"{dev.alias}{suffix}")
+                                self.gauge_map[len(self.device_list)-1] = (idx, suffix)
                 self.connected = True
                 maxdev = len(self.device_list)
                 SwitchMetadata.MaxDeviceNumber = maxdev
                 elapsed = time.time() - start
                 if logger:
                     logger.info(f"Kasa connect: device list loaded in {elapsed:.2f}s: {self.device_list}")
-                if logger:
-                    logger.info(f"maxdev set to {maxdev}")
             except Exception as ex:
                 self.connected = False
                 if logger:
                     logger.error(f"Kasa connect failed after {time.time()-start:.2f}s: {ex}")
-                raise DriverException(0x500, f"KasaCmd devicelist failed: {ex}")
+                raise DriverException(0x500, f"python-kasa devicelist failed: {ex}")
 
     def disconnect(self):
         with self.lock:
             self.connected = False
             self.device_list = []
+            self.device_objs = []
 
     def is_connected(self):
         return self.connected
 
-    def _get_device_list(self):
-        import time
-        try:
-            start = time.time()
-            result = subprocess.check_output(["KasaCmd", "-devicelist"], encoding="utf-8", timeout=10)
-            elapsed = time.time() - start
-            lines = [line.strip() for line in result.splitlines() if line.strip()]
-            devices = []
-            for line in lines:
-                # Ignore lines that are not actual devices
-                if 'retrieving updated list' in line.lower():
-                    continue
-                if ',' in line:
-                    parts = line.split(',')
-                    if len(parts) >= 2:
-                        devices.append(parts[1])  # Use the friendly name
-            if logger:
-                logger.info(f"KasaCmd -devicelist parsed device names: {devices} in {elapsed:.2f}s")
-            return devices
-        except subprocess.TimeoutExpired:
-            if logger:
-                logger.error("KasaCmd -devicelist timed out after 10s")
-            raise DriverException(0x500, "KasaCmd devicelist timed out")
-        except Exception as ex:
-            if logger:
-                logger.error(f"KasaCmd devicelist failed: {ex}")
-            raise DriverException(0x500, f"KasaCmd devicelist failed: {ex}")
+    async def _get_device_list(self):
+        devices = []
+        device_objs = []
+        found = await Discover.discover()
+        for addr, dev in found.items():
+            await dev.update()
+            devices.append(dev.alias)
+            device_objs.append(dev)
+        if logger:
+            logger.info(f"python-kasa discovered devices: {devices}")
+        return devices, device_objs
+
+    def is_gauge(self, id):
+        # id is int index
+        return hasattr(self, 'gauge_map') and id in self.gauge_map
+
+    def get_gauge_value(self, id):
+        idx, suffix = self.gauge_map[id]
+        dev = self.device_objs[idx]
+        self.loop.run_until_complete(dev.update())
+        if suffix == "_consumption":
+            return getattr(dev.emeter_realtime, 'power', None)
+        elif suffix == "_voltage":
+            return getattr(dev.emeter_realtime, 'voltage', None)
+        elif suffix == "_current":
+            return getattr(dev.emeter_realtime, 'current', None)
+        return None
+
+    def get_gauge_description(self, id):
+        idx, suffix = self.gauge_map[id]
+        dev = self.device_objs[idx]
+        self.loop.run_until_complete(dev.update())
+        desc = f"{dev.alias} metric: "
+        if suffix == "_consumption":
+            desc += f"Current Consumption: {getattr(dev.emeter_realtime, 'power', 'N/A')} W"
+        elif suffix == "_voltage":
+            desc += f"Voltage: {getattr(dev.emeter_realtime, 'voltage', 'N/A')} V"
+        elif suffix == "_current":
+            desc += f"Current: {getattr(dev.emeter_realtime, 'current', 'N/A')} A"
+        # Add on_since if available
+        if hasattr(dev, 'on_since') and dev.on_since:
+            desc += f" | On since: {dev.on_since}"
+        return desc
 
     def get_switch(self, id=0):
-        import time
-        import re
-        import sys
         name = self._resolve_id(id)
-        max_attempts = 2
-        for attempt in range(1, max_attempts + 1):
-            try:
-                start = time.time()
-                result = subprocess.check_output(["KasaCmd", "-device", name, "-status"], encoding="utf-8", timeout=5)
-                elapsed = time.time() - start
-                if logger:
-                    logger.info(f"KasaCmd -device {name} -status returned {result.strip()} in {elapsed:.2f}s (attempt {attempt})")
-                # If devicelist expired or retrieving updated list, retry once
-                if ("devicelist expired" in result.lower() or "retrieving updated list" in result.lower()) and attempt < max_attempts:
-                    if logger:
-                        logger.warning(f"KasaCmd -device {name} -status: devicelist expired, retrying (attempt {attempt+1})")
-                    time.sleep(1)
-                    continue
-                # Robustly parse 'Relay: 1' or 'Relay: 0' (ignore case, whitespace)
-                m = re.search(r"Relay:\s*([01])", result, re.IGNORECASE)
-                if m:
-                    return m.group(1) == "1"
-                # fallback: try to parse last number in string
-                digits = [int(s) for s in result.strip().split() if s.isdigit()]
-                if digits:
-                    return digits[-1] == 1
-                return False
-            except subprocess.TimeoutExpired:
-                if logger:
-                    logger.error(f"KasaCmd -device {name} -status timed out after 5s (attempt {attempt})")
-                if attempt == max_attempts:
-                    raise DriverException(0x500, f"KasaCmd status timed out for {name}")
-            except Exception as ex:
-                if logger:
-                    logger.error(f"KasaCmd status failed for {name} (attempt {attempt}): {ex}")
-                if attempt == max_attempts:
-                    raise DriverException(0x500, f"KasaCmd status failed: {ex}")
+        for dev in self.device_objs:
+            if dev.alias == name:
+                self.loop.run_until_complete(dev.update())
+                return dev.is_on
+        raise InvalidValueException(f"Switch '{name}' not found.")
 
     def set_switch(self, state, id=0):
-        import time
         name = self._resolve_id(id)
-        if logger:
-            logger.info(f"set_switch called: id={id}, resolved_name={name}, state={state}")
-        try:
-            cmd = ["KasaCmd", "-device", name, "-on" if state else "-off"]
-            start = time.time()
-            subprocess.run(cmd, check=True, timeout=5)
-            elapsed = time.time() - start
-            if logger:
-                logger.info(f"KasaCmd {' '.join(cmd)} succeeded in {elapsed:.2f}s")
-        except subprocess.TimeoutExpired:
-            if logger:
-                logger.error(f"KasaCmd {' '.join(cmd)} timed out after 5s")
-            raise DriverException(0x500, f"KasaCmd set timed out for {name}")
-        except Exception as ex:
-            if logger:
-                logger.error(f"KasaCmd set failed for {name}: {ex}")
-            raise DriverException(0x500, f"KasaCmd set failed: {ex}")
+        for dev in self.device_objs:
+            if dev.alias == name:
+                self.loop.run_until_complete(dev.turn_on() if state else dev.turn_off())
+                return
+        raise InvalidValueException(f"Switch '{name}' not found.")
 
     def _resolve_id(self, id):
-        # Accept int (index), device name, or GUID (case-insensitive)
         if not self.device_list:
-            self.device_list = self._get_device_list()
+            self.device_list, self.device_objs = self.loop.run_until_complete(self._get_device_list())
         if isinstance(id, int):
             if id < 0 or id >= len(self.device_list):
                 raise InvalidValueException(f"Switch id {id} out of range.")
@@ -215,6 +231,10 @@ class getswitchvalue:
                 id = int(idstr)
             except ValueError:
                 id = idstr
+            if isinstance(id, int) and device.is_gauge(id):
+                val = device.get_gauge_value(id)
+                resp.text = PropertyResponse(val, req).json
+                return
             val = device.get_switch(id)
             resp.text = PropertyResponse(1 if val else 0, req).json
         except Exception as ex:
@@ -355,12 +375,20 @@ class getswitchdescription:
             resp.text = MethodResponse(req, InvalidValueException(f'Id {idstr} not a valid integer.')).json
             return
         try:
-            if 0 <= id < len(device.device_list):
+            if device.is_gauge(id):
+                desc = device.get_gauge_description(id)
+            elif 0 <= id < len(device.device_list):
                 name = device.device_list[id]
-                # Use a GUID based on the name for reference (or use a hash if not available)
                 import uuid
                 guid = str(uuid.uuid5(uuid.NAMESPACE_DNS, name))
+                dev_idx = id
+                if hasattr(device, 'gauge_map') and id in device.gauge_map:
+                    dev_idx = device.gauge_map[id][0]
+                dev = device.device_objs[dev_idx] if dev_idx < len(device.device_objs) else None
+                on_since = getattr(dev, 'on_since', None) if dev else None
                 desc = f"{name} (GUID: {guid})"
+                if on_since:
+                    desc += f" | On since: {on_since}"
             else:
                 desc = f"Switch {id} (Invalid index)"
             resp.text = PropertyResponse(desc, req).json
@@ -380,7 +408,11 @@ class canwrite:
         except:
             resp.text = MethodResponse(req, InvalidValueException(f'Id {idstr} not a valid integer.')).json
             return
-        resp.text = PropertyResponse(True, req).json
+        # Gauge switches are read-only
+        if device.is_gauge(id):
+            resp.text = PropertyResponse(False, req).json
+        else:
+            resp.text = PropertyResponse(True, req).json
 
 # Management endpoints
 class connect:
@@ -464,4 +496,15 @@ class maxswitch:
             if logger:
                 logger.error(f"maxswitch: failed: {ex}")
             resp.text = PropertyResponse(None, req, DriverException(0x500, 'Switch.Maxswitch failed', ex)).json
+
+# CLI for credential management
+if __name__ == "__main__":
+    import argparse
+    parser = argparse.ArgumentParser(description="Kasa Switch Utility")
+    parser.add_argument("credentials", action="store_true", help="Update Kasa credentials in keyring")
+    args = parser.parse_args()
+    if args.credentials:
+        KasaSwitchController().update_credentials()
+        print("Credentials updated.")
+        exit(0)
 

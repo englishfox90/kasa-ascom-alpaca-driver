@@ -9,9 +9,6 @@ build/
 # Ignore logs directory and its contents
 logs/
 
-# Ignore PyInstaller output
-*.spec
-
 # Ignore OS files
 .DS_Store
 Thumbs.db
