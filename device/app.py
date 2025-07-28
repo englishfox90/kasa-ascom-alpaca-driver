@@ -60,7 +60,8 @@ import os
 import sys
 import traceback
 import inspect
-from wsgiref.simple_server import WSGIRequestHandler, make_server
+import socketserver
+from wsgiref.simple_server import WSGIRequestHandler, WSGIServer, make_server
 from enum import IntEnum
 import logging
 
@@ -121,6 +122,9 @@ class LoggingWSGIRequestHandler(WSGIRequestHandler):
         ##TODO## on non-200s, per Wireshark. So crazy!
         #if args[1] != '200':  # Log this only on non-200 responses
         #    log.logger.info(f'{self.client_address[0]} <- {format%args}')
+
+class ThreadingWSGIServer(socketserver.ThreadingMixIn, WSGIServer):
+    daemon_threads = True
 
 #-----------------------
 # Magic routing function
@@ -293,7 +297,7 @@ def main():
     # SERVER APPLICATION
     # ------------------
     try:
-        with make_server('0.0.0.0', Config.port, falc_app, handler_class=LoggingWSGIRequestHandler) as httpd:
+        with make_server('0.0.0.0', Config.port, falc_app, server_class=ThreadingWSGIServer, handler_class=LoggingWSGIRequestHandler) as httpd:
             logger.info(f'==STARTUP== Serving on 0.0.0.0:{Config.port}. Time stamps are UTC.')
             httpd.serve_forever()
     except Exception as ex:
