@@ -8,26 +8,34 @@ import threading
 import time
 import pystray
 from PIL import Image, ImageDraw
+import logging
 
 SERVICE = 'kasa-alpaca'
+LOG_FILE = os.path.join(os.path.dirname(sys.executable if getattr(sys, 'frozen', False) else __file__), 'kasa_alpaca_gui.log')
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s %(levelname)s: %(message)s',
+    handlers=[logging.FileHandler(LOG_FILE, encoding='utf-8'), logging.StreamHandler()]
+)
 
 class KasaManagerApp:
     def __init__(self, root):
         self.root = root
         self.root.title('Kasa Alpaca Switch Manager')
-        self.root.geometry('400x350')
+        self.root.geometry('400x420')  # Increased height
         self.root.resizable(False, False)
         self.server_process = None
         self.status_var = tk.StringVar()
         self.status_var.set('Server not running.')
         self.log_lines = []
-        self.log_var = tk.StringVar()
-        self.log_var.set('')
+        self.log_text = None
         self.tray_icon = None
         self._build_ui()
         self.root.protocol('WM_DELETE_WINDOW', self._on_minimize)
         self._update_status_periodically()
         self._first_run_check()
+        self._log_file_last_pos = 0
+        self._update_log_periodically()
 
     def _build_ui(self):
         frm = ttk.Frame(self.root, padding=10)
@@ -38,7 +46,7 @@ class KasaManagerApp:
         ttk.Button(frm, text='Stop Server', command=self.stop_server).pack(fill='x', pady=5)
         ttk.Label(frm, textvariable=self.status_var, foreground='blue', font=('Segoe UI', 10, 'italic')).pack(pady=(10, 0))
         ttk.Label(frm, text='Recent Log:', font=('Segoe UI', 9, 'bold')).pack(anchor='w', pady=(15, 0))
-        self.log_text = tk.Text(frm, height=6, width=45, state='disabled', font=('Consolas', 9))
+        self.log_text = tk.Text(frm, height=10, width=45, state='disabled', font=('Consolas', 9))  # taller log area
         self.log_text.pack(pady=(0, 5))
         ttk.Button(frm, text='Copy Server URL', command=self.copy_server_url).pack(fill='x', pady=2)
         ttk.Button(frm, text='Exit', command=self.on_exit).pack(side='bottom', fill='x', pady=5)
@@ -70,16 +78,27 @@ class KasaManagerApp:
         self.progress.pack(fill='x', pady=2)
         self.progress.start()
         def run():
-            python_exe = sys.executable.replace('python.exe', 'pythonw.exe') if sys.platform == 'win32' else sys.executable
-            app_path = os.path.join(os.path.dirname(__file__), 'app.py')
-            self.server_process = subprocess.Popen(
-                [python_exe, app_path],
-                stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True
-            )
-            self.status_var.set('Server running.')
-            self.progress.stop()
-            self.progress.pack_forget()
-            self._read_server_logs()
+            try:
+                # Set working directory to script/exe dir
+                exe_dir = os.path.dirname(sys.executable if getattr(sys, 'frozen', False) else __file__)
+                os.chdir(exe_dir)
+                python_exe = sys.executable.replace('python.exe', 'pythonw.exe') if sys.platform == 'win32' else sys.executable
+                app_path = os.path.join(exe_dir, 'app.py')
+                creationflags = 0
+                if sys.platform == 'win32':
+                    creationflags = getattr(subprocess, 'CREATE_NO_WINDOW', 0)
+                self.server_process = subprocess.Popen(
+                    [python_exe, app_path],
+                    stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True,
+                    creationflags=creationflags, cwd=exe_dir
+                )
+                self.status_var.set('Server running.')
+            except Exception as ex:
+                logging.error(f"Failed to start server: {ex}")
+                self.status_var.set(f"Server failed: {ex}")
+            finally:
+                self.progress.stop()
+                self.progress.pack_forget()
         threading.Thread(target=run, daemon=True).start()
 
     def stop_server(self):
@@ -93,20 +112,23 @@ class KasaManagerApp:
         else:
             self.status_var.set('Server not running.')
 
-    def _read_server_logs(self):
-        def read_logs():
-            if not self.server_process:
-                return
-            for line in self.server_process.stdout:
-                self._append_log(line)
-            for line in self.server_process.stderr:
-                self._append_log(line)
-        threading.Thread(target=read_logs, daemon=True).start()
+    def _update_log_periodically(self):
+        try:
+            with open(LOG_FILE, 'r', encoding='utf-8') as f:
+                f.seek(self._log_file_last_pos)
+                new_lines = f.readlines()
+                self._log_file_last_pos = f.tell()
+                if new_lines:
+                    for line in new_lines:
+                        self._append_log(line)
+        except Exception:
+            pass
+        self.root.after(1000, self._update_log_periodically)
 
     def _append_log(self, line):
         self.log_lines.append(line.strip())
-        if len(self.log_lines) > 10:
-            self.log_lines = self.log_lines[-10:]
+        if len(self.log_lines) > 15:
+            self.log_lines = self.log_lines[-15:]
         self.log_text.config(state='normal')
         self.log_text.delete(1.0, tk.END)
         self.log_text.insert(tk.END, '\n'.join(self.log_lines))
