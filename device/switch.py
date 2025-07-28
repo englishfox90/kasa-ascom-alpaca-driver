@@ -83,15 +83,13 @@ class KasaSwitchController:
                 self.readonly_switches = set()  # Track readonly switches (parent devices)
                 self.cloud_switch_map = {}  # Map: index -> parent idx for cloud connection switches
                 for idx, dev in enumerate(self.device_objs):
-                    # Add parent device as a readonly switch (always ON, description is on_since)
-                    parent_name = dev.alias
-                    new_device_list.append(parent_name)
+                    # Add Power (On Since) as a readonly switch for the parent
+                    new_device_list.append("Power")
                     new_device_objs.append(dev)
                     self.readonly_switches.add(len(new_device_list)-1)
                     parent_idx = len(new_device_list)-1
-                    # Add CloudConnection as a readonly switch for the parent
-                    cloud_name = f"{parent_name} CloudConnection"
-                    new_device_list.append(cloud_name)
+                    # Add Cloud Connection as a readonly switch for the parent
+                    new_device_list.append("Cloud Connection")
                     new_device_objs.append(dev)
                     self.readonly_switches.add(len(new_device_list)-1)
                     self.cloud_switch_map[len(new_device_list)-1] = parent_idx
@@ -139,13 +137,15 @@ class KasaSwitchController:
     def get_switch(self, id=0):
         name = self._resolve_id(id)
         idx = self.device_list.index(name)
-        # CloudConnection readonly switch: return True if cloud connected, else False
+        # Cloud Connection readonly switch: return True if cloud connected, else False
         if hasattr(self, 'cloud_switch_map') and idx in self.cloud_switch_map:
             parent_idx = self.cloud_switch_map[idx]
             dev = self.device_objs[parent_idx]
-            # python-kasa: dev.is_cloud_connected (bool)
-            return getattr(dev, 'is_cloud_connected', False)
-        # If this is a parent (readonly) switch, always return True (ON)
+            # Use dev.has_cloud_connection and dev.is_cloud_connected per python-kasa docs
+            if hasattr(dev, 'has_cloud_connection') and dev.has_cloud_connection:
+                return bool(getattr(dev, 'is_cloud_connected', False))
+            return False
+        # Power (On Since) readonly switch: always ON
         if hasattr(self, 'readonly_switches') and idx in self.readonly_switches and (not hasattr(self, 'cloud_switch_map') or idx not in self.cloud_switch_map):
             return True
         dev = self.device_objs[idx]
@@ -170,7 +170,7 @@ class KasaSwitchController:
         name = self._resolve_id(id)
         idx = self.device_list.index(name)
         # Prevent setting state for readonly (parent) and cloud switches
-        if (hasattr(self, 'readonly_switches') and idx in self.readonly_switches) or (hasattr(self, 'cloud_switch_map') and idx in self.cloud_switch_map):
+        if (hasattr(self, 'readonly_switches') and idx in self.readonly_switches):
             raise DriverException(0x502, f"Switch {name} is read-only.")
         dev = self.device_objs[idx]
         max_retries = 3
@@ -241,19 +241,49 @@ except Exception as ex:
 @before(PreProcessRequest(maxdev))
 class maxswitchvalue:
     def on_get(self, req: Request, resp: Response, devnum: int):
-        resp.text = PropertyResponse(1, req).json
+        idstr = get_request_field('Id', req)
+        try:
+            id = int(idstr)
+        except:
+            resp.text = PropertyResponse(1, req).json
+            return
+        # For Power (readonly) switch, set max value to 1 (toggle)
+        if hasattr(device, 'readonly_switches') and id in device.readonly_switches and (not hasattr(device, 'cloud_switch_map') or id not in device.cloud_switch_map):
+            resp.text = PropertyResponse(1, req).json
+        else:
+            resp.text = PropertyResponse(1, req).json
 
 # ISwitch minswitchvalue endpoint
 @before(PreProcessRequest(maxdev))
 class minswitchvalue:
     def on_get(self, req: Request, resp: Response, devnum: int):
-        resp.text = PropertyResponse(0, req).json
+        idstr = get_request_field('Id', req)
+        try:
+            id = int(idstr)
+        except:
+            resp.text = PropertyResponse(0, req).json
+            return
+        # For Power (readonly) switch, set min value to 0 (toggle)
+        if hasattr(device, 'readonly_switches') and id in device.readonly_switches and (not hasattr(device, 'cloud_switch_map') or id not in device.cloud_switch_map):
+            resp.text = PropertyResponse(0, req).json
+        else:
+            resp.text = PropertyResponse(0, req).json
 
 # ISwitch switchstep endpoint
 @before(PreProcessRequest(maxdev))
 class switchstep:
     def on_get(self, req: Request, resp: Response, devnum: int):
-        resp.text = PropertyResponse(1, req).json
+        idstr = get_request_field('Id', req)
+        try:
+            id = int(idstr)
+        except:
+            resp.text = PropertyResponse(1, req).json
+            return
+        # For Power (readonly) switch, step is 1
+        if hasattr(device, 'readonly_switches') and id in device.readonly_switches and (not hasattr(device, 'cloud_switch_map') or id not in device.cloud_switch_map):
+            resp.text = PropertyResponse(1, req).json
+        else:
+            resp.text = PropertyResponse(1, req).json
 
 # ISwitch getswitchvalue endpoint
 @before(PreProcessRequest(maxdev))
@@ -434,34 +464,39 @@ class getswitchdescription:
                 name = device.device_list[id]
                 dev_idx = id
                 dev = device.device_objs[dev_idx] if dev_idx < len(device.device_objs) else None
-                parent_name = getattr(dev, 'alias', None) if dev else None
-                display_parent = parent_name.replace('_', ' ') if parent_name else None
-                display_name = name.replace('_', ' ') if name else None
-                # CloudConnection switch description
+                # Cloud Connection switch description
                 if hasattr(device, 'cloud_switch_map') and id in device.cloud_switch_map:
                     parent_idx = device.cloud_switch_map[id]
                     parent_dev = device.device_objs[parent_idx]
-                    status = getattr(parent_dev, 'is_cloud_connected', False)
-                    desc = f"{display_parent} CloudConnection (readonly) | Status: {'Connected' if status else 'Disconnected'}"
-                # If this is a parent (readonly) switch, show On Since as description
+                    status = False
+                    if hasattr(parent_dev, 'has_cloud_connection') and parent_dev.has_cloud_connection:
+                        status = bool(getattr(parent_dev, 'is_cloud_connected', False))
+                    desc = f"Cloud Connection (readonly) | Status: {'Connected' if status else 'Disconnected'}"
+                # Power (On Since) readonly switch description
                 elif hasattr(device, 'readonly_switches') and id in device.readonly_switches and (not hasattr(device, 'cloud_switch_map') or id not in device.cloud_switch_map):
                     on_since = getattr(dev, 'on_since', None) if dev else None
-                    desc = f"{display_parent} (readonly)"
+                    desc = f"Power (readonly)"
                     if on_since:
                         try:
                             from dateutil import tz
+                            import pytz
+                            import datetime as dt
                             if isinstance(on_since, str):
-                                on_since_dt = datetime.datetime.fromisoformat(on_since)
+                                on_since_dt = dt.datetime.fromisoformat(on_since)
                             else:
                                 on_since_dt = on_since
+                            # Localize to system timezone
                             local_tz = tz.tzlocal()
                             local_dt = on_since_dt.astimezone(local_tz)
                             locale.setlocale(locale.LC_TIME, '')
-                            formatted = local_dt.strftime('%x %X')
+                            formatted = local_dt.strftime('%c')
                             desc += f" | On since: {formatted}"
                         except Exception as dt_ex:
                             desc += f" | On since: {on_since}"
                 else:
+                    parent_name = getattr(dev, 'alias', None) if dev else None
+                    display_parent = parent_name.replace('_', ' ') if parent_name else None
+                    display_name = name.replace('_', ' ') if name else None
                     desc = f"{display_parent} - {display_name}" if display_parent and display_parent != display_name else f"{display_name}"
                 resp.text = PropertyResponse(desc, req).json
             else:
@@ -485,7 +520,7 @@ class canwrite:
             return
         # Set CanWrite to False for readonly (parent) and cloud switches, True for others
         can_write = True
-        if (hasattr(device, 'readonly_switches') and id in device.readonly_switches) or (hasattr(device, 'cloud_switch_map') and id in device.cloud_switch_map):
+        if (hasattr(device, 'readonly_switches') and id in device.readonly_switches):
             can_write = False
         if logger:
             logger.info(f"canwrite: returning {can_write} for id={id}")
