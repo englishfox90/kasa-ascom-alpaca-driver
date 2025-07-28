@@ -196,6 +196,20 @@ class KasaSwitchController:
         if not hasattr(self, 'gauge_map') or id not in self.gauge_map:
             if logger:
                 logger.warning(f"Gauge value requested for unmapped id={id}")
+            # Try to pull all metrics for diagnostic logging
+            try:
+                idx = id if isinstance(id, int) else None
+                if idx is not None and idx < len(self.device_objs):
+                    dev = self.device_objs[idx]
+                    emeter = getattr(dev, 'emeter_realtime', None)
+                    if emeter:
+                        for metric, label in [("power", "Current Consumption (W)"), ("voltage", "Voltage (V)"), ("current", "Current (A)")]:
+                            val = getattr(emeter, metric, None)
+                            logger.info(f"[DIAG] get_gauge_value: {dev.alias} {label}: {val}")
+                    else:
+                        logger.info(f"[DIAG] get_gauge_value: {dev.alias} has no emeter_realtime")
+            except Exception as ex:
+                logger.error(f"[DIAG] get_gauge_value: Exception during diagnostic pull for id={id}: {ex}")
             return None
         idx, suffix, source = self.gauge_map[id]
         dev = self.device_objs[idx]
@@ -204,6 +218,10 @@ class KasaSwitchController:
                 logger.info(f"get_gauge_value: Updating device '{dev.alias}' for gauge '{suffix}' (id={id}, source={source})")
             self.loop.run_until_complete(dev.update())
             emeter = dev.emeter_realtime if source == 'parent' else dev.children[self.child_map[id][1]].emeter_realtime
+            # Always log all metrics for diagnostics
+            for metric, label in [("power", "Current Consumption (W)"), ("voltage", "Voltage (V)"), ("current", "Current (A)")]:
+                val = getattr(emeter, metric, None)
+                logger.info(f"[DIAG] get_gauge_value: {dev.alias} {label}: {val}")
             if suffix == "_consumption":
                 val = getattr(emeter, 'power', None)
             elif suffix == "_voltage":
@@ -283,7 +301,8 @@ class KasaSwitchController:
             if logger:
                 logger.info(f"set_switch: Setting child {child.alias} of {dev.alias} to {'ON' if state else 'OFF'}")
             self.loop.run_until_complete(child.turn_on() if state else child.turn_off())
-            # Immediately update and log state
+            import time as _time
+            _time.sleep(0.3)  # Give device time to process state change
             self.loop.run_until_complete(child.update())
             if logger:
                 logger.info(f"set_switch: {dev.alias} - {child.alias} is now {'ON' if child.is_on else 'OFF'} (expected {'ON' if state else 'OFF'})")
@@ -295,6 +314,8 @@ class KasaSwitchController:
             if logger:
                 logger.info(f"set_switch: Setting {dev.alias} to {'ON' if state else 'OFF'}")
             self.loop.run_until_complete(dev.turn_on() if state else dev.turn_off())
+            import time as _time
+            _time.sleep(0.3)
             self.loop.run_until_complete(dev.update())
             if logger:
                 logger.info(f"set_switch: {dev.alias} is now {'ON' if dev.is_on else 'OFF'} (expected {'ON' if state else 'OFF'})")
