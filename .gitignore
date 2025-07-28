@@ -1,0 +1,18 @@
+# Ignore Python cache and build artifacts
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+build/
+dist/
+
+# Ignore logs directory and its contents
+logs/
+
+# Ignore PyInstaller output
+*.spec
+
+# Ignore OS files
+.DS_Store
+Thumbs.db
