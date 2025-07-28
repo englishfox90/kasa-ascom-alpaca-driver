@@ -467,12 +467,16 @@ class connected:
     def on_get(self, req: Request, resp: Response, devnum: int):
         try:
             is_conn = device.is_connected()
+            resp.status = "200 OK"
+            resp.content_type = "application/json"
             resp.text = PropertyResponse(is_conn, req).json
             if logger:
                 logger.info(f"GET /connected response: {resp.text}")
             else:
                 print(f"GET /connected response: {resp.text}")
         except Exception as ex:
+            resp.status = "200 OK"
+            resp.content_type = "application/json"
             resp.text = MethodResponse(req, DriverException(0x500, 'Switch.Connected failed', ex)).json
             if logger:
                 logger.error(f"GET /connected error response: {resp.text}")
@@ -487,12 +491,16 @@ class connected:
                 device.connect()
             else:
                 device.disconnect()
+            resp.status = "200 OK"
+            resp.content_type = "application/json"
             resp.text = MethodResponse(req).json
             if logger:
                 logger.info(f"PUT /connected response: {resp.text}")
             else:
                 print(f"PUT /connected response: {resp.text}")
         except Exception as ex:
+            resp.status = "200 OK"
+            resp.content_type = "application/json"
             resp.text = MethodResponse(req, DriverException(0x500, 'Switch.Connected failed', ex)).json
             if logger:
                 logger.error(f"PUT /connected error response: {resp.text}")
