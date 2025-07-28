@@ -295,34 +295,43 @@ class KasaSwitchController:
         name = self._resolve_id(id)
         idx = self.device_list.index(name)
         dev = self.device_objs[idx]
+        max_retries = 3
+        delay = 1.2  # seconds
         if hasattr(self, 'child_map') and idx in self.child_map:
             dev_idx, cidx = self.child_map[idx]
-            child = dev.children[cidx]
-            if logger:
-                logger.info(f"set_switch: Setting child {child.alias} of {dev.alias} to {'ON' if state else 'OFF'}")
-            self.loop.run_until_complete(child.turn_on() if state else child.turn_off())
-            import time as _time
-            _time.sleep(0.3)  # Give device time to process state change
-            self.loop.run_until_complete(child.update())
-            if logger:
-                logger.info(f"set_switch: {dev.alias} - {child.alias} is now {'ON' if child.is_on else 'OFF'} (expected {'ON' if state else 'OFF'})")
-            if child.is_on != state:
+            for attempt in range(max_retries):
+                child = dev.children[cidx]
                 if logger:
-                    logger.error(f"set_switch: State mismatch after set for {child.alias} of {dev.alias}: expected {state}, got {child.is_on}")
-                raise DriverException(0x501, f"Failed to set switch state for {child.alias} of {dev.alias}")
+                    logger.info(f"set_switch: Setting child {child.alias} of {dev.alias} to {'ON' if state else 'OFF'} (attempt {attempt+1})")
+                self.loop.run_until_complete(child.turn_on() if state else child.turn_off())
+                import time as _time
+                _time.sleep(delay)
+                # Force parent update, then re-fetch child
+                self.loop.run_until_complete(dev.update())
+                child = dev.children[cidx]
+                if logger:
+                    logger.info(f"set_switch: {dev.alias} - {child.alias} is now {'ON' if child.is_on else 'OFF'} (expected {'ON' if state else 'OFF'})")
+                if child.is_on == state:
+                    return
+            # If we get here, state did not match after retries
+            if logger:
+                logger.error(f"set_switch: State mismatch after {max_retries} attempts for {child.alias} of {dev.alias}: expected {state}, got {child.is_on}")
+            raise DriverException(0x501, f"Failed to set switch state for {child.alias} of {dev.alias}")
         else:
-            if logger:
-                logger.info(f"set_switch: Setting {dev.alias} to {'ON' if state else 'OFF'}")
-            self.loop.run_until_complete(dev.turn_on() if state else dev.turn_off())
-            import time as _time
-            _time.sleep(0.3)
-            self.loop.run_until_complete(dev.update())
-            if logger:
-                logger.info(f"set_switch: {dev.alias} is now {'ON' if dev.is_on else 'OFF'} (expected {'ON' if state else 'OFF'})")
-            if dev.is_on != state:
+            for attempt in range(max_retries):
                 if logger:
-                    logger.error(f"set_switch: State mismatch after set for {dev.alias}: expected {state}, got {dev.is_on}")
-                raise DriverException(0x501, f"Failed to set switch state for {dev.alias}")
+                    logger.info(f"set_switch: Setting {dev.alias} to {'ON' if state else 'OFF'} (attempt {attempt+1})")
+                self.loop.run_until_complete(dev.turn_on() if state else dev.turn_off())
+                import time as _time
+                _time.sleep(delay)
+                self.loop.run_until_complete(dev.update())
+                if logger:
+                    logger.info(f"set_switch: {dev.alias} is now {'ON' if dev.is_on else 'OFF'} (expected {'ON' if state else 'OFF'})")
+                if dev.is_on == state:
+                    return
+            if logger:
+                logger.error(f"set_switch: State mismatch after {max_retries} attempts for {dev.alias}: expected {state}, got {dev.is_on}")
+            raise DriverException(0x501, f"Failed to set switch state for {dev.alias}")
 
     def _resolve_id(self, id):
         if not self.device_list:
