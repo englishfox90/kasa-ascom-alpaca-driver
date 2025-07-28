@@ -1,0 +1,346 @@
+2025-07-28T07:47:30.093 INFO ==STARTUP== Serving on :5555. Time stamps are UTC.
+2025-07-28T07:47:34.024 INFO Disc rcv alpacadiscovery1 from ('192.168.68.128', 60241)
+2025-07-28T07:47:34.025 INFO Disc rcv alpacadiscovery1 from ('127.0.0.1', 60242)
+2025-07-28T07:47:34.030 INFO 192.168.68.128 <- [1]
+2025-07-28T07:47:34.031 INFO 127.0.0.1 <- [1]
+2025-07-28T07:47:34.032 INFO 192.168.68.128 <- {'ServerName': 'Alpaca Kasa Switch Server', 'Manufacturer': 'ASCOM Initiative', 'Version': '1.0.0', 'Location': 'Anywhere on Earth'}
+2025-07-28T07:47:34.032 INFO 127.0.0.1 <- {'ServerName': 'Alpaca Kasa Switch Server', 'Manufacturer': 'ASCOM Initiative', 'Version': '1.0.0', 'Location': 'Anywhere on Earth'}
+2025-07-28T07:47:34.033 INFO 192.168.68.128 <- [{'DeviceName': 'Kasa Switch', 'DeviceType': 'Switch', 'DeviceNumber': 0, 'UniqueID': 'b7e1e2c2-7e2a-4b7a-9e2e-123456789abc'}]
+2025-07-28T07:47:34.033 INFO 127.0.0.1 <- [{'DeviceName': 'Kasa Switch', 'DeviceType': 'Switch', 'DeviceNumber': 0, 'UniqueID': 'b7e1e2c2-7e2a-4b7a-9e2e-123456789abc'}]
+2025-07-28T07:47:37.214 INFO 192.168.68.128 -> PUT /api/v1/switch/0/connected
+2025-07-28T07:47:37.215 INFO 192.168.68.128 -> {'Connected': 'True', 'ClientID': '28431', 'ClientTransactionID': '11303'}
+2025-07-28T07:47:37.438 INFO KasaCmd -devicelist parsed device names: ['Mount', 'Pc', 'Dew Heater'] in 0.22s
+2025-07-28T07:47:37.439 INFO Kasa connect: device list loaded in 0.22s: ['Mount', 'Pc', 'Dew Heater']
+2025-07-28T07:47:37.442 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=28431&ClientTransactionID=11304
+2025-07-28T07:47:37.442 INFO 192.168.68.128 <- True
+2025-07-28T07:47:37.444 INFO 192.168.68.128 -> GET /api/v1/switch/0/maxswitch?ClientID=28431&ClientTransactionID=11305
+2025-07-28T07:47:37.445 INFO maxswitch: returning 3
+2025-07-28T07:47:37.445 INFO 192.168.68.128 <- 3
+2025-07-28T07:47:37.447 INFO 192.168.68.128 -> GET /api/v1/switch/0/canwrite?ClientID=28431&ClientTransactionID=11306&Id=0
+2025-07-28T07:47:37.447 INFO 192.168.68.128 <- True
+2025-07-28T07:47:37.448 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=28431&ClientTransactionID=11307&Id=0
+2025-07-28T07:47:37.449 INFO 192.168.68.128 <- Mount
+2025-07-28T07:47:37.450 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchdescription?ClientID=28431&ClientTransactionID=11308&Id=0
+2025-07-28T07:47:37.451 INFO 192.168.68.128 <- Mount
+2025-07-28T07:47:37.452 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=28431&ClientTransactionID=11309&Id=0
+2025-07-28T07:47:42.552 ERROR KasaCmd -device Mount -status timed out after 5s
+2025-07-28T07:47:42.553 ERROR DriverException: KasaCmd status timed out for Mount
+2025-07-28T07:47:42.580 ERROR DriverException: Switch.GetSwitchValue failed
+Traceback (most recent call last):
+  File "G:\Other computers\My Computer (1)\AlpycaDevice\device\switch.py", line 99, in get_switch
+    result = subprocess.check_output(["KasaCmd", "-device", name, "-status"], encoding="utf-8", timeout=5)
+  File "C:\Users\Paul Fox-Reeks\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 472, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+               **kwargs).stdout
+               ^^^^^^^^^
+  File "C:\Users\Paul Fox-Reeks\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 556, in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+                     ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Paul Fox-Reeks\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 1222, in communicate
+    stdout, stderr = self._communicate(input, endtime, timeout)
+                     ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Paul Fox-Reeks\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 1646, in _communicate
+    raise TimeoutExpired(self.args, orig_timeout)
+subprocess.TimeoutExpired: Command '['KasaCmd', '-device', 'Mount', '-status']' timed out after 5 seconds
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "G:\Other computers\My Computer (1)\AlpycaDevice\device\switch.py", line 201, in on_get
+    val = device.get_switch(id)
+  File "G:\Other computers\My Computer (1)\AlpycaDevice\device\switch.py", line 115, in get_switch
+    raise DriverException(0x500, f"KasaCmd status timed out for {name}")
+device.exceptions.DriverException: (1280, 'KasaCmd status timed out for Mount')
+
+2025-07-28T07:47:42.595 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=28431&ClientTransactionID=11310
+2025-07-28T07:47:42.595 INFO 192.168.68.128 <- True
+2025-07-28T07:47:42.599 INFO 192.168.68.128 -> GET /api/v1/switch/0/driverinfo?ClientID=28431&ClientTransactionID=11312
+2025-07-28T07:47:42.599 INFO 192.168.68.128 <- Kasa Switch Alpaca Device
+Implements ISwitch
+ASCOM Initiative
+2025-07-28T07:47:42.601 INFO 192.168.68.128 -> GET /api/v1/switch/0/driverversion?ClientID=28431&ClientTransactionID=11313
+2025-07-28T07:47:42.601 INFO 192.168.68.128 <- 1.0.0
+2025-07-28T07:47:42.603 INFO 192.168.68.128 -> GET /api/v1/switch/0/supportedactions?ClientID=28431&ClientTransactionID=11314
+2025-07-28T07:47:42.603 INFO 192.168.68.128 <- []
+2025-07-28T07:47:42.605 INFO 192.168.68.128 -> GET /api/v1/switch/0/driverversion?ClientID=28431&ClientTransactionID=11315
+2025-07-28T07:47:42.605 INFO 192.168.68.128 <- 1.0.0
+2025-07-28T07:47:44.610 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=28431&ClientTransactionID=11316
+2025-07-28T07:47:44.611 INFO 192.168.68.128 <- True
+2025-07-28T07:47:46.607 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=28431&ClientTransactionID=11317
+2025-07-28T07:47:46.607 INFO 192.168.68.128 <- True
+2025-07-28T07:47:47.814 INFO 192.168.68.128 -> PUT /api/v1/switch/0/connected
+2025-07-28T07:47:47.816 INFO 192.168.68.128 -> {'Connected': 'False', 'ClientID': '28431', 'ClientTransactionID': '11318'}
+2025-07-28T07:47:52.607 INFO Disc rcv alpacadiscovery1 from ('192.168.68.128', 60261)
+2025-07-28T07:47:52.607 INFO Disc rcv alpacadiscovery1 from ('127.0.0.1', 60262)
+2025-07-28T07:47:52.609 INFO 192.168.68.128 <- [1]
+2025-07-28T07:47:52.611 INFO 127.0.0.1 <- [1]
+2025-07-28T07:47:52.612 INFO 192.168.68.128 <- {'ServerName': 'Alpaca Kasa Switch Server', 'Manufacturer': 'ASCOM Initiative', 'Version': '1.0.0', 'Location': 'Anywhere on Earth'}
+2025-07-28T07:47:52.613 INFO 127.0.0.1 <- {'ServerName': 'Alpaca Kasa Switch Server', 'Manufacturer': 'ASCOM Initiative', 'Version': '1.0.0', 'Location': 'Anywhere on Earth'}
+2025-07-28T07:47:57.702 INFO 192.168.68.128 <- []
+lientID=64727&ClientTransactionID=11199
+2025-07-28T07:44:35.118 INFO 192.168.68.128 <- 1.0.0
+2025-07-28T07:44:37.129 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=64727&ClientTransactionID=11200
+2025-07-28T07:44:37.130 INFO 192.168.68.128 <- True
+2025-07-28T07:44:37.133 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=64727&ClientTransactionID=11201&Id=0
+2025-07-28T07:44:37.134 INFO 192.168.68.128 <- Mount
+2025-07-28T07:44:37.135 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=64727&ClientTransactionID=11202&Id=1
+2025-07-28T07:44:37.136 INFO 192.168.68.128 <- Pc
+2025-07-28T07:44:37.137 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=64727&ClientTransactionID=11203&Id=2
+2025-07-28T07:44:37.138 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:44:37.139 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=64727&ClientTransactionID=11204&Id=0
+2025-07-28T07:44:39.199 INFO KasaCmd -device Mount -status returned Relay: 1 in 2.06s
+2025-07-28T07:44:39.200 INFO 192.168.68.128 <- 1
+2025-07-28T07:44:39.201 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=64727&ClientTransactionID=11205&Id=1
+2025-07-28T07:44:41.360 INFO KasaCmd -device Pc -status returned Relay: 1 in 2.16s
+2025-07-28T07:44:41.361 INFO 192.168.68.128 <- 1
+2025-07-28T07:44:41.362 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=64727&ClientTransactionID=11206&Id=2
+2025-07-28T07:44:42.243 INFO KasaCmd -device Dew Heater -status returned Relay: 0 in 0.88s
+2025-07-28T07:44:42.243 INFO 192.168.68.128 <- 0
+2025-07-28T07:44:42.246 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=64727&ClientTransactionID=11208
+2025-07-28T07:44:42.246 INFO 192.168.68.128 <- True
+2025-07-28T07:44:42.247 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=64727&ClientTransactionID=11211&Id=2
+2025-07-28T07:44:42.248 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:44:42.249 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=64727&ClientTransactionID=11209&Id=0
+2025-07-28T07:44:42.249 INFO 192.168.68.128 <- Mount
+2025-07-28T07:44:42.250 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=64727&ClientTransactionID=11210&Id=1
+2025-07-28T07:44:42.250 INFO 192.168.68.128 <- Pc
+2025-07-28T07:44:42.251 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=64727&ClientTransactionID=11212&Id=2
+2025-07-28T07:44:44.338 INFO KasaCmd -device Dew Heater -status returned Relay: 0 in 2.09s
+2025-07-28T07:44:44.339 INFO 192.168.68.128 <- 0
+2025-07-28T07:44:44.340 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=64727&ClientTransactionID=11213&Id=0
+2025-07-28T07:44:46.559 INFO KasaCmd -device Mount -status returned Relay: 1 in 2.22s
+2025-07-28T07:44:46.560 INFO 192.168.68.128 <- 1
+2025-07-28T07:44:46.561 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=64727&ClientTransactionID=11214&Id=1
+2025-07-28T07:44:51.659 ERROR KasaCmd -device Pc -status timed out after 5s
+2025-07-28T07:44:51.660 ERROR DriverException: KasaCmd status timed out for Pc
+2025-07-28T07:44:51.687 ERROR DriverException: Switch.GetSwitchValue failed
+Traceback (most recent call last):
+  File "G:\Other computers\My Computer (1)\AlpycaDevice\device\switch.py", line 99, in get_switch
+    result = subprocess.check_output(["KasaCmd", "-device", name, "-status"], encoding="utf-8", timeout=5)
+  File "C:\Users\Paul Fox-Reeks\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 472, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+               **kwargs).stdout
+               ^^^^^^^^^
+  File "C:\Users\Paul Fox-Reeks\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 556, in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+                     ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Paul Fox-Reeks\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 1222, in communicate
+    stdout, stderr = self._communicate(input, endtime, timeout)
+                     ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Paul Fox-Reeks\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 1646, in _communicate
+    raise TimeoutExpired(self.args, orig_timeout)
+subprocess.TimeoutExpired: Command '['KasaCmd', '-device', 'Pc', '-status']' timed out after 5 seconds
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "G:\Other computers\My Computer (1)\AlpycaDevice\device\switch.py", line 201, in on_get
+    val = device.get_switch(id)
+  File "G:\Other computers\My Computer (1)\AlpycaDevice\device\switch.py", line 115, in get_switch
+    raise DriverException(0x500, f"KasaCmd status timed out for {name}")
+TypeError: exceptions must derive from BaseException
+
+2025-07-28T07:44:51.690 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=64727&ClientTransactionID=11215
+2025-07-28T07:44:51.690 INFO 192.168.68.128 <- True
+2025-07-28T07:44:51.692 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=64727&ClientTransactionID=11217&Id=1
+2025-07-28T07:44:51.693 INFO 192.168.68.128 <- Pc
+2025-07-28T07:44:51.693 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=64727&ClientTransactionID=11218&Id=2
+2025-07-28T07:44:51.694 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:44:51.694 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=64727&ClientTransactionID=11216&Id=0
+2025-07-28T07:44:51.695 INFO 192.168.68.128 <- Mount
+2025-07-28T07:44:51.695 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=64727&ClientTransactionID=11219&Id=1
+2025-07-28T07:44:53.740 INFO KasaCmd -device Pc -status returned Relay: 1 in 2.04s
+2025-07-28T07:44:53.741 INFO 192.168.68.128 <- 1
+2025-07-28T07:44:53.742 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=64727&ClientTransactionID=11220&Id=2
+2025-07-28T07:44:55.850 INFO KasaCmd -device Dew Heater -status returned Relay: 0 in 2.11s
+2025-07-28T07:44:55.851 INFO 192.168.68.128 <- 0
+2025-07-28T07:44:55.852 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=64727&ClientTransactionID=11221&Id=0
+2025-07-28T07:44:57.842 INFO KasaCmd -device Mount -status returned Relay: 1 in 1.99s
+2025-07-28T07:44:57.843 INFO 192.168.68.128 <- 1
+2025-07-28T07:44:57.845 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=64727&ClientTransactionID=11222
+2025-07-28T07:44:57.845 INFO 192.168.68.128 <- True
+2025-07-28T07:44:57.847 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=64727&ClientTransactionID=11224&Id=1
+2025-07-28T07:44:57.847 INFO 192.168.68.128 <- Pc
+2025-07-28T07:44:57.848 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=64727&ClientTransactionID=11223&Id=0
+2025-07-28T07:44:57.848 INFO 192.168.68.128 <- Mount
+2025-07-28T07:44:57.849 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=64727&ClientTransactionID=11225&Id=2
+2025-07-28T07:44:57.849 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:44:57.850 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=64727&ClientTransactionID=11226&Id=1
+2025-07-28T07:45:00.696 INFO KasaCmd -device Pc -status returned Relay: 1 in 2.85s
+2025-07-28T07:45:00.697 INFO 192.168.68.128 <- 1
+2025-07-28T07:45:00.699 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=64727&ClientTransactionID=11227&Id=0
+2025-07-28T07:45:02.916 INFO KasaCmd -device Mount -status returned Relay: 1 in 2.22s
+2025-07-28T07:45:02.916 INFO 192.168.68.128 <- 1
+2025-07-28T07:45:02.917 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=64727&ClientTransactionID=11228&Id=2
+2025-07-28T07:45:05.103 INFO KasaCmd -device Dew Heater -status returned Relay: 0 in 2.18s
+2025-07-28T07:45:05.103 INFO 192.168.68.128 <- 0
+2025-07-28T07:45:05.107 INFO 192.168.68.128 -> PUT /api/v1/switch/0/connected
+2025-07-28T07:45:05.107 INFO 192.168.68.128 -> {'Connected': 'False', 'ClientID': '64727', 'ClientTransactionID': '11231'}
+2025-07-28T07:45:21.717 INFO 192.168.68.128 -> PUT /api/v1/switch/0/connected
+2025-07-28T07:45:21.717 INFO 192.168.68.128 -> {'Connected': 'True', 'ClientID': '9815', 'ClientTransactionID': '11232'}
+2025-07-28T07:45:22.025 INFO KasaCmd -devicelist parsed device names: ['Mount', 'Pc', 'Dew Heater'] in 0.31s
+2025-07-28T07:45:22.026 INFO Kasa connect: device list loaded in 0.31s: ['Mount', 'Pc', 'Dew Heater']
+2025-07-28T07:45:22.029 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=9815&ClientTransactionID=11233
+2025-07-28T07:45:22.029 INFO 192.168.68.128 <- True
+2025-07-28T07:45:22.032 INFO 192.168.68.128 -> GET /api/v1/switch/0/maxswitch?ClientID=9815&ClientTransactionID=11234
+2025-07-28T07:45:22.032 INFO maxswitch: returning 3
+2025-07-28T07:45:22.032 INFO 192.168.68.128 <- 3
+2025-07-28T07:45:22.034 INFO 192.168.68.128 -> GET /api/v1/switch/0/canwrite?ClientID=9815&ClientTransactionID=11235&Id=0
+2025-07-28T07:45:22.034 INFO 192.168.68.128 <- True
+2025-07-28T07:45:22.035 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=9815&ClientTransactionID=11236&Id=0
+2025-07-28T07:45:22.036 INFO 192.168.68.128 <- Mount
+2025-07-28T07:45:22.037 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchdescription?ClientID=9815&ClientTransactionID=11237&Id=0
+2025-07-28T07:45:22.038 INFO 192.168.68.128 <- Mount
+2025-07-28T07:45:22.039 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=9815&ClientTransactionID=11238&Id=0
+2025-07-28T07:45:27.127 ERROR KasaCmd -device Mount -status timed out after 5s
+2025-07-28T07:45:27.128 ERROR DriverException: KasaCmd status timed out for Mount
+2025-07-28T07:45:27.133 ERROR DriverException: Switch.GetSwitchValue failed
+Traceback (most recent call last):
+  File "G:\Other computers\My Computer (1)\AlpycaDevice\device\switch.py", line 99, in get_switch
+    result = subprocess.check_output(["KasaCmd", "-device", name, "-status"], encoding="utf-8", timeout=5)
+  File "C:\Users\Paul Fox-Reeks\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 472, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+               **kwargs).stdout
+               ^^^^^^^^^
+  File "C:\Users\Paul Fox-Reeks\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 556, in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+                     ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Paul Fox-Reeks\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 1222, in communicate
+    stdout, stderr = self._communicate(input, endtime, timeout)
+                     ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Paul Fox-Reeks\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 1646, in _communicate
+    raise TimeoutExpired(self.args, orig_timeout)
+subprocess.TimeoutExpired: Command '['KasaCmd', '-device', 'Mount', '-status']' timed out after 5 seconds
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "G:\Other computers\My Computer (1)\AlpycaDevice\device\switch.py", line 201, in on_get
+    val = device.get_switch(id)
+  File "G:\Other computers\My Computer (1)\AlpycaDevice\device\switch.py", line 115, in get_switch
+    raise DriverException(0x500, f"KasaCmd status timed out for {name}")
+TypeError: exceptions must derive from BaseException
+
+2025-07-28T07:45:27.136 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=9815&ClientTransactionID=11239
+2025-07-28T07:45:27.137 INFO 192.168.68.128 <- True
+2025-07-28T07:45:27.140 INFO 192.168.68.128 -> GET /api/v1/switch/0/driverinfo?ClientID=9815&ClientTransactionID=11241
+2025-07-28T07:45:27.141 INFO 192.168.68.128 <- Kasa Switch Alpaca Device
+Implements ISwitch
+ASCOM Initiative
+2025-07-28T07:45:27.144 INFO 192.168.68.128 -> GET /api/v1/switch/0/driverversion?ClientID=9815&ClientTransactionID=11242
+2025-07-28T07:45:27.144 INFO 192.168.68.128 <- 1.0.0
+2025-07-28T07:45:27.146 INFO 192.168.68.128 -> GET /api/v1/switch/0/supportedactions?ClientID=9815&ClientTransactionID=11243
+2025-07-28T07:45:27.147 INFO 192.168.68.128 <- []
+2025-07-28T07:45:27.151 INFO 192.168.68.128 -> GET /api/v1/switch/0/driverversion?ClientID=9815&ClientTransactionID=11244
+2025-07-28T07:45:27.151 INFO 192.168.68.128 <- 1.0.0
+2025-07-28T07:45:29.166 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=9815&ClientTransactionID=11245
+2025-07-28T07:45:29.167 INFO 192.168.68.128 <- True
+2025-07-28T07:45:31.159 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=9815&ClientTransactionID=11246
+2025-07-28T07:45:31.160 INFO 192.168.68.128 <- True
+2025-07-28T07:45:33.163 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=9815&ClientTransactionID=11247
+2025-07-28T07:45:33.164 INFO 192.168.68.128 <- True
+2025-07-28T07:45:35.157 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=9815&ClientTransactionID=11248
+2025-07-28T07:45:35.158 INFO 192.168.68.128 <- True
+2025-07-28T07:45:37.164 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=9815&ClientTransactionID=11249
+2025-07-28T07:45:37.165 INFO 192.168.68.128 <- True
+2025-07-28T07:45:39.152 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=9815&ClientTransactionID=11250
+2025-07-28T07:45:39.153 INFO 192.168.68.128 <- True
+2025-07-28T07:45:41.152 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=9815&ClientTransactionID=11251
+2025-07-28T07:45:41.153 INFO 192.168.68.128 <- True
+2025-07-28T07:45:43.158 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=9815&ClientTransactionID=11252
+2025-07-28T07:45:43.159 INFO 192.168.68.128 <- True
+2025-07-28T07:45:45.161 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=9815&ClientTransactionID=11253
+2025-07-28T07:45:45.161 INFO 192.168.68.128 <- True
+2025-07-28T07:45:47.154 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=9815&ClientTransactionID=11254
+2025-07-28T07:45:47.155 INFO 192.168.68.128 <- True
+2025-07-28T07:45:49.164 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=9815&ClientTransactionID=11255
+2025-07-28T07:45:49.165 INFO 192.168.68.128 <- True
+2025-07-28T07:45:51.164 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=9815&ClientTransactionID=11256
+2025-07-28T07:45:51.165 INFO 192.168.68.128 <- True
+2025-07-28T07:45:53.163 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=9815&ClientTransactionID=11257
+2025-07-28T07:45:53.164 INFO 192.168.68.128 <- True
+2025-07-28T07:45:55.158 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=9815&ClientTransactionID=11258
+2025-07-28T07:45:55.159 INFO 192.168.68.128 <- True
+2025-07-28T07:45:57.158 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=9815&ClientTransactionID=11259
+2025-07-28T07:45:57.159 INFO 192.168.68.128 <- True
+2025-07-28T07:45:59.165 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=9815&ClientTransactionID=11260
+2025-07-28T07:45:59.166 INFO 192.168.68.128 <- True
+2025-07-28T07:46:01.161 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=9815&ClientTransactionID=11261
+2025-07-28T07:46:01.161 INFO 192.168.68.128 <- True
+2025-07-28T07:46:03.154 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=9815&ClientTransactionID=11262
+2025-07-28T07:46:03.155 INFO 192.168.68.128 <- True
+2025-07-28T07:46:05.151 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=9815&ClientTransactionID=11263
+2025-07-28T07:46:05.152 INFO 192.168.68.128 <- True
+2025-07-28T07:46:07.161 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=9815&ClientTransactionID=11264
+2025-07-28T07:46:07.162 INFO 192.168.68.128 <- True
+2025-07-28T07:46:09.158 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=9815&ClientTransactionID=11265
+2025-07-28T07:46:09.159 INFO 192.168.68.128 <- True
+2025-07-28T07:46:11.166 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=9815&ClientTransactionID=11266
+2025-07-28T07:46:11.167 INFO 192.168.68.128 <- True
+2025-07-28T07:46:13.155 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=9815&ClientTransactionID=11267
+2025-07-28T07:46:13.155 INFO 192.168.68.128 <- True
+2025-07-28T07:46:15.150 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=9815&ClientTransactionID=11268
+2025-07-28T07:46:15.151 INFO 192.168.68.128 <- True
+2025-07-28T07:46:17.161 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=9815&ClientTransactionID=11269
+2025-07-28T07:46:17.161 INFO 192.168.68.128 <- True
+2025-07-28T07:46:19.159 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=9815&ClientTransactionID=11270
+2025-07-28T07:46:19.160 INFO 192.168.68.128 <- True
+2025-07-28T07:46:21.154 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=9815&ClientTransactionID=11271
+2025-07-28T07:46:21.155 INFO 192.168.68.128 <- True
+2025-07-28T07:46:23.160 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=9815&ClientTransactionID=11272
+2025-07-28T07:46:23.161 INFO 192.168.68.128 <- True
+2025-07-28T07:46:25.159 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=9815&ClientTransactionID=11273
+2025-07-28T07:46:25.159 INFO 192.168.68.128 <- True
+2025-07-28T07:46:27.153 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=9815&ClientTransactionID=11274
+2025-07-28T07:46:27.153 INFO 192.168.68.128 <- True
+2025-07-28T07:46:29.166 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=9815&ClientTransactionID=11275
+2025-07-28T07:46:29.167 INFO 192.168.68.128 <- True
+2025-07-28T07:46:31.161 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=9815&ClientTransactionID=11276
+2025-07-28T07:46:31.162 INFO 192.168.68.128 <- True
+2025-07-28T07:46:33.160 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=9815&ClientTransactionID=11277
+2025-07-28T07:46:33.161 INFO 192.168.68.128 <- True
+2025-07-28T07:46:35.153 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=9815&ClientTransactionID=11278
+2025-07-28T07:46:35.153 INFO 192.168.68.128 <- True
+2025-07-28T07:46:37.162 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=9815&ClientTransactionID=11279
+2025-07-28T07:46:37.163 INFO 192.168.68.128 <- True
+2025-07-28T07:46:39.157 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=9815&ClientTransactionID=11280
+2025-07-28T07:46:39.157 INFO 192.168.68.128 <- True
+2025-07-28T07:46:41.153 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=9815&ClientTransactionID=11281
+2025-07-28T07:46:41.154 INFO 192.168.68.128 <- True
+2025-07-28T07:46:43.153 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=9815&ClientTransactionID=11282
+2025-07-28T07:46:43.153 INFO 192.168.68.128 <- True
+2025-07-28T07:46:45.161 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=9815&ClientTransactionID=11283
+2025-07-28T07:46:45.162 INFO 192.168.68.128 <- True
+2025-07-28T07:46:47.161 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=9815&ClientTransactionID=11284
+2025-07-28T07:46:47.162 INFO 192.168.68.128 <- True
+2025-07-28T07:46:49.156 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=9815&ClientTransactionID=11285
+2025-07-28T07:46:49.157 INFO 192.168.68.128 <- True
+2025-07-28T07:46:51.156 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=9815&ClientTransactionID=11286
+2025-07-28T07:46:51.156 INFO 192.168.68.128 <- True
+2025-07-28T07:46:53.153 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=9815&ClientTransactionID=11287
+2025-07-28T07:46:53.153 INFO 192.168.68.128 <- True
+2025-07-28T07:46:55.160 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=9815&ClientTransactionID=11288
+2025-07-28T07:46:55.161 INFO 192.168.68.128 <- True
+2025-07-28T07:46:57.158 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=9815&ClientTransactionID=11289
+2025-07-28T07:46:57.159 INFO 192.168.68.128 <- True
+2025-07-28T07:46:59.163 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=9815&ClientTransactionID=11290
+2025-07-28T07:46:59.164 INFO 192.168.68.128 <- True
+2025-07-28T07:47:01.161 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=9815&ClientTransactionID=11291
+2025-07-28T07:47:01.161 INFO 192.168.68.128 <- True
+2025-07-28T07:47:03.157 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=9815&ClientTransactionID=11292
+2025-07-28T07:47:03.159 INFO 192.168.68.128 <- True
+2025-07-28T07:47:05.154 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=9815&ClientTransactionID=11293
+2025-07-28T07:47:05.155 INFO 192.168.68.128 <- True
+2025-07-28T07:47:07.150 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=9815&ClientTransactionID=11294
+2025-07-28T07:47:07.151 INFO 192.168.68.128 <- True
+2025-07-28T07:47:09.153 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=9815&ClientTransactionID=11295
+2025-07-28T07:47:09.153 INFO 192.168.68.128 <- True
+2025-07-28T07:47:11.159 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=9815&ClientTransactionID=11296
+2025-07-28T07:47:11.159 INFO 192.168.68.128 <- True
+2025-07-28T07:47:13.163 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=9815&ClientTransactionID=11297
+2025-07-28T07:47:13.164 INFO 192.168.68.128 <- True
+2025-07-28T07:47:15.153 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=9815&ClientTransactionID=11298
+2025-07-28T07:47:15.153 INFO 192.168.68.128 <- True

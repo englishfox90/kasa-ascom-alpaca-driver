@@ -1,0 +1,998 @@
+2025-07-28T07:40:09.408 INFO ==STARTUP== Serving on :5555. Time stamps are UTC.
+2025-07-28T07:40:12.126 INFO Disc rcv alpacadiscovery1 from ('192.168.68.128', 55832)
+2025-07-28T07:40:12.126 INFO Disc rcv alpacadiscovery1 from ('127.0.0.1', 55833)
+2025-07-28T07:40:12.130 INFO 192.168.68.128 <- [1]
+2025-07-28T07:40:12.132 INFO 127.0.0.1 <- [1]
+2025-07-28T07:40:12.133 INFO 192.168.68.128 <- {'ServerName': 'Alpaca Kasa Switch Server', 'Manufacturer': 'ASCOM Initiative', 'Version': '1.0.0', 'Location': 'Anywhere on Earth'}
+2025-07-28T07:40:12.134 INFO 127.0.0.1 <- {'ServerName': 'Alpaca Kasa Switch Server', 'Manufacturer': 'ASCOM Initiative', 'Version': '1.0.0', 'Location': 'Anywhere on Earth'}
+2025-07-28T07:40:12.134 INFO 192.168.68.128 <- [{'DeviceName': 'Kasa Switch', 'DeviceType': 'Switch', 'DeviceNumber': 0, 'UniqueID': 'b7e1e2c2-7e2a-4b7a-9e2e-123456789abc'}]
+2025-07-28T07:40:12.135 INFO 127.0.0.1 <- [{'DeviceName': 'Kasa Switch', 'DeviceType': 'Switch', 'DeviceNumber': 0, 'UniqueID': 'b7e1e2c2-7e2a-4b7a-9e2e-123456789abc'}]
+2025-07-28T07:40:15.773 INFO 192.168.68.128 -> PUT /api/v1/switch/0/connected
+2025-07-28T07:40:15.776 INFO 192.168.68.128 -> {'Connected': 'True', 'ClientID': '36450', 'ClientTransactionID': '10828'}
+2025-07-28T07:40:16.008 INFO KasaCmd -devicelist parsed device names: ['Mount', 'Pc', 'Dew Heater'] in 0.23s
+2025-07-28T07:40:16.008 INFO Kasa connect: device list loaded in 0.23s: ['Mount', 'Pc', 'Dew Heater']
+2025-07-28T07:40:16.011 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=36450&ClientTransactionID=10829
+2025-07-28T07:40:16.011 INFO 192.168.68.128 <- True
+2025-07-28T07:40:16.013 INFO 192.168.68.128 -> GET /api/v1/switch/0/maxswitch?ClientID=36450&ClientTransactionID=10830
+2025-07-28T07:40:16.013 INFO maxswitch: returning 3
+2025-07-28T07:40:16.014 INFO 192.168.68.128 <- 3
+2025-07-28T07:40:16.016 INFO 192.168.68.128 -> GET /api/v1/switch/0/canwrite?ClientID=36450&ClientTransactionID=10831&Id=0
+2025-07-28T07:40:16.016 INFO 192.168.68.128 <- True
+2025-07-28T07:40:16.017 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10832&Id=0
+2025-07-28T07:40:16.018 INFO 192.168.68.128 <- Mount
+2025-07-28T07:40:16.020 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchdescription?ClientID=36450&ClientTransactionID=10833&Id=0
+2025-07-28T07:40:16.020 INFO 192.168.68.128 <- Mount
+2025-07-28T07:40:16.021 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10834&Id=0
+2025-07-28T07:40:16.941 INFO KasaCmd -device Mount -status returned Relay: 1 in 0.92s
+2025-07-28T07:40:16.942 INFO 192.168.68.128 <- 1
+2025-07-28T07:40:16.944 INFO 192.168.68.128 -> GET /api/v1/switch/0/maxswitchvalue?ClientID=36450&ClientTransactionID=10835&Id=0
+2025-07-28T07:40:16.944 INFO 192.168.68.128 <- 1
+2025-07-28T07:40:16.945 INFO 192.168.68.128 -> GET /api/v1/switch/0/minswitchvalue?ClientID=36450&ClientTransactionID=10836&Id=0
+2025-07-28T07:40:16.946 INFO 192.168.68.128 <- 0
+2025-07-28T07:40:16.947 INFO 192.168.68.128 -> GET /api/v1/switch/0/switchstep?ClientID=36450&ClientTransactionID=10837&Id=0
+2025-07-28T07:40:16.947 INFO 192.168.68.128 <- 1
+2025-07-28T07:40:16.949 INFO 192.168.68.128 -> GET /api/v1/switch/0/canwrite?ClientID=36450&ClientTransactionID=10838&Id=1
+2025-07-28T07:40:16.949 INFO 192.168.68.128 <- True
+2025-07-28T07:40:16.950 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10839&Id=1
+2025-07-28T07:40:16.951 INFO 192.168.68.128 <- Pc
+2025-07-28T07:40:16.952 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchdescription?ClientID=36450&ClientTransactionID=10840&Id=1
+2025-07-28T07:40:16.952 INFO 192.168.68.128 <- Pc
+2025-07-28T07:40:16.953 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10841&Id=1
+2025-07-28T07:40:17.815 INFO KasaCmd -device Pc -status returned Relay: 1 in 0.86s
+2025-07-28T07:40:17.816 INFO 192.168.68.128 <- 1
+2025-07-28T07:40:17.817 INFO 192.168.68.128 -> GET /api/v1/switch/0/maxswitchvalue?ClientID=36450&ClientTransactionID=10842&Id=1
+2025-07-28T07:40:17.818 INFO 192.168.68.128 <- 1
+2025-07-28T07:40:17.819 INFO 192.168.68.128 -> GET /api/v1/switch/0/minswitchvalue?ClientID=36450&ClientTransactionID=10843&Id=1
+2025-07-28T07:40:17.819 INFO 192.168.68.128 <- 0
+2025-07-28T07:40:17.821 INFO 192.168.68.128 -> GET /api/v1/switch/0/switchstep?ClientID=36450&ClientTransactionID=10844&Id=1
+2025-07-28T07:40:17.821 INFO 192.168.68.128 <- 1
+2025-07-28T07:40:17.822 INFO 192.168.68.128 -> GET /api/v1/switch/0/canwrite?ClientID=36450&ClientTransactionID=10845&Id=2
+2025-07-28T07:40:17.823 INFO 192.168.68.128 <- True
+2025-07-28T07:40:17.824 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10846&Id=2
+2025-07-28T07:40:17.824 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:40:17.825 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchdescription?ClientID=36450&ClientTransactionID=10847&Id=2
+2025-07-28T07:40:17.825 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:40:17.826 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10848&Id=2
+2025-07-28T07:40:18.660 INFO KasaCmd -device Dew Heater -status returned Relay: 0 in 0.83s
+2025-07-28T07:40:18.660 INFO 192.168.68.128 <- 0
+2025-07-28T07:40:18.662 INFO 192.168.68.128 -> GET /api/v1/switch/0/maxswitchvalue?ClientID=36450&ClientTransactionID=10849&Id=2
+2025-07-28T07:40:18.663 INFO 192.168.68.128 <- 1
+2025-07-28T07:40:18.664 INFO 192.168.68.128 -> GET /api/v1/switch/0/minswitchvalue?ClientID=36450&ClientTransactionID=10850&Id=2
+2025-07-28T07:40:18.665 INFO 192.168.68.128 <- 0
+2025-07-28T07:40:18.666 INFO 192.168.68.128 -> GET /api/v1/switch/0/switchstep?ClientID=36450&ClientTransactionID=10851&Id=2
+2025-07-28T07:40:18.666 INFO 192.168.68.128 <- 1
+2025-07-28T07:40:18.668 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=36450&ClientTransactionID=10852
+2025-07-28T07:40:18.668 INFO 192.168.68.128 <- True
+2025-07-28T07:40:18.671 INFO 192.168.68.128 -> GET /api/v1/switch/0/driverinfo?ClientID=36450&ClientTransactionID=10854
+2025-07-28T07:40:18.671 INFO 192.168.68.128 <- Kasa Switch Alpaca Device
+Implements ISwitch
+ASCOM Initiative
+2025-07-28T07:40:18.672 INFO 192.168.68.128 -> GET /api/v1/switch/0/driverversion?ClientID=36450&ClientTransactionID=10855
+2025-07-28T07:40:18.673 INFO 192.168.68.128 <- 1.0.0
+2025-07-28T07:40:18.674 INFO 192.168.68.128 -> GET /api/v1/switch/0/supportedactions?ClientID=36450&ClientTransactionID=10856
+2025-07-28T07:40:18.674 INFO 192.168.68.128 <- []
+2025-07-28T07:40:18.676 INFO 192.168.68.128 -> GET /api/v1/switch/0/driverversion?ClientID=36450&ClientTransactionID=10857
+2025-07-28T07:40:18.677 INFO 192.168.68.128 <- 1.0.0
+2025-07-28T07:40:20.690 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=36450&ClientTransactionID=10858
+2025-07-28T07:40:20.691 INFO 192.168.68.128 <- True
+2025-07-28T07:40:20.692 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10860&Id=1
+2025-07-28T07:40:20.693 INFO 192.168.68.128 <- Pc
+2025-07-28T07:40:20.693 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10859&Id=0
+2025-07-28T07:40:20.694 INFO 192.168.68.128 <- Mount
+2025-07-28T07:40:20.694 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10861&Id=2
+2025-07-28T07:40:20.695 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:40:20.695 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10862&Id=1
+2025-07-28T07:40:22.730 INFO KasaCmd -device Pc -status returned Relay: 1 in 2.03s
+2025-07-28T07:40:22.730 INFO 192.168.68.128 <- 1
+2025-07-28T07:40:22.732 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10863&Id=0
+2025-07-28T07:40:24.713 INFO KasaCmd -device Mount -status returned Relay: 1 in 1.98s
+2025-07-28T07:40:24.714 INFO 192.168.68.128 <- 1
+2025-07-28T07:40:24.716 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10864&Id=2
+2025-07-28T07:40:25.659 INFO KasaCmd -device Dew Heater -status returned Relay: 0 in 0.94s
+2025-07-28T07:40:25.659 INFO 192.168.68.128 <- 0
+2025-07-28T07:40:25.661 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=36450&ClientTransactionID=10865
+2025-07-28T07:40:25.661 INFO 192.168.68.128 <- True
+2025-07-28T07:40:25.664 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10866&Id=0
+2025-07-28T07:40:25.664 INFO 192.168.68.128 <- Mount
+2025-07-28T07:40:25.665 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10868&Id=2
+2025-07-28T07:40:25.665 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:40:25.666 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10867&Id=1
+2025-07-28T07:40:25.667 INFO 192.168.68.128 <- Pc
+2025-07-28T07:40:25.667 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10869&Id=0
+2025-07-28T07:40:27.612 INFO KasaCmd -device Mount -status returned Relay: 1 in 1.94s
+2025-07-28T07:40:27.612 INFO 192.168.68.128 <- 1
+2025-07-28T07:40:27.614 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10870&Id=2
+2025-07-28T07:40:28.503 INFO KasaCmd -device Dew Heater -status returned Relay: 0 in 0.89s
+2025-07-28T07:40:28.503 INFO 192.168.68.128 <- 0
+2025-07-28T07:40:28.505 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10871&Id=1
+2025-07-28T07:40:31.087 INFO KasaCmd -device Pc -status returned Relay: 1 in 2.58s
+2025-07-28T07:40:31.088 INFO 192.168.68.128 <- 1
+2025-07-28T07:40:31.090 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=36450&ClientTransactionID=10873
+2025-07-28T07:40:31.091 INFO 192.168.68.128 <- True
+2025-07-28T07:40:31.092 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10876&Id=2
+2025-07-28T07:40:31.093 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:40:31.094 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10875&Id=1
+2025-07-28T07:40:31.094 INFO 192.168.68.128 <- Pc
+2025-07-28T07:40:31.096 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10874&Id=0
+2025-07-28T07:40:31.096 INFO 192.168.68.128 <- Mount
+2025-07-28T07:40:31.098 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10877&Id=2
+2025-07-28T07:40:32.013 INFO KasaCmd -device Dew Heater -status returned Relay: 0 in 0.91s
+2025-07-28T07:40:32.014 INFO 192.168.68.128 <- 0
+2025-07-28T07:40:32.015 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10878&Id=1
+2025-07-28T07:40:34.058 INFO KasaCmd -device Pc -status returned Relay: 1 in 2.04s
+2025-07-28T07:40:34.058 INFO 192.168.68.128 <- 1
+2025-07-28T07:40:34.059 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10879&Id=0
+2025-07-28T07:40:36.033 INFO KasaCmd -device Mount -status returned Relay: 1 in 1.97s
+2025-07-28T07:40:36.033 INFO 192.168.68.128 <- 1
+2025-07-28T07:40:36.035 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=36450&ClientTransactionID=10880
+2025-07-28T07:40:36.036 INFO 192.168.68.128 <- True
+2025-07-28T07:40:36.037 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10882&Id=1
+2025-07-28T07:40:36.037 INFO 192.168.68.128 <- Pc
+2025-07-28T07:40:36.038 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10881&Id=0
+2025-07-28T07:40:36.038 INFO 192.168.68.128 <- Mount
+2025-07-28T07:40:36.039 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10883&Id=2
+2025-07-28T07:40:36.039 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:40:36.040 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10884&Id=1
+2025-07-28T07:40:36.902 INFO KasaCmd -device Pc -status returned Relay: 1 in 0.86s
+2025-07-28T07:40:36.903 INFO 192.168.68.128 <- 1
+2025-07-28T07:40:36.904 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10885&Id=0
+2025-07-28T07:40:38.846 INFO KasaCmd -device Mount -status returned Relay: 1 in 1.94s
+2025-07-28T07:40:38.847 INFO 192.168.68.128 <- 1
+2025-07-28T07:40:38.848 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10886&Id=2
+2025-07-28T07:40:39.693 INFO KasaCmd -device Dew Heater -status returned Relay: 0 in 0.84s
+2025-07-28T07:40:39.694 INFO 192.168.68.128 <- 0
+2025-07-28T07:40:39.696 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=36450&ClientTransactionID=10887
+2025-07-28T07:40:39.697 INFO 192.168.68.128 <- True
+2025-07-28T07:40:39.698 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10890&Id=2
+2025-07-28T07:40:39.698 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:40:39.699 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10889&Id=1
+2025-07-28T07:40:39.699 INFO 192.168.68.128 <- Pc
+2025-07-28T07:40:39.700 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10888&Id=0
+2025-07-28T07:40:39.700 INFO 192.168.68.128 <- Mount
+2025-07-28T07:40:39.701 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10891&Id=2
+2025-07-28T07:40:40.597 INFO KasaCmd -device Dew Heater -status returned Relay: 0 in 0.90s
+2025-07-28T07:40:40.598 INFO 192.168.68.128 <- 0
+2025-07-28T07:40:40.599 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10892&Id=1
+2025-07-28T07:40:42.687 INFO KasaCmd -device Pc -status returned Relay: 1 in 2.09s
+2025-07-28T07:40:42.687 INFO 192.168.68.128 <- 1
+2025-07-28T07:40:42.689 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10893&Id=0
+2025-07-28T07:40:44.691 INFO KasaCmd -device Mount -status returned Relay: 1 in 2.00s
+2025-07-28T07:40:44.692 INFO 192.168.68.128 <- 1
+2025-07-28T07:40:44.694 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=36450&ClientTransactionID=10894
+2025-07-28T07:40:44.694 INFO 192.168.68.128 <- True
+2025-07-28T07:40:44.696 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10897&Id=2
+2025-07-28T07:40:44.696 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:40:44.697 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10895&Id=0
+2025-07-28T07:40:44.697 INFO 192.168.68.128 <- Mount
+2025-07-28T07:40:44.698 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10896&Id=1
+2025-07-28T07:40:44.698 INFO 192.168.68.128 <- Pc
+2025-07-28T07:40:44.699 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10898&Id=2
+2025-07-28T07:40:45.591 INFO KasaCmd -device Dew Heater -status returned Relay: 0 in 0.89s
+2025-07-28T07:40:45.591 INFO 192.168.68.128 <- 0
+2025-07-28T07:40:45.593 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10899&Id=0
+2025-07-28T07:40:46.445 INFO KasaCmd -device Mount -status returned Relay: 1 in 0.85s
+2025-07-28T07:40:46.445 INFO 192.168.68.128 <- 1
+2025-07-28T07:40:46.447 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10900&Id=1
+2025-07-28T07:40:48.483 INFO KasaCmd -device Pc -status returned Relay: 1 in 2.04s
+2025-07-28T07:40:48.484 INFO 192.168.68.128 <- 1
+2025-07-28T07:40:48.486 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=36450&ClientTransactionID=10901
+2025-07-28T07:40:48.486 INFO 192.168.68.128 <- True
+2025-07-28T07:40:48.488 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10902&Id=0
+2025-07-28T07:40:48.488 INFO 192.168.68.128 <- Mount
+2025-07-28T07:40:48.489 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10903&Id=1
+2025-07-28T07:40:48.489 INFO 192.168.68.128 <- Pc
+2025-07-28T07:40:48.490 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10904&Id=2
+2025-07-28T07:40:48.490 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:40:48.491 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10905&Id=0
+2025-07-28T07:40:49.349 INFO KasaCmd -device Mount -status returned Relay: 1 in 0.86s
+2025-07-28T07:40:49.349 INFO 192.168.68.128 <- 1
+2025-07-28T07:40:49.351 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10906&Id=1
+2025-07-28T07:40:50.236 INFO KasaCmd -device Pc -status returned Relay: 1 in 0.89s
+2025-07-28T07:40:50.237 INFO 192.168.68.128 <- 1
+2025-07-28T07:40:50.238 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10907&Id=2
+2025-07-28T07:40:51.099 INFO KasaCmd -device Dew Heater -status returned Relay: 0 in 0.86s
+2025-07-28T07:40:51.099 INFO 192.168.68.128 <- 0
+2025-07-28T07:40:51.101 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=36450&ClientTransactionID=10908
+2025-07-28T07:40:51.102 INFO 192.168.68.128 <- True
+2025-07-28T07:40:51.103 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10909&Id=0
+2025-07-28T07:40:51.103 INFO 192.168.68.128 <- Mount
+2025-07-28T07:40:51.104 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10910&Id=1
+2025-07-28T07:40:51.104 INFO 192.168.68.128 <- Pc
+2025-07-28T07:40:51.105 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10911&Id=2
+2025-07-28T07:40:51.105 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:40:51.106 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10912&Id=0
+2025-07-28T07:40:52.003 INFO KasaCmd -device Mount -status returned Relay: 1 in 0.90s
+2025-07-28T07:40:52.003 INFO 192.168.68.128 <- 1
+2025-07-28T07:40:52.005 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10913&Id=1
+2025-07-28T07:40:52.934 INFO KasaCmd -device Pc -status returned Relay: 1 in 0.93s
+2025-07-28T07:40:52.935 INFO 192.168.68.128 <- 1
+2025-07-28T07:40:52.937 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10914&Id=2
+2025-07-28T07:40:54.964 INFO KasaCmd -device Dew Heater -status returned Relay: 0 in 2.03s
+2025-07-28T07:40:54.964 INFO 192.168.68.128 <- 0
+2025-07-28T07:40:54.967 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=36450&ClientTransactionID=10915
+2025-07-28T07:40:54.967 INFO 192.168.68.128 <- True
+2025-07-28T07:40:54.968 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10917&Id=0
+2025-07-28T07:40:54.969 INFO 192.168.68.128 <- Mount
+2025-07-28T07:40:54.969 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10916&Id=1
+2025-07-28T07:40:54.969 INFO 192.168.68.128 <- Pc
+2025-07-28T07:40:54.970 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10918&Id=2
+2025-07-28T07:40:54.971 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:40:54.971 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10919&Id=0
+2025-07-28T07:40:57.070 INFO KasaCmd -device Mount -status returned Relay: 1 in 2.10s
+2025-07-28T07:40:57.070 INFO 192.168.68.128 <- 1
+2025-07-28T07:40:57.071 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10920&Id=1
+2025-07-28T07:40:59.163 INFO KasaCmd -device Pc -status returned Relay: 1 in 2.09s
+2025-07-28T07:40:59.164 INFO 192.168.68.128 <- 1
+2025-07-28T07:40:59.165 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10921&Id=2
+2025-07-28T07:41:00.034 INFO KasaCmd -device Dew Heater -status returned Relay: 0 in 0.87s
+2025-07-28T07:41:00.034 INFO 192.168.68.128 <- 0
+2025-07-28T07:41:00.037 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=36450&ClientTransactionID=10922
+2025-07-28T07:41:00.038 INFO 192.168.68.128 <- True
+2025-07-28T07:41:00.041 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10925&Id=2
+2025-07-28T07:41:00.042 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:41:00.043 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10923&Id=0
+2025-07-28T07:41:00.043 INFO 192.168.68.128 <- Mount
+2025-07-28T07:41:00.044 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10924&Id=1
+2025-07-28T07:41:00.045 INFO 192.168.68.128 <- Pc
+2025-07-28T07:41:00.046 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10926&Id=2
+2025-07-28T07:41:02.152 INFO KasaCmd -device Dew Heater -status returned Relay: 0 in 2.11s
+2025-07-28T07:41:02.152 INFO 192.168.68.128 <- 0
+2025-07-28T07:41:02.153 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10927&Id=0
+2025-07-28T07:41:04.242 INFO KasaCmd -device Mount -status returned Relay: 1 in 2.09s
+2025-07-28T07:41:04.243 INFO 192.168.68.128 <- 1
+2025-07-28T07:41:04.244 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10928&Id=1
+2025-07-28T07:41:07.255 INFO KasaCmd -device Pc -status returned Relay: 1 in 3.01s
+2025-07-28T07:41:07.255 INFO 192.168.68.128 <- 1
+2025-07-28T07:41:07.258 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=36450&ClientTransactionID=10929
+2025-07-28T07:41:07.258 INFO 192.168.68.128 <- True
+2025-07-28T07:41:07.259 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10932&Id=2
+2025-07-28T07:41:07.260 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:41:07.260 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10931&Id=1
+2025-07-28T07:41:07.261 INFO 192.168.68.128 <- Pc
+2025-07-28T07:41:07.261 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10930&Id=0
+2025-07-28T07:41:07.262 INFO 192.168.68.128 <- Mount
+2025-07-28T07:41:07.262 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10933&Id=2
+2025-07-28T07:41:09.292 INFO KasaCmd -device Dew Heater -status returned Relay: 0 in 2.03s
+2025-07-28T07:41:09.293 INFO 192.168.68.128 <- 0
+2025-07-28T07:41:09.295 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10934&Id=1
+2025-07-28T07:41:11.355 INFO KasaCmd -device Pc -status returned Relay: 1 in 2.06s
+2025-07-28T07:41:11.356 INFO 192.168.68.128 <- 1
+2025-07-28T07:41:11.357 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10935&Id=0
+2025-07-28T07:41:13.402 INFO KasaCmd -device Mount -status returned Relay: 1 in 2.05s
+2025-07-28T07:41:13.403 INFO 192.168.68.128 <- 1
+2025-07-28T07:41:13.405 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=36450&ClientTransactionID=10936
+2025-07-28T07:41:13.406 INFO 192.168.68.128 <- True
+2025-07-28T07:41:13.407 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10938&Id=1
+2025-07-28T07:41:13.407 INFO 192.168.68.128 <- Pc
+2025-07-28T07:41:13.408 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10939&Id=2
+2025-07-28T07:41:13.409 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:41:13.409 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10937&Id=0
+2025-07-28T07:41:13.410 INFO 192.168.68.128 <- Mount
+2025-07-28T07:41:13.410 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10940&Id=1
+2025-07-28T07:41:15.595 INFO KasaCmd -device Pc -status returned Relay: 1 in 2.18s
+2025-07-28T07:41:15.595 INFO 192.168.68.128 <- 1
+2025-07-28T07:41:15.596 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10941&Id=2
+2025-07-28T07:41:17.480 INFO KasaCmd -device Dew Heater -status returned Relay: 0 in 1.88s
+2025-07-28T07:41:17.480 INFO 192.168.68.128 <- 0
+2025-07-28T07:41:17.482 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10942&Id=0
+2025-07-28T07:41:18.477 INFO KasaCmd -device Mount -status returned Relay: 1 in 0.99s
+2025-07-28T07:41:18.477 INFO 192.168.68.128 <- 1
+2025-07-28T07:41:18.480 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=36450&ClientTransactionID=10943
+2025-07-28T07:41:18.480 INFO 192.168.68.128 <- True
+2025-07-28T07:41:18.481 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10946&Id=2
+2025-07-28T07:41:18.481 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:41:18.483 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10945&Id=1
+2025-07-28T07:41:18.483 INFO 192.168.68.128 <- Pc
+2025-07-28T07:41:18.484 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10944&Id=0
+2025-07-28T07:41:18.484 INFO 192.168.68.128 <- Mount
+2025-07-28T07:41:18.485 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10947&Id=2
+2025-07-28T07:41:20.427 INFO KasaCmd -device Dew Heater -status returned Relay: 0 in 1.94s
+2025-07-28T07:41:20.428 INFO 192.168.68.128 <- 0
+2025-07-28T07:41:20.429 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10948&Id=1
+2025-07-28T07:41:21.443 INFO KasaCmd -device Pc -status returned Relay: 1 in 1.01s
+2025-07-28T07:41:21.444 INFO 192.168.68.128 <- 1
+2025-07-28T07:41:21.445 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10949&Id=0
+2025-07-28T07:41:22.401 INFO KasaCmd -device Mount -status returned Relay: 1 in 0.96s
+2025-07-28T07:41:22.402 INFO 192.168.68.128 <- 1
+2025-07-28T07:41:22.405 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=36450&ClientTransactionID=10950
+2025-07-28T07:41:22.405 INFO 192.168.68.128 <- True
+2025-07-28T07:41:22.406 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10952&Id=1
+2025-07-28T07:41:22.407 INFO 192.168.68.128 <- Pc
+2025-07-28T07:41:22.408 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10953&Id=2
+2025-07-28T07:41:22.408 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:41:22.409 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10951&Id=0
+2025-07-28T07:41:22.409 INFO 192.168.68.128 <- Mount
+2025-07-28T07:41:22.409 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10954&Id=1
+2025-07-28T07:41:23.337 INFO KasaCmd -device Pc -status returned Relay: 1 in 0.93s
+2025-07-28T07:41:23.338 INFO 192.168.68.128 <- 1
+2025-07-28T07:41:23.339 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10955&Id=2
+2025-07-28T07:41:25.366 INFO KasaCmd -device Dew Heater -status returned Relay: 0 in 2.03s
+2025-07-28T07:41:25.367 INFO 192.168.68.128 <- 0
+2025-07-28T07:41:25.368 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10956&Id=0
+2025-07-28T07:41:27.474 INFO KasaCmd -device Mount -status returned Relay: 1 in 2.11s
+2025-07-28T07:41:27.475 INFO 192.168.68.128 <- 1
+2025-07-28T07:41:27.477 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=36450&ClientTransactionID=10957
+2025-07-28T07:41:27.478 INFO 192.168.68.128 <- True
+2025-07-28T07:41:27.479 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10959&Id=1
+2025-07-28T07:41:27.480 INFO 192.168.68.128 <- Pc
+2025-07-28T07:41:27.480 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10960&Id=2
+2025-07-28T07:41:27.481 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:41:27.481 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10958&Id=0
+2025-07-28T07:41:27.482 INFO 192.168.68.128 <- Mount
+2025-07-28T07:41:27.482 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10961&Id=1
+2025-07-28T07:41:28.357 INFO KasaCmd -device Pc -status returned Relay: 1 in 0.87s
+2025-07-28T07:41:28.358 INFO 192.168.68.128 <- 1
+2025-07-28T07:41:28.359 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10962&Id=2
+2025-07-28T07:41:30.363 INFO KasaCmd -device Dew Heater -status returned Relay: 0 in 2.00s
+2025-07-28T07:41:30.364 INFO 192.168.68.128 <- 0
+2025-07-28T07:41:30.365 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10963&Id=0
+2025-07-28T07:41:31.166 INFO KasaCmd -device Mount -status returned Relay: 1 in 0.80s
+2025-07-28T07:41:31.167 INFO 192.168.68.128 <- 1
+2025-07-28T07:41:31.169 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=36450&ClientTransactionID=10964
+2025-07-28T07:41:31.169 INFO 192.168.68.128 <- True
+2025-07-28T07:41:31.171 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10967&Id=2
+2025-07-28T07:41:31.171 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:41:31.172 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10965&Id=0
+2025-07-28T07:41:31.172 INFO 192.168.68.128 <- Mount
+2025-07-28T07:41:31.173 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10966&Id=1
+2025-07-28T07:41:31.173 INFO 192.168.68.128 <- Pc
+2025-07-28T07:41:31.173 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10968&Id=2
+2025-07-28T07:41:33.116 INFO KasaCmd -device Dew Heater -status returned Relay: 0 in 1.94s
+2025-07-28T07:41:33.117 INFO 192.168.68.128 <- 0
+2025-07-28T07:41:33.118 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10969&Id=0
+2025-07-28T07:41:33.945 INFO KasaCmd -device Mount -status returned Relay: 1 in 0.83s
+2025-07-28T07:41:33.946 INFO 192.168.68.128 <- 1
+2025-07-28T07:41:33.947 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10970&Id=1
+2025-07-28T07:41:34.785 INFO KasaCmd -device Pc -status returned Relay: 1 in 0.84s
+2025-07-28T07:41:34.786 INFO 192.168.68.128 <- 1
+2025-07-28T07:41:34.788 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=36450&ClientTransactionID=10971
+2025-07-28T07:41:34.788 INFO 192.168.68.128 <- True
+2025-07-28T07:41:34.790 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10972&Id=0
+2025-07-28T07:41:34.790 INFO 192.168.68.128 <- Mount
+2025-07-28T07:41:34.791 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10974&Id=2
+2025-07-28T07:41:34.791 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:41:34.792 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10973&Id=1
+2025-07-28T07:41:34.792 INFO 192.168.68.128 <- Pc
+2025-07-28T07:41:34.793 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10975&Id=0
+2025-07-28T07:41:36.803 INFO KasaCmd -device Mount -status returned Relay: 1 in 2.01s
+2025-07-28T07:41:36.804 INFO 192.168.68.128 <- 1
+2025-07-28T07:41:36.805 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10976&Id=2
+2025-07-28T07:41:38.854 INFO KasaCmd -device Dew Heater -status returned Relay: 0 in 2.05s
+2025-07-28T07:41:38.855 INFO 192.168.68.128 <- 0
+2025-07-28T07:41:38.856 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10977&Id=1
+2025-07-28T07:41:39.680 INFO KasaCmd -device Pc -status returned Relay: 1 in 0.82s
+2025-07-28T07:41:39.680 INFO 192.168.68.128 <- 1
+2025-07-28T07:41:39.683 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=36450&ClientTransactionID=10978
+2025-07-28T07:41:39.683 INFO 192.168.68.128 <- True
+2025-07-28T07:41:39.685 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10979&Id=0
+2025-07-28T07:41:39.685 INFO 192.168.68.128 <- Mount
+2025-07-28T07:41:39.685 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10981&Id=2
+2025-07-28T07:41:39.686 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:41:39.687 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10980&Id=1
+2025-07-28T07:41:39.687 INFO 192.168.68.128 <- Pc
+2025-07-28T07:41:39.688 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10982&Id=0
+2025-07-28T07:41:41.714 INFO KasaCmd -device Mount -status returned Relay: 1 in 2.03s
+2025-07-28T07:41:41.715 INFO 192.168.68.128 <- 1
+2025-07-28T07:41:41.716 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10983&Id=2
+2025-07-28T07:41:43.588 INFO KasaCmd -device Dew Heater -status returned Relay: 0 in 1.87s
+2025-07-28T07:41:43.588 INFO 192.168.68.128 <- 0
+2025-07-28T07:41:43.590 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10984&Id=1
+2025-07-28T07:41:44.471 INFO KasaCmd -device Pc -status returned Relay: 1 in 0.88s
+2025-07-28T07:41:44.472 INFO 192.168.68.128 <- 1
+2025-07-28T07:41:44.474 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=36450&ClientTransactionID=10985
+2025-07-28T07:41:44.475 INFO 192.168.68.128 <- True
+2025-07-28T07:41:44.477 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10986&Id=0
+2025-07-28T07:41:44.478 INFO 192.168.68.128 <- Mount
+2025-07-28T07:41:44.479 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10988&Id=2
+2025-07-28T07:41:44.479 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:41:44.480 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10987&Id=1
+2025-07-28T07:41:44.480 INFO 192.168.68.128 <- Pc
+2025-07-28T07:41:44.481 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10989&Id=0
+2025-07-28T07:41:45.386 INFO KasaCmd -device Mount -status returned Relay: 1 in 0.91s
+2025-07-28T07:41:45.387 INFO 192.168.68.128 <- 1
+2025-07-28T07:41:45.388 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10990&Id=2
+2025-07-28T07:41:46.242 INFO KasaCmd -device Dew Heater -status returned Relay: 0 in 0.85s
+2025-07-28T07:41:46.242 INFO 192.168.68.128 <- 0
+2025-07-28T07:41:46.244 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10991&Id=1
+2025-07-28T07:41:47.088 INFO KasaCmd -device Pc -status returned Relay: 1 in 0.84s
+2025-07-28T07:41:47.089 INFO 192.168.68.128 <- 1
+2025-07-28T07:41:47.091 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=36450&ClientTransactionID=10992
+2025-07-28T07:41:47.092 INFO 192.168.68.128 <- True
+2025-07-28T07:41:47.093 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10995&Id=2
+2025-07-28T07:41:47.094 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:41:47.095 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10993&Id=0
+2025-07-28T07:41:47.095 INFO 192.168.68.128 <- Mount
+2025-07-28T07:41:47.096 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=10994&Id=1
+2025-07-28T07:41:47.096 INFO 192.168.68.128 <- Pc
+2025-07-28T07:41:47.097 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10996&Id=2
+2025-07-28T07:41:47.955 INFO KasaCmd -device Dew Heater -status returned Relay: 0 in 0.86s
+2025-07-28T07:41:47.956 INFO 192.168.68.128 <- 0
+2025-07-28T07:41:47.958 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10997&Id=0
+2025-07-28T07:41:50.000 INFO KasaCmd -device Mount -status returned Relay: 1 in 2.04s
+2025-07-28T07:41:50.000 INFO 192.168.68.128 <- 1
+2025-07-28T07:41:50.002 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=10998&Id=1
+2025-07-28T07:41:50.862 INFO KasaCmd -device Pc -status returned Relay: 1 in 0.86s
+2025-07-28T07:41:50.863 INFO 192.168.68.128 <- 1
+2025-07-28T07:41:50.865 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=36450&ClientTransactionID=10999
+2025-07-28T07:41:50.865 INFO 192.168.68.128 <- True
+2025-07-28T07:41:50.867 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11002&Id=2
+2025-07-28T07:41:50.867 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:41:50.868 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11000&Id=0
+2025-07-28T07:41:50.868 INFO 192.168.68.128 <- Mount
+2025-07-28T07:41:50.869 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11001&Id=1
+2025-07-28T07:41:50.869 INFO 192.168.68.128 <- Pc
+2025-07-28T07:41:50.869 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11003&Id=2
+2025-07-28T07:41:51.780 INFO KasaCmd -device Dew Heater -status returned Relay: 0 in 0.91s
+2025-07-28T07:41:51.780 INFO 192.168.68.128 <- 0
+2025-07-28T07:41:51.782 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11004&Id=0
+2025-07-28T07:41:52.664 INFO KasaCmd -device Mount -status returned Relay: 1 in 0.88s
+2025-07-28T07:41:52.664 INFO 192.168.68.128 <- 1
+2025-07-28T07:41:52.666 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11005&Id=1
+2025-07-28T07:41:55.519 INFO KasaCmd -device Pc -status returned Relay: 1 in 2.85s
+2025-07-28T07:41:55.519 INFO 192.168.68.128 <- 1
+2025-07-28T07:41:55.521 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=36450&ClientTransactionID=11006
+2025-07-28T07:41:55.522 INFO 192.168.68.128 <- True
+2025-07-28T07:41:55.523 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11007&Id=0
+2025-07-28T07:41:55.523 INFO 192.168.68.128 <- Mount
+2025-07-28T07:41:55.524 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11008&Id=1
+2025-07-28T07:41:55.525 INFO 192.168.68.128 <- Pc
+2025-07-28T07:41:55.525 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11009&Id=2
+2025-07-28T07:41:55.525 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:41:55.526 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11010&Id=0
+2025-07-28T07:41:57.601 INFO KasaCmd -device Mount -status returned Relay: 1 in 2.08s
+2025-07-28T07:41:57.602 INFO 192.168.68.128 <- 1
+2025-07-28T07:41:57.603 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11011&Id=1
+2025-07-28T07:41:58.522 INFO KasaCmd -device Pc -status returned Relay: 1 in 0.92s
+2025-07-28T07:41:58.522 INFO 192.168.68.128 <- 1
+2025-07-28T07:41:58.523 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11012&Id=2
+2025-07-28T07:41:59.462 INFO KasaCmd -device Dew Heater -status returned Relay: 0 in 0.94s
+2025-07-28T07:41:59.462 INFO 192.168.68.128 <- 0
+2025-07-28T07:41:59.465 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=36450&ClientTransactionID=11013
+2025-07-28T07:41:59.465 INFO 192.168.68.128 <- True
+2025-07-28T07:41:59.466 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11015&Id=1
+2025-07-28T07:41:59.467 INFO 192.168.68.128 <- Pc
+2025-07-28T07:41:59.468 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11016&Id=2
+2025-07-28T07:41:59.468 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:41:59.469 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11014&Id=0
+2025-07-28T07:41:59.469 INFO 192.168.68.128 <- Mount
+2025-07-28T07:41:59.470 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11017&Id=1
+2025-07-28T07:42:00.363 INFO KasaCmd -device Pc -status returned Relay: 1 in 0.89s
+2025-07-28T07:42:00.363 INFO 192.168.68.128 <- 1
+2025-07-28T07:42:00.365 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11018&Id=2
+2025-07-28T07:42:05.473 ERROR KasaCmd -device Dew Heater -status timed out after 5s
+2025-07-28T07:42:05.474 ERROR DriverException: KasaCmd status timed out for Dew Heater
+2025-07-28T07:42:05.503 ERROR DriverException: Switch.GetSwitchValue failed
+Traceback (most recent call last):
+  File "G:\Other computers\My Computer (1)\AlpycaDevice\device\switch.py", line 99, in get_switch
+    result = subprocess.check_output(["KasaCmd", "-device", name, "-status"], encoding="utf-8", timeout=5)
+  File "C:\Users\Paul Fox-Reeks\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 472, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+               **kwargs).stdout
+               ^^^^^^^^^
+  File "C:\Users\Paul Fox-Reeks\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 556, in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+                     ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Paul Fox-Reeks\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 1222, in communicate
+    stdout, stderr = self._communicate(input, endtime, timeout)
+                     ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Paul Fox-Reeks\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 1646, in _communicate
+    raise TimeoutExpired(self.args, orig_timeout)
+subprocess.TimeoutExpired: Command '['KasaCmd', '-device', 'Dew Heater', '-status']' timed out after 5 seconds
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "G:\Other computers\My Computer (1)\AlpycaDevice\device\switch.py", line 199, in on_get
+    val = device.get_switch(id)
+  File "G:\Other computers\My Computer (1)\AlpycaDevice\device\switch.py", line 115, in get_switch
+    raise DriverException(0x500, f"KasaCmd status timed out for {name}")
+TypeError: exceptions must derive from BaseException
+
+2025-07-28T07:42:05.504 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11019&Id=0
+2025-07-28T07:42:07.389 INFO KasaCmd -device Mount -status returned Relay: 1 in 1.88s
+2025-07-28T07:42:07.389 INFO 192.168.68.128 <- 1
+2025-07-28T07:42:07.392 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=36450&ClientTransactionID=11020
+2025-07-28T07:42:07.392 INFO 192.168.68.128 <- True
+2025-07-28T07:42:07.393 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11021&Id=0
+2025-07-28T07:42:07.394 INFO 192.168.68.128 <- Mount
+2025-07-28T07:42:07.395 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11023&Id=2
+2025-07-28T07:42:07.395 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:42:07.396 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11022&Id=1
+2025-07-28T07:42:07.396 INFO 192.168.68.128 <- Pc
+2025-07-28T07:42:07.397 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11024&Id=0
+2025-07-28T07:42:09.556 INFO KasaCmd -device Mount -status returned Relay: 1 in 2.16s
+2025-07-28T07:42:09.556 INFO 192.168.68.128 <- 1
+2025-07-28T07:42:09.558 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11025&Id=2
+2025-07-28T07:42:10.502 INFO KasaCmd -device Dew Heater -status returned Relay: 0 in 0.94s
+2025-07-28T07:42:10.503 INFO 192.168.68.128 <- 0
+2025-07-28T07:42:10.505 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11026&Id=1
+2025-07-28T07:42:13.921 INFO KasaCmd -device Pc -status returned Relay: 1 in 3.42s
+2025-07-28T07:42:13.922 INFO 192.168.68.128 <- 1
+2025-07-28T07:42:13.924 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=36450&ClientTransactionID=11027
+2025-07-28T07:42:13.924 INFO 192.168.68.128 <- True
+2025-07-28T07:42:13.926 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11030&Id=2
+2025-07-28T07:42:13.926 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:42:13.927 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11029&Id=1
+2025-07-28T07:42:13.927 INFO 192.168.68.128 <- Pc
+2025-07-28T07:42:13.928 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11028&Id=0
+2025-07-28T07:42:13.929 INFO 192.168.68.128 <- Mount
+2025-07-28T07:42:13.929 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11031&Id=2
+2025-07-28T07:42:14.779 INFO KasaCmd -device Dew Heater -status returned Relay: 0 in 0.85s
+2025-07-28T07:42:14.780 INFO 192.168.68.128 <- 0
+2025-07-28T07:42:14.781 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11032&Id=1
+2025-07-28T07:42:15.740 INFO KasaCmd -device Pc -status returned Relay: 1 in 0.96s
+2025-07-28T07:42:15.740 INFO 192.168.68.128 <- 1
+2025-07-28T07:42:15.741 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11033&Id=0
+2025-07-28T07:42:17.886 INFO KasaCmd -device Mount -status returned Relay: 1 in 2.14s
+2025-07-28T07:42:17.887 INFO 192.168.68.128 <- 1
+2025-07-28T07:42:17.889 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=36450&ClientTransactionID=11034
+2025-07-28T07:42:17.890 INFO 192.168.68.128 <- True
+2025-07-28T07:42:17.891 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11037&Id=2
+2025-07-28T07:42:17.891 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:42:17.892 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11035&Id=0
+2025-07-28T07:42:17.893 INFO 192.168.68.128 <- Mount
+2025-07-28T07:42:17.894 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11036&Id=1
+2025-07-28T07:42:17.894 INFO 192.168.68.128 <- Pc
+2025-07-28T07:42:17.894 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11038&Id=2
+2025-07-28T07:42:18.805 INFO KasaCmd -device Dew Heater -status returned Relay: 0 in 0.91s
+2025-07-28T07:42:18.805 INFO 192.168.68.128 <- 0
+2025-07-28T07:42:18.807 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11039&Id=0
+2025-07-28T07:42:19.632 INFO KasaCmd -device Mount -status returned Relay: 1 in 0.82s
+2025-07-28T07:42:19.632 INFO 192.168.68.128 <- 1
+2025-07-28T07:42:19.634 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11040&Id=1
+2025-07-28T07:42:20.535 INFO KasaCmd -device Pc -status returned Relay: 1 in 0.90s
+2025-07-28T07:42:20.536 INFO 192.168.68.128 <- 1
+2025-07-28T07:42:20.538 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=36450&ClientTransactionID=11041
+2025-07-28T07:42:20.539 INFO 192.168.68.128 <- True
+2025-07-28T07:42:20.540 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11043&Id=1
+2025-07-28T07:42:20.541 INFO 192.168.68.128 <- Pc
+2025-07-28T07:42:20.542 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11042&Id=0
+2025-07-28T07:42:20.542 INFO 192.168.68.128 <- Mount
+2025-07-28T07:42:20.543 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11044&Id=2
+2025-07-28T07:42:20.543 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:42:20.544 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11045&Id=1
+2025-07-28T07:42:22.603 INFO KasaCmd -device Pc -status returned Relay: 1 in 2.06s
+2025-07-28T07:42:22.604 INFO 192.168.68.128 <- 1
+2025-07-28T07:42:22.606 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11046&Id=0
+2025-07-28T07:42:24.632 INFO KasaCmd -device Mount -status returned Relay: 1 in 2.03s
+2025-07-28T07:42:24.633 INFO 192.168.68.128 <- 1
+2025-07-28T07:42:24.634 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11047&Id=2
+2025-07-28T07:42:25.453 INFO KasaCmd -device Dew Heater -status returned Relay: 0 in 0.82s
+2025-07-28T07:42:25.454 INFO 192.168.68.128 <- 0
+2025-07-28T07:42:25.456 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=36450&ClientTransactionID=11048
+2025-07-28T07:42:25.456 INFO 192.168.68.128 <- True
+2025-07-28T07:42:25.458 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11051&Id=2
+2025-07-28T07:42:25.458 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:42:25.459 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11049&Id=0
+2025-07-28T07:42:25.459 INFO 192.168.68.128 <- Mount
+2025-07-28T07:42:25.460 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11050&Id=1
+2025-07-28T07:42:25.460 INFO 192.168.68.128 <- Pc
+2025-07-28T07:42:25.461 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11052&Id=2
+2025-07-28T07:42:27.521 INFO KasaCmd -device Dew Heater -status returned Relay: 0 in 2.06s
+2025-07-28T07:42:27.522 INFO 192.168.68.128 <- 0
+2025-07-28T07:42:27.523 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11053&Id=0
+2025-07-28T07:42:31.054 INFO KasaCmd -device Mount -status returned Relay: 1 in 3.53s
+2025-07-28T07:42:31.055 INFO 192.168.68.128 <- 1
+2025-07-28T07:42:31.056 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11054&Id=1
+2025-07-28T07:42:33.229 INFO KasaCmd -device Pc -status returned Relay: 1 in 2.17s
+2025-07-28T07:42:33.229 INFO 192.168.68.128 <- 1
+2025-07-28T07:42:33.232 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=36450&ClientTransactionID=11055
+2025-07-28T07:42:33.232 INFO 192.168.68.128 <- True
+2025-07-28T07:42:33.234 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11057&Id=1
+2025-07-28T07:42:33.234 INFO 192.168.68.128 <- Pc
+2025-07-28T07:42:33.235 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11058&Id=2
+2025-07-28T07:42:33.235 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:42:33.236 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11056&Id=0
+2025-07-28T07:42:33.236 INFO 192.168.68.128 <- Mount
+2025-07-28T07:42:33.237 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11059&Id=1
+2025-07-28T07:42:34.049 INFO KasaCmd -device Pc -status returned Relay: 1 in 0.81s
+2025-07-28T07:42:34.050 INFO 192.168.68.128 <- 1
+2025-07-28T07:42:34.051 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11060&Id=2
+2025-07-28T07:42:34.899 INFO KasaCmd -device Dew Heater -status returned Relay: 0 in 0.85s
+2025-07-28T07:42:34.900 INFO 192.168.68.128 <- 0
+2025-07-28T07:42:34.901 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11061&Id=0
+2025-07-28T07:42:37.095 INFO KasaCmd -device Mount -status returned Relay: 1 in 2.19s
+2025-07-28T07:42:37.095 INFO 192.168.68.128 <- 1
+2025-07-28T07:42:37.098 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=36450&ClientTransactionID=11062
+2025-07-28T07:42:37.098 INFO 192.168.68.128 <- True
+2025-07-28T07:42:37.100 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11064&Id=1
+2025-07-28T07:42:37.101 INFO 192.168.68.128 <- Pc
+2025-07-28T07:42:37.102 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11065&Id=2
+2025-07-28T07:42:37.102 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:42:37.103 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11063&Id=0
+2025-07-28T07:42:37.103 INFO 192.168.68.128 <- Mount
+2025-07-28T07:42:37.104 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11066&Id=1
+2025-07-28T07:42:42.205 ERROR KasaCmd -device Pc -status timed out after 5s
+2025-07-28T07:42:42.205 ERROR DriverException: KasaCmd status timed out for Pc
+2025-07-28T07:42:42.211 ERROR DriverException: Switch.GetSwitchValue failed
+Traceback (most recent call last):
+  File "G:\Other computers\My Computer (1)\AlpycaDevice\device\switch.py", line 99, in get_switch
+    result = subprocess.check_output(["KasaCmd", "-device", name, "-status"], encoding="utf-8", timeout=5)
+  File "C:\Users\Paul Fox-Reeks\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 472, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+               **kwargs).stdout
+               ^^^^^^^^^
+  File "C:\Users\Paul Fox-Reeks\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 556, in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+                     ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Paul Fox-Reeks\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 1222, in communicate
+    stdout, stderr = self._communicate(input, endtime, timeout)
+                     ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Paul Fox-Reeks\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 1646, in _communicate
+    raise TimeoutExpired(self.args, orig_timeout)
+subprocess.TimeoutExpired: Command '['KasaCmd', '-device', 'Pc', '-status']' timed out after 5 seconds
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "G:\Other computers\My Computer (1)\AlpycaDevice\device\switch.py", line 199, in on_get
+    val = device.get_switch(id)
+  File "G:\Other computers\My Computer (1)\AlpycaDevice\device\switch.py", line 115, in get_switch
+    raise DriverException(0x500, f"KasaCmd status timed out for {name}")
+TypeError: exceptions must derive from BaseException
+
+2025-07-28T07:42:42.213 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11067&Id=2
+2025-07-28T07:42:44.300 INFO KasaCmd -device Dew Heater -status returned Relay: 0 in 2.09s
+2025-07-28T07:42:44.300 INFO 192.168.68.128 <- 0
+2025-07-28T07:42:44.301 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11068&Id=0
+2025-07-28T07:42:45.173 INFO KasaCmd -device Mount -status returned Relay: 1 in 0.87s
+2025-07-28T07:42:45.174 INFO 192.168.68.128 <- 1
+2025-07-28T07:42:45.176 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=36450&ClientTransactionID=11069
+2025-07-28T07:42:45.176 INFO 192.168.68.128 <- True
+2025-07-28T07:42:45.177 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11071&Id=0
+2025-07-28T07:42:45.178 INFO 192.168.68.128 <- Mount
+2025-07-28T07:42:45.178 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11070&Id=1
+2025-07-28T07:42:45.179 INFO 192.168.68.128 <- Pc
+2025-07-28T07:42:45.179 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11072&Id=2
+2025-07-28T07:42:45.180 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:42:45.180 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11073&Id=0
+2025-07-28T07:42:47.282 INFO KasaCmd -device Mount -status returned Relay: 1 in 2.10s
+2025-07-28T07:42:47.282 INFO 192.168.68.128 <- 1
+2025-07-28T07:42:47.284 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11074&Id=1
+2025-07-28T07:42:48.310 INFO KasaCmd -device Pc -status returned Relay: 1 in 1.03s
+2025-07-28T07:42:48.311 INFO 192.168.68.128 <- 1
+2025-07-28T07:42:48.312 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11075&Id=2
+2025-07-28T07:42:50.354 INFO KasaCmd -device Dew Heater -status returned Relay: 0 in 2.04s
+2025-07-28T07:42:50.355 INFO 192.168.68.128 <- 0
+2025-07-28T07:42:50.357 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=36450&ClientTransactionID=11076
+2025-07-28T07:42:50.357 INFO 192.168.68.128 <- True
+2025-07-28T07:42:50.359 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11079&Id=2
+2025-07-28T07:42:50.359 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:42:50.360 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11078&Id=1
+2025-07-28T07:42:50.360 INFO 192.168.68.128 <- Pc
+2025-07-28T07:42:50.360 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11077&Id=0
+2025-07-28T07:42:50.361 INFO 192.168.68.128 <- Mount
+2025-07-28T07:42:50.361 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11080&Id=2
+2025-07-28T07:42:52.438 INFO KasaCmd -device Dew Heater -status returned Relay: 0 in 2.08s
+2025-07-28T07:42:52.439 INFO 192.168.68.128 <- 0
+2025-07-28T07:42:52.440 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11081&Id=1
+2025-07-28T07:42:53.306 INFO KasaCmd -device Pc -status returned Relay: 1 in 0.87s
+2025-07-28T07:42:53.307 INFO 192.168.68.128 <- 1
+2025-07-28T07:42:53.308 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11082&Id=0
+2025-07-28T07:42:54.369 INFO KasaCmd -device Mount -status returned Relay: 1 in 1.06s
+2025-07-28T07:42:54.369 INFO 192.168.68.128 <- 1
+2025-07-28T07:42:54.371 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=36450&ClientTransactionID=11083
+2025-07-28T07:42:54.372 INFO 192.168.68.128 <- True
+2025-07-28T07:42:54.382 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11086&Id=2
+2025-07-28T07:42:54.382 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:42:54.383 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11084&Id=0
+2025-07-28T07:42:54.384 INFO 192.168.68.128 <- Mount
+2025-07-28T07:42:54.385 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11085&Id=1
+2025-07-28T07:42:54.385 INFO 192.168.68.128 <- Pc
+2025-07-28T07:42:54.386 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11087&Id=2
+2025-07-28T07:42:56.269 INFO KasaCmd -device Dew Heater -status returned Relay: 0 in 1.88s
+2025-07-28T07:42:56.270 INFO 192.168.68.128 <- 0
+2025-07-28T07:42:56.271 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11088&Id=0
+2025-07-28T07:42:57.148 INFO KasaCmd -device Mount -status returned Relay: 1 in 0.88s
+2025-07-28T07:42:57.149 INFO 192.168.68.128 <- 1
+2025-07-28T07:42:57.150 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11089&Id=1
+2025-07-28T07:42:58.010 INFO KasaCmd -device Pc -status returned Relay: 1 in 0.86s
+2025-07-28T07:42:58.010 INFO 192.168.68.128 <- 1
+2025-07-28T07:42:58.013 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=36450&ClientTransactionID=11090
+2025-07-28T07:42:58.013 INFO 192.168.68.128 <- True
+2025-07-28T07:42:58.015 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11093&Id=2
+2025-07-28T07:42:58.015 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:42:58.016 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11091&Id=0
+2025-07-28T07:42:58.017 INFO 192.168.68.128 <- Mount
+2025-07-28T07:42:58.018 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11092&Id=1
+2025-07-28T07:42:58.018 INFO 192.168.68.128 <- Pc
+2025-07-28T07:42:58.019 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11094&Id=2
+2025-07-28T07:42:59.878 INFO KasaCmd -device Dew Heater -status returned Relay: 0 in 1.86s
+2025-07-28T07:42:59.878 INFO 192.168.68.128 <- 0
+2025-07-28T07:42:59.880 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11095&Id=0
+2025-07-28T07:43:01.964 INFO KasaCmd -device Mount -status returned Relay: 1 in 2.08s
+2025-07-28T07:43:01.965 INFO 192.168.68.128 <- 1
+2025-07-28T07:43:01.966 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11096&Id=1
+2025-07-28T07:43:04.037 INFO KasaCmd -device Pc -status returned Relay: 1 in 2.07s
+2025-07-28T07:43:04.038 INFO 192.168.68.128 <- 1
+2025-07-28T07:43:04.040 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=36450&ClientTransactionID=11097
+2025-07-28T07:43:04.040 INFO 192.168.68.128 <- True
+2025-07-28T07:43:04.041 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11098&Id=0
+2025-07-28T07:43:04.042 INFO 192.168.68.128 <- Mount
+2025-07-28T07:43:04.042 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11099&Id=1
+2025-07-28T07:43:04.043 INFO 192.168.68.128 <- Pc
+2025-07-28T07:43:04.043 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11100&Id=2
+2025-07-28T07:43:04.044 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:43:04.044 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11101&Id=0
+2025-07-28T07:43:05.999 INFO KasaCmd -device Mount -status returned Relay: 1 in 1.95s
+2025-07-28T07:43:05.999 INFO 192.168.68.128 <- 1
+2025-07-28T07:43:06.001 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11102&Id=1
+2025-07-28T07:43:06.834 INFO KasaCmd -device Pc -status returned Relay: 1 in 0.83s
+2025-07-28T07:43:06.835 INFO 192.168.68.128 <- 1
+2025-07-28T07:43:06.836 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11103&Id=2
+2025-07-28T07:43:08.864 INFO KasaCmd -device Dew Heater -status returned Relay: 0 in 2.03s
+2025-07-28T07:43:08.864 INFO 192.168.68.128 <- 0
+2025-07-28T07:43:08.867 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=36450&ClientTransactionID=11104
+2025-07-28T07:43:08.867 INFO 192.168.68.128 <- True
+2025-07-28T07:43:08.868 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11106&Id=1
+2025-07-28T07:43:08.868 INFO 192.168.68.128 <- Pc
+2025-07-28T07:43:08.869 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11105&Id=0
+2025-07-28T07:43:08.869 INFO 192.168.68.128 <- Mount
+2025-07-28T07:43:08.870 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11107&Id=2
+2025-07-28T07:43:08.870 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:43:08.871 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11108&Id=1
+2025-07-28T07:43:13.940 INFO KasaCmd -device Pc -status returned Relay: 1 in 5.07s
+2025-07-28T07:43:13.940 INFO 192.168.68.128 <- 1
+2025-07-28T07:43:13.942 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11109&Id=0
+2025-07-28T07:43:14.803 INFO KasaCmd -device Mount -status returned Relay: 1 in 0.86s
+2025-07-28T07:43:14.803 INFO 192.168.68.128 <- 1
+2025-07-28T07:43:14.805 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11110&Id=2
+2025-07-28T07:43:15.654 INFO KasaCmd -device Dew Heater -status returned Relay: 0 in 0.85s
+2025-07-28T07:43:15.655 INFO 192.168.68.128 <- 0
+2025-07-28T07:43:15.657 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=36450&ClientTransactionID=11111
+2025-07-28T07:43:15.658 INFO 192.168.68.128 <- True
+2025-07-28T07:43:15.659 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11114&Id=2
+2025-07-28T07:43:15.659 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:43:15.660 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11113&Id=1
+2025-07-28T07:43:15.661 INFO 192.168.68.128 <- Pc
+2025-07-28T07:43:15.662 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11112&Id=0
+2025-07-28T07:43:15.662 INFO 192.168.68.128 <- Mount
+2025-07-28T07:43:15.663 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11115&Id=2
+2025-07-28T07:43:16.536 INFO KasaCmd -device Dew Heater -status returned Relay: 0 in 0.87s
+2025-07-28T07:43:16.537 INFO 192.168.68.128 <- 0
+2025-07-28T07:43:16.538 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11116&Id=1
+2025-07-28T07:43:17.388 INFO KasaCmd -device Pc -status returned Relay: 1 in 0.85s
+2025-07-28T07:43:17.389 INFO 192.168.68.128 <- 1
+2025-07-28T07:43:17.390 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11117&Id=0
+2025-07-28T07:43:21.707 INFO KasaCmd -device Mount -status returned Devicelist expired, retrieving updated list from TP-Link
+Relay: 1 in 4.32s
+2025-07-28T07:43:21.708 INFO 192.168.68.128 <- 1
+2025-07-28T07:43:21.710 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=36450&ClientTransactionID=11118
+2025-07-28T07:43:21.710 INFO 192.168.68.128 <- True
+2025-07-28T07:43:21.712 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11120&Id=1
+2025-07-28T07:43:21.712 INFO 192.168.68.128 <- Pc
+2025-07-28T07:43:21.713 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11119&Id=0
+2025-07-28T07:43:21.713 INFO 192.168.68.128 <- Mount
+2025-07-28T07:43:21.713 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11121&Id=2
+2025-07-28T07:43:21.714 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:43:21.714 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11122&Id=1
+2025-07-28T07:43:22.572 INFO KasaCmd -device Pc -status returned Relay: 1 in 0.86s
+2025-07-28T07:43:22.573 INFO 192.168.68.128 <- 1
+2025-07-28T07:43:22.574 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11123&Id=0
+2025-07-28T07:43:23.404 INFO KasaCmd -device Mount -status returned Relay: 1 in 0.83s
+2025-07-28T07:43:23.404 INFO 192.168.68.128 <- 1
+2025-07-28T07:43:23.406 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11124&Id=2
+2025-07-28T07:43:28.511 ERROR KasaCmd -device Dew Heater -status timed out after 5s
+2025-07-28T07:43:28.512 ERROR DriverException: KasaCmd status timed out for Dew Heater
+2025-07-28T07:43:28.518 ERROR DriverException: Switch.GetSwitchValue failed
+Traceback (most recent call last):
+  File "G:\Other computers\My Computer (1)\AlpycaDevice\device\switch.py", line 99, in get_switch
+    result = subprocess.check_output(["KasaCmd", "-device", name, "-status"], encoding="utf-8", timeout=5)
+  File "C:\Users\Paul Fox-Reeks\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 472, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+               **kwargs).stdout
+               ^^^^^^^^^
+  File "C:\Users\Paul Fox-Reeks\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 556, in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+                     ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Paul Fox-Reeks\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 1222, in communicate
+    stdout, stderr = self._communicate(input, endtime, timeout)
+                     ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Paul Fox-Reeks\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 1646, in _communicate
+    raise TimeoutExpired(self.args, orig_timeout)
+subprocess.TimeoutExpired: Command '['KasaCmd', '-device', 'Dew Heater', '-status']' timed out after 5 seconds
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "G:\Other computers\My Computer (1)\AlpycaDevice\device\switch.py", line 199, in on_get
+    val = device.get_switch(id)
+  File "G:\Other computers\My Computer (1)\AlpycaDevice\device\switch.py", line 115, in get_switch
+    raise DriverException(0x500, f"KasaCmd status timed out for {name}")
+TypeError: exceptions must derive from BaseException
+
+2025-07-28T07:43:28.521 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=36450&ClientTransactionID=11125
+2025-07-28T07:43:28.521 INFO 192.168.68.128 <- True
+2025-07-28T07:43:28.523 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11128&Id=2
+2025-07-28T07:43:28.523 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:43:28.523 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11126&Id=0
+2025-07-28T07:43:28.524 INFO 192.168.68.128 <- Mount
+2025-07-28T07:43:28.524 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11127&Id=1
+2025-07-28T07:43:28.525 INFO 192.168.68.128 <- Pc
+2025-07-28T07:43:28.525 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11129&Id=2
+2025-07-28T07:43:29.362 INFO KasaCmd -device Dew Heater -status returned Relay: 0 in 0.84s
+2025-07-28T07:43:29.362 INFO 192.168.68.128 <- 0
+2025-07-28T07:43:29.364 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11130&Id=0
+2025-07-28T07:43:31.384 INFO KasaCmd -device Mount -status returned Relay: 1 in 2.02s
+2025-07-28T07:43:31.384 INFO 192.168.68.128 <- 1
+2025-07-28T07:43:31.386 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11131&Id=1
+2025-07-28T07:43:32.235 INFO KasaCmd -device Pc -status returned Relay: 1 in 0.85s
+2025-07-28T07:43:32.236 INFO 192.168.68.128 <- 1
+2025-07-28T07:43:32.238 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=36450&ClientTransactionID=11132
+2025-07-28T07:43:32.239 INFO 192.168.68.128 <- True
+2025-07-28T07:43:32.240 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11133&Id=0
+2025-07-28T07:43:32.240 INFO 192.168.68.128 <- Mount
+2025-07-28T07:43:32.242 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11134&Id=1
+2025-07-28T07:43:32.242 INFO 192.168.68.128 <- Pc
+2025-07-28T07:43:32.242 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11135&Id=2
+2025-07-28T07:43:32.243 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:43:32.243 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11136&Id=0
+2025-07-28T07:43:33.088 INFO KasaCmd -device Mount -status returned Relay: 1 in 0.84s
+2025-07-28T07:43:33.088 INFO 192.168.68.128 <- 1
+2025-07-28T07:43:33.090 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11137&Id=1
+2025-07-28T07:43:34.978 INFO KasaCmd -device Pc -status returned Relay: 1 in 1.89s
+2025-07-28T07:43:34.979 INFO 192.168.68.128 <- 1
+2025-07-28T07:43:34.980 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11138&Id=2
+2025-07-28T07:43:35.818 INFO KasaCmd -device Dew Heater -status returned Relay: 0 in 0.84s
+2025-07-28T07:43:35.818 INFO 192.168.68.128 <- 0
+2025-07-28T07:43:35.821 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=36450&ClientTransactionID=11139
+2025-07-28T07:43:35.821 INFO 192.168.68.128 <- True
+2025-07-28T07:43:35.823 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11142&Id=2
+2025-07-28T07:43:35.823 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:43:35.824 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11140&Id=0
+2025-07-28T07:43:35.824 INFO 192.168.68.128 <- Mount
+2025-07-28T07:43:35.825 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11141&Id=1
+2025-07-28T07:43:35.826 INFO 192.168.68.128 <- Pc
+2025-07-28T07:43:35.826 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11143&Id=2
+2025-07-28T07:43:37.833 INFO KasaCmd -device Dew Heater -status returned Relay: 0 in 2.01s
+2025-07-28T07:43:37.834 INFO 192.168.68.128 <- 0
+2025-07-28T07:43:37.835 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11144&Id=0
+2025-07-28T07:43:42.934 ERROR KasaCmd -device Mount -status timed out after 5s
+2025-07-28T07:43:42.935 ERROR DriverException: KasaCmd status timed out for Mount
+2025-07-28T07:43:43.304 ERROR DriverException: Switch.GetSwitchValue failed
+Traceback (most recent call last):
+  File "G:\Other computers\My Computer (1)\AlpycaDevice\device\switch.py", line 99, in get_switch
+    result = subprocess.check_output(["KasaCmd", "-device", name, "-status"], encoding="utf-8", timeout=5)
+  File "C:\Users\Paul Fox-Reeks\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 472, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+               **kwargs).stdout
+               ^^^^^^^^^
+  File "C:\Users\Paul Fox-Reeks\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 556, in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+                     ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Paul Fox-Reeks\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 1222, in communicate
+    stdout, stderr = self._communicate(input, endtime, timeout)
+                     ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Paul Fox-Reeks\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 1646, in _communicate
+    raise TimeoutExpired(self.args, orig_timeout)
+subprocess.TimeoutExpired: Command '['KasaCmd', '-device', 'Mount', '-status']' timed out after 5 seconds
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "G:\Other computers\My Computer (1)\AlpycaDevice\device\switch.py", line 199, in on_get
+    val = device.get_switch(id)
+  File "G:\Other computers\My Computer (1)\AlpycaDevice\device\switch.py", line 115, in get_switch
+    raise DriverException(0x500, f"KasaCmd status timed out for {name}")
+TypeError: exceptions must derive from BaseException
+
+2025-07-28T07:43:43.305 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11145&Id=1
+2025-07-28T07:43:44.148 INFO KasaCmd -device Pc -status returned Relay: 1 in 0.84s
+2025-07-28T07:43:44.149 INFO 192.168.68.128 <- 1
+2025-07-28T07:43:44.151 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=36450&ClientTransactionID=11146
+2025-07-28T07:43:44.151 INFO 192.168.68.128 <- True
+2025-07-28T07:43:44.153 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11147&Id=0
+2025-07-28T07:43:44.153 INFO 192.168.68.128 <- Mount
+2025-07-28T07:43:44.154 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11149&Id=2
+2025-07-28T07:43:44.154 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:43:44.155 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11148&Id=1
+2025-07-28T07:43:44.155 INFO 192.168.68.128 <- Pc
+2025-07-28T07:43:44.156 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11150&Id=0
+2025-07-28T07:43:46.090 INFO KasaCmd -device Mount -status returned Relay: 1 in 1.93s
+2025-07-28T07:43:46.091 INFO 192.168.68.128 <- 1
+2025-07-28T07:43:46.092 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11151&Id=2
+2025-07-28T07:43:48.122 INFO KasaCmd -device Dew Heater -status returned Relay: 0 in 2.03s
+2025-07-28T07:43:48.123 INFO 192.168.68.128 <- 0
+2025-07-28T07:43:48.124 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11152&Id=1
+2025-07-28T07:43:50.079 INFO KasaCmd -device Pc -status returned Relay: 1 in 1.95s
+2025-07-28T07:43:50.079 INFO 192.168.68.128 <- 1
+2025-07-28T07:43:50.082 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=36450&ClientTransactionID=11153
+2025-07-28T07:43:50.082 INFO 192.168.68.128 <- True
+2025-07-28T07:43:50.083 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11154&Id=0
+2025-07-28T07:43:50.084 INFO 192.168.68.128 <- Mount
+2025-07-28T07:43:50.084 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11155&Id=1
+2025-07-28T07:43:50.084 INFO 192.168.68.128 <- Pc
+2025-07-28T07:43:50.085 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11156&Id=2
+2025-07-28T07:43:50.085 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:43:50.086 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11157&Id=0
+2025-07-28T07:43:50.974 INFO KasaCmd -device Mount -status returned Relay: 1 in 0.89s
+2025-07-28T07:43:50.975 INFO 192.168.68.128 <- 1
+2025-07-28T07:43:50.976 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11158&Id=1
+2025-07-28T07:43:52.915 INFO KasaCmd -device Pc -status returned Relay: 1 in 1.94s
+2025-07-28T07:43:52.916 INFO 192.168.68.128 <- 1
+2025-07-28T07:43:52.917 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11159&Id=2
+2025-07-28T07:43:54.943 INFO KasaCmd -device Dew Heater -status returned Relay: 0 in 2.03s
+2025-07-28T07:43:54.944 INFO 192.168.68.128 <- 0
+2025-07-28T07:43:54.946 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=36450&ClientTransactionID=11160
+2025-07-28T07:43:54.946 INFO 192.168.68.128 <- True
+2025-07-28T07:43:54.948 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11161&Id=0
+2025-07-28T07:43:54.948 INFO 192.168.68.128 <- Mount
+2025-07-28T07:43:54.948 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11163&Id=2
+2025-07-28T07:43:54.949 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:43:54.949 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=36450&ClientTransactionID=11162&Id=1
+2025-07-28T07:43:54.950 INFO 192.168.68.128 <- Pc
+2025-07-28T07:43:54.950 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11164&Id=0
+2025-07-28T07:44:00.045 ERROR KasaCmd -device Mount -status timed out after 5s
+2025-07-28T07:44:00.046 ERROR DriverException: KasaCmd status timed out for Mount
+2025-07-28T07:44:00.676 ERROR DriverException: Switch.GetSwitchValue failed
+Traceback (most recent call last):
+  File "G:\Other computers\My Computer (1)\AlpycaDevice\device\switch.py", line 99, in get_switch
+    result = subprocess.check_output(["KasaCmd", "-device", name, "-status"], encoding="utf-8", timeout=5)
+  File "C:\Users\Paul Fox-Reeks\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 472, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+               **kwargs).stdout
+               ^^^^^^^^^
+  File "C:\Users\Paul Fox-Reeks\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 556, in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+                     ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Paul Fox-Reeks\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 1222, in communicate
+    stdout, stderr = self._communicate(input, endtime, timeout)
+                     ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Paul Fox-Reeks\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 1646, in _communicate
+    raise TimeoutExpired(self.args, orig_timeout)
+subprocess.TimeoutExpired: Command '['KasaCmd', '-device', 'Mount', '-status']' timed out after 5 seconds
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "G:\Other computers\My Computer (1)\AlpycaDevice\device\switch.py", line 199, in on_get
+    except ValueError:
+          ^^^^^^^^^^^^
+  File "G:\Other computers\My Computer (1)\AlpycaDevice\device\switch.py", line 115, in get_switch
+    raise DriverException(0x500, f"KasaCmd status timed out for {name}")
+TypeError: exceptions must derive from BaseException
+
+2025-07-28T07:44:00.678 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11165&Id=2
+2025-07-28T07:44:05.774 ERROR KasaCmd -device Dew Heater -status timed out after 5s
+2025-07-28T07:44:05.775 ERROR DriverException: KasaCmd status timed out for Dew Heater
+2025-07-28T07:44:05.781 ERROR DriverException: Switch.GetSwitchValue failed
+Traceback (most recent call last):
+  File "G:\Other computers\My Computer (1)\AlpycaDevice\device\switch.py", line 99, in get_switch
+    result = subprocess.check_output(["KasaCmd", "-device", name, "-status"], encoding="utf-8", timeout=5)
+  File "C:\Users\Paul Fox-Reeks\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 472, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+               **kwargs).stdout
+               ^^^^^^^^^
+  File "C:\Users\Paul Fox-Reeks\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 556, in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+                     ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Paul Fox-Reeks\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 1222, in communicate
+    stdout, stderr = self._communicate(input, endtime, timeout)
+                     ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Paul Fox-Reeks\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 1646, in _communicate
+    raise TimeoutExpired(self.args, orig_timeout)
+subprocess.TimeoutExpired: Command '['KasaCmd', '-device', 'Dew Heater', '-status']' timed out after 5 seconds
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "G:\Other computers\My Computer (1)\AlpycaDevice\device\switch.py", line 199, in on_get
+    except ValueError:
+          ^^^^^^^^^^^^
+  File "G:\Other computers\My Computer (1)\AlpycaDevice\device\switch.py", line 115, in get_switch
+    raise DriverException(0x500, f"KasaCmd status timed out for {name}")
+TypeError: exceptions must derive from BaseException
+
+2025-07-28T07:44:05.782 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11166&Id=1
+2025-07-28T07:44:07.926 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11167&Id=2
+2025-07-28T07:44:09.536 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=36450&ClientTransactionID=11168&Id=1
+2025-07-28T07:44:10.504 INFO KasaCmd -device Pc -status returned Relay: 1 in 0.97s
+2025-07-28T07:44:10.505 INFO 192.168.68.128 <- 1
+2025-07-28T07:44:10.577 INFO 192.168.68.128 -> PUT /api/v1/switch/0/connected
+2025-07-28T07:44:10.578 INFO 192.168.68.128 -> {'Connected': 'False', 'ClientID': '36450', 'ClientTransactionID': '11169'}

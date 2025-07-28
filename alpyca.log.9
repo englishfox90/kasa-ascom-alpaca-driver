@@ -1,0 +1,1652 @@
+2025-07-28T07:24:03.820 INFO ==STARTUP== Serving on :5555. Time stamps are UTC.
+2025-07-28T07:24:10.114 INFO Disc rcv alpacadiscovery1 from ('192.168.68.128', 63460)
+2025-07-28T07:24:10.115 INFO Disc rcv alpacadiscovery1 from ('127.0.0.1', 63461)
+2025-07-28T07:24:10.119 INFO 192.168.68.128 <- [1]
+2025-07-28T07:24:10.120 INFO 127.0.0.1 <- [1]
+2025-07-28T07:24:10.122 INFO 192.168.68.128 <- {'ServerName': 'Alpaca Kasa Switch Server', 'Manufacturer': 'ASCOM Initiative', 'Version': '1.0.0', 'Location': 'Anywhere on Earth'}
+2025-07-28T07:24:10.123 INFO 127.0.0.1 <- {'ServerName': 'Alpaca Kasa Switch Server', 'Manufacturer': 'ASCOM Initiative', 'Version': '1.0.0', 'Location': 'Anywhere on Earth'}
+2025-07-28T07:24:10.124 INFO 192.168.68.128 <- [{'DeviceName': 'Kasa Switch', 'DeviceType': 'Switch', 'DeviceNumber': 0, 'UniqueID': 'b7e1e2c2-7e2a-4b7a-9e2e-123456789abc'}]
+2025-07-28T07:24:10.125 INFO 127.0.0.1 <- [{'DeviceName': 'Kasa Switch', 'DeviceType': 'Switch', 'DeviceNumber': 0, 'UniqueID': 'b7e1e2c2-7e2a-4b7a-9e2e-123456789abc'}]
+2025-07-28T07:24:19.721 INFO 127.0.0.1 -> PUT /api/v1/switch/0/connected
+2025-07-28T07:24:19.721 INFO 127.0.0.1 -> {'Connected': 'True', 'ClientID': '55014', 'ClientTransactionID': '9508'}
+2025-07-28T07:24:19.954 INFO KasaCmd -devicelist parsed device names: ['Mount', 'Pc', 'Dew Heater'] in 0.23s
+2025-07-28T07:24:19.955 INFO Kasa connect: device list loaded in 0.23s: ['Mount', 'Pc', 'Dew Heater']
+2025-07-28T07:24:19.958 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9509
+2025-07-28T07:24:19.958 INFO 127.0.0.1 <- True
+2025-07-28T07:24:19.960 INFO 127.0.0.1 -> GET /api/v1/switch/0/maxswitch?ClientID=55014&ClientTransactionID=9510
+2025-07-28T07:24:19.960 INFO maxswitch: returning 3
+2025-07-28T07:24:19.960 INFO 127.0.0.1 <- 3
+2025-07-28T07:24:19.962 INFO 127.0.0.1 -> GET /api/v1/switch/0/canwrite?ClientID=55014&ClientTransactionID=9511&Id=0
+2025-07-28T07:24:19.962 INFO 127.0.0.1 <- True
+2025-07-28T07:24:19.964 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9512&Id=0
+2025-07-28T07:24:19.964 INFO 127.0.0.1 <- Mount
+2025-07-28T07:24:19.965 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchdescription?ClientID=55014&ClientTransactionID=9513&Id=0
+2025-07-28T07:24:19.966 INFO 127.0.0.1 <- Mount
+2025-07-28T07:24:19.967 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9514&Id=0
+2025-07-28T07:24:19.967 INFO 127.0.0.1 <- 0
+2025-07-28T07:24:19.969 INFO 127.0.0.1 -> GET /api/v1/switch/0/maxswitchvalue?ClientID=55014&ClientTransactionID=9515&Id=0
+2025-07-28T07:24:19.969 INFO 127.0.0.1 <- 0
+2025-07-28T07:24:19.970 INFO 127.0.0.1 -> GET /api/v1/switch/0/minswitchvalue?ClientID=55014&ClientTransactionID=9516&Id=0
+2025-07-28T07:24:19.971 INFO 127.0.0.1 <- 1
+2025-07-28T07:24:19.972 INFO 127.0.0.1 -> GET /api/v1/switch/0/switchstep?ClientID=55014&ClientTransactionID=9517&Id=0
+2025-07-28T07:24:19.973 INFO 127.0.0.1 <- 1
+2025-07-28T07:24:19.974 INFO 127.0.0.1 -> GET /api/v1/switch/0/canwrite?ClientID=55014&ClientTransactionID=9518&Id=1
+2025-07-28T07:24:19.974 INFO 127.0.0.1 <- True
+2025-07-28T07:24:19.975 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9519&Id=1
+2025-07-28T07:24:19.976 INFO 127.0.0.1 <- Pc
+2025-07-28T07:24:19.977 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchdescription?ClientID=55014&ClientTransactionID=9520&Id=1
+2025-07-28T07:24:19.977 INFO 127.0.0.1 <- Pc
+2025-07-28T07:24:19.978 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9521&Id=1
+2025-07-28T07:24:19.979 INFO 127.0.0.1 <- 0
+2025-07-28T07:24:19.979 INFO 127.0.0.1 -> GET /api/v1/switch/0/maxswitchvalue?ClientID=55014&ClientTransactionID=9522&Id=1
+2025-07-28T07:24:19.980 INFO 127.0.0.1 <- 0
+2025-07-28T07:24:19.981 INFO 127.0.0.1 -> GET /api/v1/switch/0/minswitchvalue?ClientID=55014&ClientTransactionID=9523&Id=1
+2025-07-28T07:24:19.981 INFO 127.0.0.1 <- 1
+2025-07-28T07:24:19.982 INFO 127.0.0.1 -> GET /api/v1/switch/0/switchstep?ClientID=55014&ClientTransactionID=9524&Id=1
+2025-07-28T07:24:19.983 INFO 127.0.0.1 <- 1
+2025-07-28T07:24:19.984 INFO 127.0.0.1 -> GET /api/v1/switch/0/canwrite?ClientID=55014&ClientTransactionID=9525&Id=2
+2025-07-28T07:24:19.984 INFO 127.0.0.1 <- True
+2025-07-28T07:24:19.998 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9526&Id=2
+2025-07-28T07:24:19.999 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:24:20.001 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchdescription?ClientID=55014&ClientTransactionID=9527&Id=2
+2025-07-28T07:24:20.002 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:24:20.003 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9528&Id=2
+2025-07-28T07:24:20.003 INFO 127.0.0.1 <- 0
+2025-07-28T07:24:20.006 INFO 127.0.0.1 -> GET /api/v1/switch/0/maxswitchvalue?ClientID=55014&ClientTransactionID=9529&Id=2
+2025-07-28T07:24:20.007 INFO 127.0.0.1 <- 0
+2025-07-28T07:24:20.009 INFO 127.0.0.1 -> GET /api/v1/switch/0/minswitchvalue?ClientID=55014&ClientTransactionID=9530&Id=2
+2025-07-28T07:24:20.010 INFO 127.0.0.1 <- 1
+2025-07-28T07:24:20.012 INFO 127.0.0.1 -> GET /api/v1/switch/0/switchstep?ClientID=55014&ClientTransactionID=9531&Id=2
+2025-07-28T07:24:20.012 INFO 127.0.0.1 <- 1
+2025-07-28T07:24:20.015 INFO 127.0.0.1 -> GET /api/v1/switch/0/driverinfo?ClientID=55014&ClientTransactionID=9533
+2025-07-28T07:24:20.016 INFO 127.0.0.1 <- Kasa Switch Alpaca Device
+Implements ISwitch
+ASCOM Initiative
+2025-07-28T07:24:20.017 INFO 127.0.0.1 -> GET /api/v1/switch/0/driverversion?ClientID=55014&ClientTransactionID=9534
+2025-07-28T07:24:20.017 INFO 127.0.0.1 <- 1.0.0
+2025-07-28T07:24:20.018 INFO 127.0.0.1 -> GET /api/v1/switch/0/supportedactions?ClientID=55014&ClientTransactionID=9535
+2025-07-28T07:24:20.019 INFO 127.0.0.1 <- []
+2025-07-28T07:24:20.020 INFO 127.0.0.1 -> GET /api/v1/switch/0/driverversion?ClientID=55014&ClientTransactionID=9536
+2025-07-28T07:24:20.021 INFO 127.0.0.1 <- 1.0.0
+2025-07-28T07:24:22.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9537
+2025-07-28T07:24:22.033 INFO 127.0.0.1 <- True
+2025-07-28T07:24:22.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9540&Id=2
+2025-07-28T07:24:22.036 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:24:22.037 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9538&Id=0
+2025-07-28T07:24:22.037 INFO 127.0.0.1 <- Mount
+2025-07-28T07:24:22.038 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9539&Id=1
+2025-07-28T07:24:22.039 INFO 127.0.0.1 <- Pc
+2025-07-28T07:24:22.040 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9541&Id=2
+2025-07-28T07:24:22.040 INFO 127.0.0.1 <- 0
+2025-07-28T07:24:22.041 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9542&Id=0
+2025-07-28T07:24:22.041 INFO 127.0.0.1 <- 0
+2025-07-28T07:24:22.042 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9543&Id=1
+2025-07-28T07:24:22.042 INFO 127.0.0.1 <- 0
+2025-07-28T07:24:24.028 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9544
+2025-07-28T07:24:24.029 INFO 127.0.0.1 <- True
+2025-07-28T07:24:24.030 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9547&Id=2
+2025-07-28T07:24:24.031 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:24:24.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9546&Id=1
+2025-07-28T07:24:24.032 INFO 127.0.0.1 <- Pc
+2025-07-28T07:24:24.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9545&Id=0
+2025-07-28T07:24:24.033 INFO 127.0.0.1 <- Mount
+2025-07-28T07:24:24.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9548&Id=2
+2025-07-28T07:24:24.034 INFO 127.0.0.1 <- 0
+2025-07-28T07:24:24.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9549&Id=1
+2025-07-28T07:24:24.035 INFO 127.0.0.1 <- 0
+2025-07-28T07:24:24.036 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9550&Id=0
+2025-07-28T07:24:24.036 INFO 127.0.0.1 <- 0
+2025-07-28T07:24:26.024 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9551
+2025-07-28T07:24:26.025 INFO 127.0.0.1 <- True
+2025-07-28T07:24:26.026 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9552&Id=0
+2025-07-28T07:24:26.027 INFO 127.0.0.1 <- Mount
+2025-07-28T07:24:26.028 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9554&Id=2
+2025-07-28T07:24:26.029 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:24:26.029 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9553&Id=1
+2025-07-28T07:24:26.030 INFO 127.0.0.1 <- Pc
+2025-07-28T07:24:26.031 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9555&Id=0
+2025-07-28T07:24:26.031 INFO 127.0.0.1 <- 0
+2025-07-28T07:24:26.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9556&Id=2
+2025-07-28T07:24:26.032 INFO 127.0.0.1 <- 0
+2025-07-28T07:24:26.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9557&Id=1
+2025-07-28T07:24:26.034 INFO 127.0.0.1 <- 0
+2025-07-28T07:24:28.031 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9558
+2025-07-28T07:24:28.031 INFO 127.0.0.1 <- True
+2025-07-28T07:24:28.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9560&Id=1
+2025-07-28T07:24:28.033 INFO 127.0.0.1 <- Pc
+2025-07-28T07:24:28.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9561&Id=2
+2025-07-28T07:24:28.034 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:24:28.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9559&Id=0
+2025-07-28T07:24:28.036 INFO 127.0.0.1 <- Mount
+2025-07-28T07:24:28.036 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9562&Id=1
+2025-07-28T07:24:28.037 INFO 127.0.0.1 <- 0
+2025-07-28T07:24:28.037 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9563&Id=2
+2025-07-28T07:24:28.038 INFO 127.0.0.1 <- 0
+2025-07-28T07:24:28.039 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9564&Id=0
+2025-07-28T07:24:28.039 INFO 127.0.0.1 <- 0
+2025-07-28T07:24:30.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9565
+2025-07-28T07:24:30.032 INFO 127.0.0.1 <- True
+2025-07-28T07:24:30.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9568&Id=2
+2025-07-28T07:24:30.034 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:24:30.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9567&Id=1
+2025-07-28T07:24:30.036 INFO 127.0.0.1 <- Pc
+2025-07-28T07:24:30.036 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9566&Id=0
+2025-07-28T07:24:30.037 INFO 127.0.0.1 <- Mount
+2025-07-28T07:24:30.038 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9569&Id=2
+2025-07-28T07:24:30.038 INFO 127.0.0.1 <- 0
+2025-07-28T07:24:30.039 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9570&Id=1
+2025-07-28T07:24:30.039 INFO 127.0.0.1 <- 0
+2025-07-28T07:24:30.040 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9571&Id=0
+2025-07-28T07:24:30.040 INFO 127.0.0.1 <- 0
+2025-07-28T07:24:32.024 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9572
+2025-07-28T07:24:32.025 INFO 127.0.0.1 <- True
+2025-07-28T07:24:32.028 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9575&Id=2
+2025-07-28T07:24:32.028 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:24:32.029 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9573&Id=0
+2025-07-28T07:24:32.030 INFO 127.0.0.1 <- Mount
+2025-07-28T07:24:32.031 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9574&Id=1
+2025-07-28T07:24:32.031 INFO 127.0.0.1 <- Pc
+2025-07-28T07:24:32.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9576&Id=2
+2025-07-28T07:24:32.032 INFO 127.0.0.1 <- 0
+2025-07-28T07:24:32.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9577&Id=0
+2025-07-28T07:24:32.033 INFO 127.0.0.1 <- 0
+2025-07-28T07:24:32.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9578&Id=1
+2025-07-28T07:24:32.034 INFO 127.0.0.1 <- 0
+2025-07-28T07:24:34.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9579
+2025-07-28T07:24:34.033 INFO 127.0.0.1 <- True
+2025-07-28T07:24:34.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9581&Id=1
+2025-07-28T07:24:34.035 INFO 127.0.0.1 <- Pc
+2025-07-28T07:24:34.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9580&Id=0
+2025-07-28T07:24:34.036 INFO 127.0.0.1 <- Mount
+2025-07-28T07:24:34.037 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9582&Id=2
+2025-07-28T07:24:34.037 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:24:34.038 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9583&Id=1
+2025-07-28T07:24:34.038 INFO 127.0.0.1 <- 0
+2025-07-28T07:24:34.039 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9584&Id=0
+2025-07-28T07:24:34.039 INFO 127.0.0.1 <- 0
+2025-07-28T07:24:34.040 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9585&Id=2
+2025-07-28T07:24:34.040 INFO 127.0.0.1 <- 0
+2025-07-28T07:24:36.021 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9586
+2025-07-28T07:24:36.022 INFO 127.0.0.1 <- True
+2025-07-28T07:24:36.024 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9589&Id=2
+2025-07-28T07:24:36.024 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:24:36.025 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9587&Id=0
+2025-07-28T07:24:36.025 INFO 127.0.0.1 <- Mount
+2025-07-28T07:24:36.026 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9588&Id=1
+2025-07-28T07:24:36.026 INFO 127.0.0.1 <- Pc
+2025-07-28T07:24:36.027 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9590&Id=2
+2025-07-28T07:24:36.027 INFO 127.0.0.1 <- 0
+2025-07-28T07:24:36.028 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9591&Id=0
+2025-07-28T07:24:36.029 INFO 127.0.0.1 <- 0
+2025-07-28T07:24:36.029 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9592&Id=1
+2025-07-28T07:24:36.030 INFO 127.0.0.1 <- 0
+2025-07-28T07:24:38.022 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9593
+2025-07-28T07:24:38.023 INFO 127.0.0.1 <- True
+2025-07-28T07:24:38.024 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9596&Id=2
+2025-07-28T07:24:38.025 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:24:38.025 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9594&Id=0
+2025-07-28T07:24:38.026 INFO 127.0.0.1 <- Mount
+2025-07-28T07:24:38.027 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9595&Id=1
+2025-07-28T07:24:38.027 INFO 127.0.0.1 <- Pc
+2025-07-28T07:24:38.028 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9597&Id=2
+2025-07-28T07:24:38.028 INFO 127.0.0.1 <- 0
+2025-07-28T07:24:38.029 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9598&Id=0
+2025-07-28T07:24:38.029 INFO 127.0.0.1 <- 0
+2025-07-28T07:24:38.030 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9599&Id=1
+2025-07-28T07:24:38.030 INFO 127.0.0.1 <- 0
+2025-07-28T07:24:40.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9600
+2025-07-28T07:24:40.035 INFO 127.0.0.1 <- True
+2025-07-28T07:24:40.038 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9602&Id=1
+2025-07-28T07:24:40.038 INFO 127.0.0.1 <- Pc
+2025-07-28T07:24:40.039 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9603&Id=2
+2025-07-28T07:24:40.040 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:24:40.041 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9601&Id=0
+2025-07-28T07:24:40.041 INFO 127.0.0.1 <- Mount
+2025-07-28T07:24:40.042 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9604&Id=1
+2025-07-28T07:24:40.042 INFO 127.0.0.1 <- 0
+2025-07-28T07:24:40.043 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9605&Id=2
+2025-07-28T07:24:40.043 INFO 127.0.0.1 <- 0
+2025-07-28T07:24:40.044 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9606&Id=0
+2025-07-28T07:24:40.044 INFO 127.0.0.1 <- 0
+2025-07-28T07:24:42.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9608
+2025-07-28T07:24:42.033 INFO 127.0.0.1 <- True
+2025-07-28T07:24:42.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9609&Id=0
+2025-07-28T07:24:42.034 INFO 127.0.0.1 <- Mount
+2025-07-28T07:24:42.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9611&Id=2
+2025-07-28T07:24:42.036 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:24:42.036 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9610&Id=1
+2025-07-28T07:24:42.037 INFO 127.0.0.1 <- Pc
+2025-07-28T07:24:42.038 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9612&Id=0
+2025-07-28T07:24:42.038 INFO 127.0.0.1 <- 0
+2025-07-28T07:24:42.039 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9613&Id=2
+2025-07-28T07:24:42.039 INFO 127.0.0.1 <- 0
+2025-07-28T07:24:42.040 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9614&Id=1
+2025-07-28T07:24:42.041 INFO 127.0.0.1 <- 0
+2025-07-28T07:24:44.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9615
+2025-07-28T07:24:44.035 INFO 127.0.0.1 <- True
+2025-07-28T07:24:44.036 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9617&Id=1
+2025-07-28T07:24:44.037 INFO 127.0.0.1 <- Pc
+2025-07-28T07:24:44.037 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9616&Id=0
+2025-07-28T07:24:44.038 INFO 127.0.0.1 <- Mount
+2025-07-28T07:24:44.039 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9618&Id=2
+2025-07-28T07:24:44.039 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:24:44.040 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9619&Id=1
+2025-07-28T07:24:44.040 INFO 127.0.0.1 <- 0
+2025-07-28T07:24:44.041 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9620&Id=0
+2025-07-28T07:24:44.042 INFO 127.0.0.1 <- 0
+2025-07-28T07:24:44.042 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9621&Id=2
+2025-07-28T07:24:44.043 INFO 127.0.0.1 <- 0
+2025-07-28T07:24:46.031 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9622
+2025-07-28T07:24:46.031 INFO 127.0.0.1 <- True
+2025-07-28T07:24:46.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9623&Id=0
+2025-07-28T07:24:46.033 INFO 127.0.0.1 <- Mount
+2025-07-28T07:24:46.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9624&Id=1
+2025-07-28T07:24:46.034 INFO 127.0.0.1 <- Pc
+2025-07-28T07:24:46.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9625&Id=2
+2025-07-28T07:24:46.035 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:24:46.036 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9626&Id=0
+2025-07-28T07:24:46.037 INFO 127.0.0.1 <- 0
+2025-07-28T07:24:46.037 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9627&Id=1
+2025-07-28T07:24:46.038 INFO 127.0.0.1 <- 0
+2025-07-28T07:24:46.039 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9628&Id=2
+2025-07-28T07:24:46.039 INFO 127.0.0.1 <- 0
+2025-07-28T07:24:48.022 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9629
+2025-07-28T07:24:48.023 INFO 127.0.0.1 <- True
+2025-07-28T07:24:48.024 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9631&Id=1
+2025-07-28T07:24:48.024 INFO 127.0.0.1 <- Pc
+2025-07-28T07:24:48.025 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9630&Id=0
+2025-07-28T07:24:48.025 INFO 127.0.0.1 <- Mount
+2025-07-28T07:24:48.026 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9632&Id=2
+2025-07-28T07:24:48.027 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:24:48.027 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9633&Id=1
+2025-07-28T07:24:48.028 INFO 127.0.0.1 <- 0
+2025-07-28T07:24:48.028 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9634&Id=0
+2025-07-28T07:24:48.029 INFO 127.0.0.1 <- 0
+2025-07-28T07:24:48.030 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9635&Id=2
+2025-07-28T07:24:48.030 INFO 127.0.0.1 <- 0
+2025-07-28T07:24:50.021 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9636
+2025-07-28T07:24:50.022 INFO 127.0.0.1 <- True
+2025-07-28T07:24:50.023 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9639&Id=2
+2025-07-28T07:24:50.024 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:24:50.025 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9637&Id=0
+2025-07-28T07:24:50.025 INFO 127.0.0.1 <- Mount
+2025-07-28T07:24:50.026 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9638&Id=1
+2025-07-28T07:24:50.026 INFO 127.0.0.1 <- Pc
+2025-07-28T07:24:50.027 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9640&Id=2
+2025-07-28T07:24:50.027 INFO 127.0.0.1 <- 0
+2025-07-28T07:24:50.028 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9641&Id=0
+2025-07-28T07:24:50.028 INFO 127.0.0.1 <- 0
+2025-07-28T07:24:50.029 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9642&Id=1
+2025-07-28T07:24:50.029 INFO 127.0.0.1 <- 0
+2025-07-28T07:24:52.026 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9643
+2025-07-28T07:24:52.026 INFO 127.0.0.1 <- True
+2025-07-28T07:24:52.028 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9645&Id=1
+2025-07-28T07:24:52.028 INFO 127.0.0.1 <- Pc
+2025-07-28T07:24:52.029 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9646&Id=2
+2025-07-28T07:24:52.029 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:24:52.030 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9644&Id=0
+2025-07-28T07:24:52.030 INFO 127.0.0.1 <- Mount
+2025-07-28T07:24:52.031 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9647&Id=1
+2025-07-28T07:24:52.031 INFO 127.0.0.1 <- 0
+2025-07-28T07:24:52.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9648&Id=2
+2025-07-28T07:24:52.032 INFO 127.0.0.1 <- 0
+2025-07-28T07:24:52.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9649&Id=0
+2025-07-28T07:24:52.033 INFO 127.0.0.1 <- 0
+2025-07-28T07:24:54.022 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9650
+2025-07-28T07:24:54.022 INFO 127.0.0.1 <- True
+2025-07-28T07:24:54.024 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9652&Id=1
+2025-07-28T07:24:54.024 INFO 127.0.0.1 <- Pc
+2025-07-28T07:24:54.025 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9653&Id=2
+2025-07-28T07:24:54.025 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:24:54.026 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9651&Id=0
+2025-07-28T07:24:54.026 INFO 127.0.0.1 <- Mount
+2025-07-28T07:24:54.027 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9654&Id=1
+2025-07-28T07:24:54.027 INFO 127.0.0.1 <- 0
+2025-07-28T07:24:54.028 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9655&Id=2
+2025-07-28T07:24:54.029 INFO 127.0.0.1 <- 0
+2025-07-28T07:24:54.029 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9656&Id=0
+2025-07-28T07:24:54.029 INFO 127.0.0.1 <- 0
+2025-07-28T07:24:56.031 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9657
+2025-07-28T07:24:56.032 INFO 127.0.0.1 <- True
+2025-07-28T07:24:56.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9659&Id=1
+2025-07-28T07:24:56.033 INFO 127.0.0.1 <- Pc
+2025-07-28T07:24:56.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9660&Id=2
+2025-07-28T07:24:56.035 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:24:56.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9658&Id=0
+2025-07-28T07:24:56.036 INFO 127.0.0.1 <- Mount
+2025-07-28T07:24:56.037 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9661&Id=1
+2025-07-28T07:24:56.037 INFO 127.0.0.1 <- 0
+2025-07-28T07:24:56.038 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9662&Id=2
+2025-07-28T07:24:56.038 INFO 127.0.0.1 <- 0
+2025-07-28T07:24:56.039 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9663&Id=0
+2025-07-28T07:24:56.039 INFO 127.0.0.1 <- 0
+2025-07-28T07:24:58.028 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9664
+2025-07-28T07:24:58.029 INFO 127.0.0.1 <- True
+2025-07-28T07:24:58.030 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9666&Id=1
+2025-07-28T07:24:58.031 INFO 127.0.0.1 <- Pc
+2025-07-28T07:24:58.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9667&Id=2
+2025-07-28T07:24:58.032 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:24:58.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9665&Id=0
+2025-07-28T07:24:58.033 INFO 127.0.0.1 <- Mount
+2025-07-28T07:24:58.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9668&Id=1
+2025-07-28T07:24:58.034 INFO 127.0.0.1 <- 0
+2025-07-28T07:24:58.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9669&Id=2
+2025-07-28T07:24:58.035 INFO 127.0.0.1 <- 0
+2025-07-28T07:24:58.036 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9670&Id=0
+2025-07-28T07:24:58.036 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:00.030 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9671
+2025-07-28T07:25:00.030 INFO 127.0.0.1 <- True
+2025-07-28T07:25:00.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9674&Id=2
+2025-07-28T07:25:00.033 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:25:00.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9673&Id=1
+2025-07-28T07:25:00.034 INFO 127.0.0.1 <- Pc
+2025-07-28T07:25:00.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9672&Id=0
+2025-07-28T07:25:00.035 INFO 127.0.0.1 <- Mount
+2025-07-28T07:25:00.036 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9675&Id=2
+2025-07-28T07:25:00.036 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:00.037 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9676&Id=1
+2025-07-28T07:25:00.037 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:00.038 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9677&Id=0
+2025-07-28T07:25:00.039 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:02.029 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9678
+2025-07-28T07:25:02.030 INFO 127.0.0.1 <- True
+2025-07-28T07:25:02.031 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9680&Id=1
+2025-07-28T07:25:02.032 INFO 127.0.0.1 <- Pc
+2025-07-28T07:25:02.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9681&Id=2
+2025-07-28T07:25:02.032 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:25:02.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9679&Id=0
+2025-07-28T07:25:02.033 INFO 127.0.0.1 <- Mount
+2025-07-28T07:25:02.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9682&Id=1
+2025-07-28T07:25:02.035 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:02.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9683&Id=2
+2025-07-28T07:25:02.036 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:02.036 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9684&Id=0
+2025-07-28T07:25:02.037 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:04.029 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9685
+2025-07-28T07:25:04.029 INFO 127.0.0.1 <- True
+2025-07-28T07:25:04.031 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9686&Id=0
+2025-07-28T07:25:04.031 INFO 127.0.0.1 <- Mount
+2025-07-28T07:25:04.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9687&Id=1
+2025-07-28T07:25:04.032 INFO 127.0.0.1 <- Pc
+2025-07-28T07:25:04.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9688&Id=2
+2025-07-28T07:25:04.033 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:25:04.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9689&Id=0
+2025-07-28T07:25:04.034 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:04.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9690&Id=1
+2025-07-28T07:25:04.035 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:04.036 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9691&Id=2
+2025-07-28T07:25:04.036 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:06.023 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9692
+2025-07-28T07:25:06.023 INFO 127.0.0.1 <- True
+2025-07-28T07:25:06.025 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9695&Id=2
+2025-07-28T07:25:06.025 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:25:06.026 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9694&Id=1
+2025-07-28T07:25:06.026 INFO 127.0.0.1 <- Pc
+2025-07-28T07:25:06.027 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9693&Id=0
+2025-07-28T07:25:06.028 INFO 127.0.0.1 <- Mount
+2025-07-28T07:25:06.028 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9696&Id=2
+2025-07-28T07:25:06.029 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:06.029 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9697&Id=1
+2025-07-28T07:25:06.030 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:06.031 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9698&Id=0
+2025-07-28T07:25:06.031 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:08.029 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9699
+2025-07-28T07:25:08.030 INFO 127.0.0.1 <- True
+2025-07-28T07:25:08.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9702&Id=2
+2025-07-28T07:25:08.032 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:25:08.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9701&Id=1
+2025-07-28T07:25:08.033 INFO 127.0.0.1 <- Pc
+2025-07-28T07:25:08.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9700&Id=0
+2025-07-28T07:25:08.034 INFO 127.0.0.1 <- Mount
+2025-07-28T07:25:08.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9703&Id=2
+2025-07-28T07:25:08.035 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:08.036 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9704&Id=1
+2025-07-28T07:25:08.036 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:08.037 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9705&Id=0
+2025-07-28T07:25:08.037 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:10.029 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9706
+2025-07-28T07:25:10.030 INFO 127.0.0.1 <- True
+2025-07-28T07:25:10.031 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9708&Id=1
+2025-07-28T07:25:10.031 INFO 127.0.0.1 <- Pc
+2025-07-28T07:25:10.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9709&Id=2
+2025-07-28T07:25:10.033 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:25:10.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9707&Id=0
+2025-07-28T07:25:10.034 INFO 127.0.0.1 <- Mount
+2025-07-28T07:25:10.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9710&Id=1
+2025-07-28T07:25:10.035 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:10.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9711&Id=2
+2025-07-28T07:25:10.036 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:10.037 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9712&Id=0
+2025-07-28T07:25:10.037 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:12.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9713
+2025-07-28T07:25:12.033 INFO 127.0.0.1 <- True
+2025-07-28T07:25:12.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9715&Id=1
+2025-07-28T07:25:12.035 INFO 127.0.0.1 <- Pc
+2025-07-28T07:25:12.036 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9716&Id=2
+2025-07-28T07:25:12.036 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:25:12.037 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9714&Id=0
+2025-07-28T07:25:12.037 INFO 127.0.0.1 <- Mount
+2025-07-28T07:25:12.038 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9717&Id=1
+2025-07-28T07:25:12.038 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:12.039 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9718&Id=2
+2025-07-28T07:25:12.039 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:12.040 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9719&Id=0
+2025-07-28T07:25:12.040 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:14.029 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9720
+2025-07-28T07:25:14.029 INFO 127.0.0.1 <- True
+2025-07-28T07:25:14.031 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9721&Id=0
+2025-07-28T07:25:14.031 INFO 127.0.0.1 <- Mount
+2025-07-28T07:25:14.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9722&Id=1
+2025-07-28T07:25:14.032 INFO 127.0.0.1 <- Pc
+2025-07-28T07:25:14.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9723&Id=2
+2025-07-28T07:25:14.034 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:25:14.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9724&Id=0
+2025-07-28T07:25:14.035 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:14.036 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9725&Id=1
+2025-07-28T07:25:14.036 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:14.037 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9726&Id=2
+2025-07-28T07:25:14.037 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:16.031 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9727
+2025-07-28T07:25:16.032 INFO 127.0.0.1 <- True
+2025-07-28T07:25:16.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9730&Id=2
+2025-07-28T07:25:16.033 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:25:16.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9729&Id=1
+2025-07-28T07:25:16.034 INFO 127.0.0.1 <- Pc
+2025-07-28T07:25:16.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9728&Id=0
+2025-07-28T07:25:16.036 INFO 127.0.0.1 <- Mount
+2025-07-28T07:25:16.036 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9731&Id=2
+2025-07-28T07:25:16.037 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:16.037 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9732&Id=1
+2025-07-28T07:25:16.038 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:16.038 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9733&Id=0
+2025-07-28T07:25:16.039 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:18.030 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9734
+2025-07-28T07:25:18.031 INFO 127.0.0.1 <- True
+2025-07-28T07:25:18.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9737&Id=2
+2025-07-28T07:25:18.032 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:25:18.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9735&Id=0
+2025-07-28T07:25:18.034 INFO 127.0.0.1 <- Mount
+2025-07-28T07:25:18.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9736&Id=1
+2025-07-28T07:25:18.035 INFO 127.0.0.1 <- Pc
+2025-07-28T07:25:18.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9738&Id=2
+2025-07-28T07:25:18.036 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:18.037 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9739&Id=0
+2025-07-28T07:25:18.037 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:18.038 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9740&Id=1
+2025-07-28T07:25:18.038 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:20.029 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9741
+2025-07-28T07:25:20.029 INFO 127.0.0.1 <- True
+2025-07-28T07:25:20.031 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9743&Id=1
+2025-07-28T07:25:20.031 INFO 127.0.0.1 <- Pc
+2025-07-28T07:25:20.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9742&Id=0
+2025-07-28T07:25:20.032 INFO 127.0.0.1 <- Mount
+2025-07-28T07:25:20.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9744&Id=2
+2025-07-28T07:25:20.033 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:25:20.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9745&Id=1
+2025-07-28T07:25:20.034 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:20.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9746&Id=0
+2025-07-28T07:25:20.035 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:20.036 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9747&Id=2
+2025-07-28T07:25:20.036 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:22.029 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9748
+2025-07-28T07:25:22.030 INFO 127.0.0.1 <- True
+2025-07-28T07:25:22.031 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9750&Id=1
+2025-07-28T07:25:22.032 INFO 127.0.0.1 <- Pc
+2025-07-28T07:25:22.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9749&Id=0
+2025-07-28T07:25:22.033 INFO 127.0.0.1 <- Mount
+2025-07-28T07:25:22.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9751&Id=2
+2025-07-28T07:25:22.034 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:25:22.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9752&Id=1
+2025-07-28T07:25:22.035 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:22.036 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9753&Id=0
+2025-07-28T07:25:22.036 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:22.037 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9754&Id=2
+2025-07-28T07:25:22.037 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:24.022 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9755
+2025-07-28T07:25:24.022 INFO 127.0.0.1 <- True
+2025-07-28T07:25:24.024 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9757&Id=1
+2025-07-28T07:25:24.024 INFO 127.0.0.1 <- Pc
+2025-07-28T07:25:24.025 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9756&Id=0
+2025-07-28T07:25:24.025 INFO 127.0.0.1 <- Mount
+2025-07-28T07:25:24.026 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9758&Id=2
+2025-07-28T07:25:24.026 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:25:24.027 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9759&Id=1
+2025-07-28T07:25:24.028 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:24.028 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9760&Id=0
+2025-07-28T07:25:24.029 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:24.029 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9761&Id=2
+2025-07-28T07:25:24.030 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:26.025 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9762
+2025-07-28T07:25:26.025 INFO 127.0.0.1 <- True
+2025-07-28T07:25:26.027 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9765&Id=2
+2025-07-28T07:25:26.027 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:25:26.028 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9764&Id=1
+2025-07-28T07:25:26.028 INFO 127.0.0.1 <- Pc
+2025-07-28T07:25:26.029 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9763&Id=0
+2025-07-28T07:25:26.029 INFO 127.0.0.1 <- Mount
+2025-07-28T07:25:26.030 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9766&Id=2
+2025-07-28T07:25:26.031 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:26.031 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9767&Id=1
+2025-07-28T07:25:26.032 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:26.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9768&Id=0
+2025-07-28T07:25:26.033 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:28.027 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9769
+2025-07-28T07:25:28.028 INFO 127.0.0.1 <- True
+2025-07-28T07:25:28.029 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9771&Id=1
+2025-07-28T07:25:28.029 INFO 127.0.0.1 <- Pc
+2025-07-28T07:25:28.030 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9770&Id=0
+2025-07-28T07:25:28.030 INFO 127.0.0.1 <- Mount
+2025-07-28T07:25:28.031 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9772&Id=2
+2025-07-28T07:25:28.031 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:25:28.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9773&Id=1
+2025-07-28T07:25:28.033 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:28.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9774&Id=0
+2025-07-28T07:25:28.034 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:28.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9775&Id=2
+2025-07-28T07:25:28.035 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:30.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9776
+2025-07-28T07:25:30.032 INFO 127.0.0.1 <- True
+2025-07-28T07:25:30.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9778&Id=1
+2025-07-28T07:25:30.034 INFO 127.0.0.1 <- Pc
+2025-07-28T07:25:30.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9777&Id=0
+2025-07-28T07:25:30.035 INFO 127.0.0.1 <- Mount
+2025-07-28T07:25:30.036 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9779&Id=2
+2025-07-28T07:25:30.036 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:25:30.037 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9780&Id=1
+2025-07-28T07:25:30.038 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:30.038 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9781&Id=0
+2025-07-28T07:25:30.039 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:30.040 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9782&Id=2
+2025-07-28T07:25:30.040 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:32.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9783
+2025-07-28T07:25:32.036 INFO 127.0.0.1 <- True
+2025-07-28T07:25:32.037 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9785&Id=1
+2025-07-28T07:25:32.038 INFO 127.0.0.1 <- Pc
+2025-07-28T07:25:32.038 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9784&Id=0
+2025-07-28T07:25:32.039 INFO 127.0.0.1 <- Mount
+2025-07-28T07:25:32.040 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9786&Id=2
+2025-07-28T07:25:32.040 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:25:32.041 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9787&Id=1
+2025-07-28T07:25:32.041 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:32.042 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9788&Id=0
+2025-07-28T07:25:32.042 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:32.043 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9789&Id=2
+2025-07-28T07:25:32.043 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:34.028 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9790
+2025-07-28T07:25:34.029 INFO 127.0.0.1 <- True
+2025-07-28T07:25:34.037 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9792&Id=1
+2025-07-28T07:25:34.038 INFO 127.0.0.1 <- Pc
+2025-07-28T07:25:34.038 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9793&Id=2
+2025-07-28T07:25:34.039 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:25:34.040 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9791&Id=0
+2025-07-28T07:25:34.040 INFO 127.0.0.1 <- Mount
+2025-07-28T07:25:34.041 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9795&Id=2
+2025-07-28T07:25:34.041 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:34.042 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9794&Id=1
+2025-07-28T07:25:34.042 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:34.043 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9796&Id=0
+2025-07-28T07:25:34.043 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:36.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9797
+2025-07-28T07:25:36.032 INFO 127.0.0.1 <- True
+2025-07-28T07:25:36.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9800&Id=2
+2025-07-28T07:25:36.035 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:25:36.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9799&Id=1
+2025-07-28T07:25:36.036 INFO 127.0.0.1 <- Pc
+2025-07-28T07:25:36.037 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9798&Id=0
+2025-07-28T07:25:36.037 INFO 127.0.0.1 <- Mount
+2025-07-28T07:25:36.038 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9801&Id=2
+2025-07-28T07:25:36.038 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:36.039 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9802&Id=1
+2025-07-28T07:25:36.039 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:36.040 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9803&Id=0
+2025-07-28T07:25:36.040 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:38.030 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9804
+2025-07-28T07:25:38.031 INFO 127.0.0.1 <- True
+2025-07-28T07:25:38.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9806&Id=1
+2025-07-28T07:25:38.032 INFO 127.0.0.1 <- Pc
+2025-07-28T07:25:38.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9805&Id=0
+2025-07-28T07:25:38.033 INFO 127.0.0.1 <- Mount
+2025-07-28T07:25:38.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9807&Id=2
+2025-07-28T07:25:38.035 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:25:38.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9808&Id=1
+2025-07-28T07:25:38.036 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:38.036 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9809&Id=0
+2025-07-28T07:25:38.037 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:38.037 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9810&Id=2
+2025-07-28T07:25:38.038 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:40.031 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9811
+2025-07-28T07:25:40.032 INFO 127.0.0.1 <- True
+2025-07-28T07:25:40.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9812&Id=0
+2025-07-28T07:25:40.033 INFO 127.0.0.1 <- Mount
+2025-07-28T07:25:40.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9814&Id=2
+2025-07-28T07:25:40.034 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:25:40.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9813&Id=1
+2025-07-28T07:25:40.036 INFO 127.0.0.1 <- Pc
+2025-07-28T07:25:40.036 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9815&Id=0
+2025-07-28T07:25:40.037 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:40.037 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9816&Id=2
+2025-07-28T07:25:40.038 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:40.038 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9817&Id=1
+2025-07-28T07:25:40.039 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:42.027 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9818
+2025-07-28T07:25:42.027 INFO 127.0.0.1 <- True
+2025-07-28T07:25:42.029 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9821&Id=2
+2025-07-28T07:25:42.029 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:25:42.030 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9820&Id=1
+2025-07-28T07:25:42.030 INFO 127.0.0.1 <- Pc
+2025-07-28T07:25:42.031 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9819&Id=0
+2025-07-28T07:25:42.032 INFO 127.0.0.1 <- Mount
+2025-07-28T07:25:42.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9822&Id=2
+2025-07-28T07:25:42.033 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:42.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9823&Id=1
+2025-07-28T07:25:42.034 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:42.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9824&Id=0
+2025-07-28T07:25:42.035 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:44.030 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9825
+2025-07-28T07:25:44.030 INFO 127.0.0.1 <- True
+2025-07-28T07:25:44.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9826&Id=0
+2025-07-28T07:25:44.032 INFO 127.0.0.1 <- Mount
+2025-07-28T07:25:44.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9827&Id=1
+2025-07-28T07:25:44.033 INFO 127.0.0.1 <- Pc
+2025-07-28T07:25:44.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9828&Id=2
+2025-07-28T07:25:44.034 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:25:44.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9829&Id=0
+2025-07-28T07:25:44.035 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:44.036 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9830&Id=1
+2025-07-28T07:25:44.036 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:44.037 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9831&Id=2
+2025-07-28T07:25:44.037 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:46.031 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9832
+2025-07-28T07:25:46.031 INFO 127.0.0.1 <- True
+2025-07-28T07:25:46.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9833&Id=0
+2025-07-28T07:25:46.033 INFO 127.0.0.1 <- Mount
+2025-07-28T07:25:46.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9835&Id=2
+2025-07-28T07:25:46.034 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:25:46.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9834&Id=1
+2025-07-28T07:25:46.035 INFO 127.0.0.1 <- Pc
+2025-07-28T07:25:46.036 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9836&Id=0
+2025-07-28T07:25:46.036 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:46.037 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9837&Id=2
+2025-07-28T07:25:46.037 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:46.038 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9838&Id=1
+2025-07-28T07:25:46.038 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:48.025 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9839
+2025-07-28T07:25:48.026 INFO 127.0.0.1 <- True
+2025-07-28T07:25:48.027 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9842&Id=2
+2025-07-28T07:25:48.028 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:25:48.028 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9841&Id=1
+2025-07-28T07:25:48.029 INFO 127.0.0.1 <- Pc
+2025-07-28T07:25:48.029 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9840&Id=0
+2025-07-28T07:25:48.030 INFO 127.0.0.1 <- Mount
+2025-07-28T07:25:48.031 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9843&Id=2
+2025-07-28T07:25:48.031 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:48.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9844&Id=1
+2025-07-28T07:25:48.032 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:48.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9845&Id=0
+2025-07-28T07:25:48.033 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:50.027 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9846
+2025-07-28T07:25:50.027 INFO 127.0.0.1 <- True
+2025-07-28T07:25:50.028 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9849&Id=2
+2025-07-28T07:25:50.029 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:25:50.030 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9847&Id=0
+2025-07-28T07:25:50.030 INFO 127.0.0.1 <- Mount
+2025-07-28T07:25:50.031 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9848&Id=1
+2025-07-28T07:25:50.031 INFO 127.0.0.1 <- Pc
+2025-07-28T07:25:50.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9850&Id=2
+2025-07-28T07:25:50.032 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:50.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9851&Id=0
+2025-07-28T07:25:50.033 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:50.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9852&Id=1
+2025-07-28T07:25:50.034 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:52.031 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9853
+2025-07-28T07:25:52.032 INFO 127.0.0.1 <- True
+2025-07-28T07:25:52.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9855&Id=1
+2025-07-28T07:25:52.034 INFO 127.0.0.1 <- Pc
+2025-07-28T07:25:52.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9854&Id=0
+2025-07-28T07:25:52.035 INFO 127.0.0.1 <- Mount
+2025-07-28T07:25:52.036 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9856&Id=2
+2025-07-28T07:25:52.036 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:25:52.037 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9857&Id=1
+2025-07-28T07:25:52.037 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:52.038 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9858&Id=0
+2025-07-28T07:25:52.038 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:52.039 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9859&Id=2
+2025-07-28T07:25:52.039 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:54.029 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9860
+2025-07-28T07:25:54.030 INFO 127.0.0.1 <- True
+2025-07-28T07:25:54.031 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9862&Id=1
+2025-07-28T07:25:54.031 INFO 127.0.0.1 <- Pc
+2025-07-28T07:25:54.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9861&Id=0
+2025-07-28T07:25:54.032 INFO 127.0.0.1 <- Mount
+2025-07-28T07:25:54.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9863&Id=2
+2025-07-28T07:25:54.033 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:25:54.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9864&Id=1
+2025-07-28T07:25:54.034 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:54.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9865&Id=0
+2025-07-28T07:25:54.036 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:54.036 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9866&Id=2
+2025-07-28T07:25:54.037 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:56.029 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9867
+2025-07-28T07:25:56.030 INFO 127.0.0.1 <- True
+2025-07-28T07:25:56.031 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9868&Id=0
+2025-07-28T07:25:56.031 INFO 127.0.0.1 <- Mount
+2025-07-28T07:25:56.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9870&Id=2
+2025-07-28T07:25:56.032 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:25:56.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9869&Id=1
+2025-07-28T07:25:56.033 INFO 127.0.0.1 <- Pc
+2025-07-28T07:25:56.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9871&Id=0
+2025-07-28T07:25:56.034 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:56.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9872&Id=2
+2025-07-28T07:25:56.035 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:56.036 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9873&Id=1
+2025-07-28T07:25:56.036 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:58.022 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9874
+2025-07-28T07:25:58.022 INFO 127.0.0.1 <- True
+2025-07-28T07:25:58.024 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9877&Id=2
+2025-07-28T07:25:58.024 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:25:58.025 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9876&Id=1
+2025-07-28T07:25:58.025 INFO 127.0.0.1 <- Pc
+2025-07-28T07:25:58.026 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9875&Id=0
+2025-07-28T07:25:58.026 INFO 127.0.0.1 <- Mount
+2025-07-28T07:25:58.027 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9878&Id=2
+2025-07-28T07:25:58.027 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:58.028 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9879&Id=1
+2025-07-28T07:25:58.028 INFO 127.0.0.1 <- 0
+2025-07-28T07:25:58.029 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9880&Id=0
+2025-07-28T07:25:58.029 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:00.025 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9881
+2025-07-28T07:26:00.026 INFO 127.0.0.1 <- True
+2025-07-28T07:26:00.027 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9883&Id=1
+2025-07-28T07:26:00.027 INFO 127.0.0.1 <- Pc
+2025-07-28T07:26:00.028 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9884&Id=2
+2025-07-28T07:26:00.029 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:26:00.029 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9882&Id=0
+2025-07-28T07:26:00.030 INFO 127.0.0.1 <- Mount
+2025-07-28T07:26:00.030 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9885&Id=1
+2025-07-28T07:26:00.031 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:00.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9886&Id=2
+2025-07-28T07:26:00.032 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:00.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9887&Id=0
+2025-07-28T07:26:00.033 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:02.029 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9888
+2025-07-28T07:26:02.030 INFO 127.0.0.1 <- True
+2025-07-28T07:26:02.031 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9890&Id=1
+2025-07-28T07:26:02.032 INFO 127.0.0.1 <- Pc
+2025-07-28T07:26:02.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9891&Id=2
+2025-07-28T07:26:02.033 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:26:02.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9889&Id=0
+2025-07-28T07:26:02.034 INFO 127.0.0.1 <- Mount
+2025-07-28T07:26:02.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9892&Id=1
+2025-07-28T07:26:02.035 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:02.036 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9893&Id=2
+2025-07-28T07:26:02.036 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:02.037 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9894&Id=0
+2025-07-28T07:26:02.037 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:04.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9895
+2025-07-28T07:26:04.032 INFO 127.0.0.1 <- True
+2025-07-28T07:26:04.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9897&Id=1
+2025-07-28T07:26:04.034 INFO 127.0.0.1 <- Pc
+2025-07-28T07:26:04.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9898&Id=2
+2025-07-28T07:26:04.035 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:26:04.036 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9896&Id=0
+2025-07-28T07:26:04.036 INFO 127.0.0.1 <- Mount
+2025-07-28T07:26:04.037 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9899&Id=1
+2025-07-28T07:26:04.037 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:04.038 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9900&Id=2
+2025-07-28T07:26:04.038 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:04.039 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9901&Id=0
+2025-07-28T07:26:04.039 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:06.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9902
+2025-07-28T07:26:06.033 INFO 127.0.0.1 <- True
+2025-07-28T07:26:06.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9905&Id=2
+2025-07-28T07:26:06.034 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:26:06.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9904&Id=1
+2025-07-28T07:26:06.035 INFO 127.0.0.1 <- Pc
+2025-07-28T07:26:06.036 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9903&Id=0
+2025-07-28T07:26:06.036 INFO 127.0.0.1 <- Mount
+2025-07-28T07:26:06.037 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9906&Id=2
+2025-07-28T07:26:06.037 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:06.038 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9907&Id=1
+2025-07-28T07:26:06.039 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:06.039 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9908&Id=0
+2025-07-28T07:26:06.040 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:08.037 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9909
+2025-07-28T07:26:08.037 INFO 127.0.0.1 <- True
+2025-07-28T07:26:08.039 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9910&Id=0
+2025-07-28T07:26:08.039 INFO 127.0.0.1 <- Mount
+2025-07-28T07:26:08.040 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9912&Id=2
+2025-07-28T07:26:08.040 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:26:08.041 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9911&Id=1
+2025-07-28T07:26:08.042 INFO 127.0.0.1 <- Pc
+2025-07-28T07:26:08.042 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9913&Id=0
+2025-07-28T07:26:08.043 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:08.043 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9914&Id=2
+2025-07-28T07:26:08.044 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:08.044 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9915&Id=1
+2025-07-28T07:26:08.045 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:10.021 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9916
+2025-07-28T07:26:10.022 INFO 127.0.0.1 <- True
+2025-07-28T07:26:10.024 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9919&Id=2
+2025-07-28T07:26:10.025 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:26:10.025 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9918&Id=1
+2025-07-28T07:26:10.026 INFO 127.0.0.1 <- Pc
+2025-07-28T07:26:10.027 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9917&Id=0
+2025-07-28T07:26:10.027 INFO 127.0.0.1 <- Mount
+2025-07-28T07:26:10.028 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9920&Id=2
+2025-07-28T07:26:10.028 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:10.029 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9921&Id=1
+2025-07-28T07:26:10.029 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:10.030 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9922&Id=0
+2025-07-28T07:26:10.030 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:12.025 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9923
+2025-07-28T07:26:12.026 INFO 127.0.0.1 <- True
+2025-07-28T07:26:12.027 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9926&Id=2
+2025-07-28T07:26:12.028 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:26:12.028 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9924&Id=0
+2025-07-28T07:26:12.029 INFO 127.0.0.1 <- Mount
+2025-07-28T07:26:12.029 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9925&Id=1
+2025-07-28T07:26:12.030 INFO 127.0.0.1 <- Pc
+2025-07-28T07:26:12.031 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9927&Id=2
+2025-07-28T07:26:12.031 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:12.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9928&Id=0
+2025-07-28T07:26:12.032 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:12.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9929&Id=1
+2025-07-28T07:26:12.033 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:14.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9930
+2025-07-28T07:26:14.033 INFO 127.0.0.1 <- True
+2025-07-28T07:26:14.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9932&Id=1
+2025-07-28T07:26:14.034 INFO 127.0.0.1 <- Pc
+2025-07-28T07:26:14.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9933&Id=2
+2025-07-28T07:26:14.036 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:26:14.036 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9931&Id=0
+2025-07-28T07:26:14.037 INFO 127.0.0.1 <- Mount
+2025-07-28T07:26:14.037 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9934&Id=1
+2025-07-28T07:26:14.038 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:14.039 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9935&Id=2
+2025-07-28T07:26:14.039 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:14.040 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9936&Id=0
+2025-07-28T07:26:14.040 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:16.022 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9937
+2025-07-28T07:26:16.022 INFO 127.0.0.1 <- True
+2025-07-28T07:26:16.024 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9939&Id=1
+2025-07-28T07:26:16.024 INFO 127.0.0.1 <- Pc
+2025-07-28T07:26:16.025 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9940&Id=2
+2025-07-28T07:26:16.025 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:26:16.026 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9938&Id=0
+2025-07-28T07:26:16.027 INFO 127.0.0.1 <- Mount
+2025-07-28T07:26:16.027 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9941&Id=1
+2025-07-28T07:26:16.028 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:16.029 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9942&Id=2
+2025-07-28T07:26:16.029 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:16.030 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9943&Id=0
+2025-07-28T07:26:16.030 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:18.025 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9944
+2025-07-28T07:26:18.026 INFO 127.0.0.1 <- True
+2025-07-28T07:26:18.027 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9946&Id=1
+2025-07-28T07:26:18.028 INFO 127.0.0.1 <- Pc
+2025-07-28T07:26:18.029 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9945&Id=0
+2025-07-28T07:26:18.029 INFO 127.0.0.1 <- Mount
+2025-07-28T07:26:18.030 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9947&Id=2
+2025-07-28T07:26:18.030 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:26:18.031 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9948&Id=1
+2025-07-28T07:26:18.031 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:18.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9949&Id=0
+2025-07-28T07:26:18.032 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:18.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9950&Id=2
+2025-07-28T07:26:18.033 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:20.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9951
+2025-07-28T07:26:20.033 INFO 127.0.0.1 <- True
+2025-07-28T07:26:20.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9953&Id=1
+2025-07-28T07:26:20.035 INFO 127.0.0.1 <- Pc
+2025-07-28T07:26:20.036 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9954&Id=2
+2025-07-28T07:26:20.036 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:26:20.037 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9952&Id=0
+2025-07-28T07:26:20.037 INFO 127.0.0.1 <- Mount
+2025-07-28T07:26:20.038 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9955&Id=1
+2025-07-28T07:26:20.038 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:20.039 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9956&Id=2
+2025-07-28T07:26:20.039 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:20.040 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9957&Id=0
+2025-07-28T07:26:20.040 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:22.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9958
+2025-07-28T07:26:22.035 INFO 127.0.0.1 <- True
+2025-07-28T07:26:22.037 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9960&Id=1
+2025-07-28T07:26:22.037 INFO 127.0.0.1 <- Pc
+2025-07-28T07:26:22.038 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9961&Id=2
+2025-07-28T07:26:22.038 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:26:22.039 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9959&Id=0
+2025-07-28T07:26:22.039 INFO 127.0.0.1 <- Mount
+2025-07-28T07:26:22.040 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9962&Id=1
+2025-07-28T07:26:22.040 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:22.041 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9963&Id=2
+2025-07-28T07:26:22.041 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:22.042 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9964&Id=0
+2025-07-28T07:26:22.043 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:24.026 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9965
+2025-07-28T07:26:24.026 INFO 127.0.0.1 <- True
+2025-07-28T07:26:24.028 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9967&Id=1
+2025-07-28T07:26:24.028 INFO 127.0.0.1 <- Pc
+2025-07-28T07:26:24.029 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9968&Id=2
+2025-07-28T07:26:24.029 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:26:24.030 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9966&Id=0
+2025-07-28T07:26:24.030 INFO 127.0.0.1 <- Mount
+2025-07-28T07:26:24.031 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9969&Id=1
+2025-07-28T07:26:24.032 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:24.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9970&Id=2
+2025-07-28T07:26:24.032 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:24.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9971&Id=0
+2025-07-28T07:26:24.033 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:26.024 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9972
+2025-07-28T07:26:26.024 INFO 127.0.0.1 <- True
+2025-07-28T07:26:26.026 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9973&Id=0
+2025-07-28T07:26:26.026 INFO 127.0.0.1 <- Mount
+2025-07-28T07:26:26.027 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9974&Id=1
+2025-07-28T07:26:26.027 INFO 127.0.0.1 <- Pc
+2025-07-28T07:26:26.028 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9975&Id=2
+2025-07-28T07:26:26.029 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:26:26.029 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9976&Id=0
+2025-07-28T07:26:26.030 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:26.031 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9977&Id=1
+2025-07-28T07:26:26.031 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:26.031 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9978&Id=2
+2025-07-28T07:26:26.032 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:28.028 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9979
+2025-07-28T07:26:28.029 INFO 127.0.0.1 <- True
+2025-07-28T07:26:28.030 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9980&Id=0
+2025-07-28T07:26:28.031 INFO 127.0.0.1 <- Mount
+2025-07-28T07:26:28.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9981&Id=1
+2025-07-28T07:26:28.032 INFO 127.0.0.1 <- Pc
+2025-07-28T07:26:28.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9982&Id=2
+2025-07-28T07:26:28.033 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:26:28.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9983&Id=0
+2025-07-28T07:26:28.034 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:28.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9984&Id=1
+2025-07-28T07:26:28.035 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:28.036 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9985&Id=2
+2025-07-28T07:26:28.036 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:30.023 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9986
+2025-07-28T07:26:30.024 INFO 127.0.0.1 <- True
+2025-07-28T07:26:30.025 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9988&Id=1
+2025-07-28T07:26:30.025 INFO 127.0.0.1 <- Pc
+2025-07-28T07:26:30.026 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9987&Id=0
+2025-07-28T07:26:30.027 INFO 127.0.0.1 <- Mount
+2025-07-28T07:26:30.027 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9989&Id=2
+2025-07-28T07:26:30.028 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:26:30.028 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9990&Id=1
+2025-07-28T07:26:30.029 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:30.029 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9991&Id=0
+2025-07-28T07:26:30.030 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:30.031 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9992&Id=2
+2025-07-28T07:26:30.031 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:32.028 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=9993
+2025-07-28T07:26:32.029 INFO 127.0.0.1 <- True
+2025-07-28T07:26:32.031 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9995&Id=1
+2025-07-28T07:26:32.031 INFO 127.0.0.1 <- Pc
+2025-07-28T07:26:32.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9996&Id=2
+2025-07-28T07:26:32.032 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:26:32.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=9994&Id=0
+2025-07-28T07:26:32.033 INFO 127.0.0.1 <- Mount
+2025-07-28T07:26:32.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9997&Id=1
+2025-07-28T07:26:32.034 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:32.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9998&Id=2
+2025-07-28T07:26:32.035 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:32.036 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=9999&Id=0
+2025-07-28T07:26:32.036 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:34.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=10000
+2025-07-28T07:26:34.032 INFO 127.0.0.1 <- True
+2025-07-28T07:26:34.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10001&Id=0
+2025-07-28T07:26:34.033 INFO 127.0.0.1 <- Mount
+2025-07-28T07:26:34.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10003&Id=2
+2025-07-28T07:26:34.035 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:26:34.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10002&Id=1
+2025-07-28T07:26:34.036 INFO 127.0.0.1 <- Pc
+2025-07-28T07:26:34.037 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10004&Id=0
+2025-07-28T07:26:34.037 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:34.038 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10005&Id=2
+2025-07-28T07:26:34.038 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:34.039 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10006&Id=1
+2025-07-28T07:26:34.039 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:36.023 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=10007
+2025-07-28T07:26:36.024 INFO 127.0.0.1 <- True
+2025-07-28T07:26:36.026 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10010&Id=2
+2025-07-28T07:26:36.026 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:26:36.027 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10009&Id=0
+2025-07-28T07:26:36.027 INFO 127.0.0.1 <- Mount
+2025-07-28T07:26:36.028 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10008&Id=1
+2025-07-28T07:26:36.028 INFO 127.0.0.1 <- Pc
+2025-07-28T07:26:36.029 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10011&Id=2
+2025-07-28T07:26:36.029 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:36.030 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10012&Id=0
+2025-07-28T07:26:36.031 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:36.031 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10013&Id=1
+2025-07-28T07:26:36.032 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:38.028 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=10014
+2025-07-28T07:26:38.029 INFO 127.0.0.1 <- True
+2025-07-28T07:26:38.030 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10016&Id=1
+2025-07-28T07:26:38.030 INFO 127.0.0.1 <- Pc
+2025-07-28T07:26:38.031 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10015&Id=0
+2025-07-28T07:26:38.032 INFO 127.0.0.1 <- Mount
+2025-07-28T07:26:38.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10017&Id=2
+2025-07-28T07:26:38.033 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:26:38.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10018&Id=1
+2025-07-28T07:26:38.034 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:38.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10019&Id=0
+2025-07-28T07:26:38.035 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:38.036 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10020&Id=2
+2025-07-28T07:26:38.036 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:40.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=10021
+2025-07-28T07:26:40.035 INFO 127.0.0.1 <- True
+2025-07-28T07:26:40.036 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10023&Id=1
+2025-07-28T07:26:40.037 INFO 127.0.0.1 <- Pc
+2025-07-28T07:26:40.038 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10024&Id=2
+2025-07-28T07:26:40.038 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:26:40.039 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10022&Id=0
+2025-07-28T07:26:40.039 INFO 127.0.0.1 <- Mount
+2025-07-28T07:26:40.040 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10025&Id=1
+2025-07-28T07:26:40.040 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:40.041 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10026&Id=2
+2025-07-28T07:26:40.041 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:40.042 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10027&Id=0
+2025-07-28T07:26:40.042 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:42.023 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=10028
+2025-07-28T07:26:42.024 INFO 127.0.0.1 <- True
+2025-07-28T07:26:42.025 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10030&Id=1
+2025-07-28T07:26:42.026 INFO 127.0.0.1 <- Pc
+2025-07-28T07:26:42.027 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10031&Id=2
+2025-07-28T07:26:42.027 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:26:42.028 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10029&Id=0
+2025-07-28T07:26:42.028 INFO 127.0.0.1 <- Mount
+2025-07-28T07:26:42.029 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10032&Id=1
+2025-07-28T07:26:42.029 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:42.030 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10033&Id=2
+2025-07-28T07:26:42.030 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:42.031 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10034&Id=0
+2025-07-28T07:26:42.031 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:44.029 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=10035
+2025-07-28T07:26:44.029 INFO 127.0.0.1 <- True
+2025-07-28T07:26:44.031 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10036&Id=0
+2025-07-28T07:26:44.031 INFO 127.0.0.1 <- Mount
+2025-07-28T07:26:44.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10037&Id=1
+2025-07-28T07:26:44.032 INFO 127.0.0.1 <- Pc
+2025-07-28T07:26:44.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10038&Id=2
+2025-07-28T07:26:44.033 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:26:44.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10039&Id=0
+2025-07-28T07:26:44.034 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:44.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10040&Id=1
+2025-07-28T07:26:44.035 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:44.036 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10041&Id=2
+2025-07-28T07:26:44.037 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:46.029 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=10042
+2025-07-28T07:26:46.029 INFO 127.0.0.1 <- True
+2025-07-28T07:26:46.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10045&Id=2
+2025-07-28T07:26:46.032 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:26:46.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10044&Id=1
+2025-07-28T07:26:46.033 INFO 127.0.0.1 <- Pc
+2025-07-28T07:26:46.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10043&Id=0
+2025-07-28T07:26:46.034 INFO 127.0.0.1 <- Mount
+2025-07-28T07:26:46.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10046&Id=2
+2025-07-28T07:26:46.036 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:46.036 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10047&Id=1
+2025-07-28T07:26:46.037 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:46.037 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10048&Id=0
+2025-07-28T07:26:46.038 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:48.028 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=10049
+2025-07-28T07:26:48.028 INFO 127.0.0.1 <- True
+2025-07-28T07:26:48.030 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10052&Id=2
+2025-07-28T07:26:48.030 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:26:48.031 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10051&Id=1
+2025-07-28T07:26:48.031 INFO 127.0.0.1 <- Pc
+2025-07-28T07:26:48.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10050&Id=0
+2025-07-28T07:26:48.032 INFO 127.0.0.1 <- Mount
+2025-07-28T07:26:48.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10053&Id=2
+2025-07-28T07:26:48.033 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:48.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10054&Id=1
+2025-07-28T07:26:48.034 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:48.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10055&Id=0
+2025-07-28T07:26:48.035 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:50.027 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=10056
+2025-07-28T07:26:50.028 INFO 127.0.0.1 <- True
+2025-07-28T07:26:50.029 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10058&Id=1
+2025-07-28T07:26:50.030 INFO 127.0.0.1 <- Pc
+2025-07-28T07:26:50.030 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10059&Id=2
+2025-07-28T07:26:50.031 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:26:50.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10057&Id=0
+2025-07-28T07:26:50.032 INFO 127.0.0.1 <- Mount
+2025-07-28T07:26:50.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10060&Id=1
+2025-07-28T07:26:50.033 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:50.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10061&Id=2
+2025-07-28T07:26:50.034 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:50.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10062&Id=0
+2025-07-28T07:26:50.035 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:52.027 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=10063
+2025-07-28T07:26:52.028 INFO 127.0.0.1 <- True
+2025-07-28T07:26:52.029 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10065&Id=1
+2025-07-28T07:26:52.030 INFO 127.0.0.1 <- Pc
+2025-07-28T07:26:52.031 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10064&Id=0
+2025-07-28T07:26:52.031 INFO 127.0.0.1 <- Mount
+2025-07-28T07:26:52.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10066&Id=2
+2025-07-28T07:26:52.032 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:26:52.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10067&Id=1
+2025-07-28T07:26:52.033 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:52.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10068&Id=0
+2025-07-28T07:26:52.034 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:52.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10069&Id=2
+2025-07-28T07:26:52.035 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:54.026 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=10070
+2025-07-28T07:26:54.027 INFO 127.0.0.1 <- True
+2025-07-28T07:26:54.028 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10072&Id=1
+2025-07-28T07:26:54.029 INFO 127.0.0.1 <- Pc
+2025-07-28T07:26:54.030 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10071&Id=0
+2025-07-28T07:26:54.030 INFO 127.0.0.1 <- Mount
+2025-07-28T07:26:54.031 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10073&Id=2
+2025-07-28T07:26:54.031 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:26:54.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10074&Id=1
+2025-07-28T07:26:54.032 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:54.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10075&Id=0
+2025-07-28T07:26:54.034 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:54.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10076&Id=2
+2025-07-28T07:26:54.035 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:56.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=10077
+2025-07-28T07:26:56.033 INFO 127.0.0.1 <- True
+2025-07-28T07:26:56.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10079&Id=1
+2025-07-28T07:26:56.035 INFO 127.0.0.1 <- Pc
+2025-07-28T07:26:56.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10078&Id=0
+2025-07-28T07:26:56.036 INFO 127.0.0.1 <- Mount
+2025-07-28T07:26:56.036 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10080&Id=2
+2025-07-28T07:26:56.037 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:26:56.037 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10081&Id=1
+2025-07-28T07:26:56.038 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:56.038 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10082&Id=0
+2025-07-28T07:26:56.039 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:56.039 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10083&Id=2
+2025-07-28T07:26:56.040 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:58.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=10084
+2025-07-28T07:26:58.034 INFO 127.0.0.1 <- True
+2025-07-28T07:26:58.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10086&Id=1
+2025-07-28T07:26:58.036 INFO 127.0.0.1 <- Pc
+2025-07-28T07:26:58.036 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10087&Id=2
+2025-07-28T07:26:58.037 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:26:58.038 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10085&Id=0
+2025-07-28T07:26:58.038 INFO 127.0.0.1 <- Mount
+2025-07-28T07:26:58.039 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10088&Id=1
+2025-07-28T07:26:58.039 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:58.040 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10089&Id=2
+2025-07-28T07:26:58.040 INFO 127.0.0.1 <- 0
+2025-07-28T07:26:58.041 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10090&Id=0
+2025-07-28T07:26:58.041 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:00.036 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=10091
+2025-07-28T07:27:00.037 INFO 127.0.0.1 <- True
+2025-07-28T07:27:00.038 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10094&Id=2
+2025-07-28T07:27:00.038 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:27:00.039 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10093&Id=1
+2025-07-28T07:27:00.040 INFO 127.0.0.1 <- Pc
+2025-07-28T07:27:00.040 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10092&Id=0
+2025-07-28T07:27:00.041 INFO 127.0.0.1 <- Mount
+2025-07-28T07:27:00.042 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10095&Id=2
+2025-07-28T07:27:00.042 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:00.043 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10096&Id=1
+2025-07-28T07:27:00.043 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:00.044 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10097&Id=0
+2025-07-28T07:27:00.044 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:02.023 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=10098
+2025-07-28T07:27:02.023 INFO 127.0.0.1 <- True
+2025-07-28T07:27:02.025 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10099&Id=0
+2025-07-28T07:27:02.025 INFO 127.0.0.1 <- Mount
+2025-07-28T07:27:02.026 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10100&Id=1
+2025-07-28T07:27:02.026 INFO 127.0.0.1 <- Pc
+2025-07-28T07:27:02.027 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10101&Id=2
+2025-07-28T07:27:02.027 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:27:02.028 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10102&Id=0
+2025-07-28T07:27:02.028 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:02.029 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10103&Id=1
+2025-07-28T07:27:02.029 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:02.030 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10104&Id=2
+2025-07-28T07:27:02.031 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:04.022 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=10105
+2025-07-28T07:27:04.023 INFO 127.0.0.1 <- True
+2025-07-28T07:27:04.024 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10107&Id=1
+2025-07-28T07:27:04.024 INFO 127.0.0.1 <- Pc
+2025-07-28T07:27:04.025 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10108&Id=2
+2025-07-28T07:27:04.026 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:27:04.026 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10106&Id=0
+2025-07-28T07:27:04.027 INFO 127.0.0.1 <- Mount
+2025-07-28T07:27:04.027 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10109&Id=1
+2025-07-28T07:27:04.028 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:04.028 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10110&Id=2
+2025-07-28T07:27:04.029 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:04.030 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10111&Id=0
+2025-07-28T07:27:04.030 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:06.028 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=10112
+2025-07-28T07:27:06.028 INFO 127.0.0.1 <- True
+2025-07-28T07:27:06.030 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10115&Id=2
+2025-07-28T07:27:06.030 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:27:06.031 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10114&Id=1
+2025-07-28T07:27:06.032 INFO 127.0.0.1 <- Pc
+2025-07-28T07:27:06.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10113&Id=0
+2025-07-28T07:27:06.033 INFO 127.0.0.1 <- Mount
+2025-07-28T07:27:06.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10116&Id=2
+2025-07-28T07:27:06.034 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:06.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10117&Id=1
+2025-07-28T07:27:06.035 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:06.036 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10118&Id=0
+2025-07-28T07:27:06.036 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:08.030 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=10119
+2025-07-28T07:27:08.030 INFO 127.0.0.1 <- True
+2025-07-28T07:27:08.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10121&Id=1
+2025-07-28T07:27:08.032 INFO 127.0.0.1 <- Pc
+2025-07-28T07:27:08.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10122&Id=2
+2025-07-28T07:27:08.033 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:27:08.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10120&Id=0
+2025-07-28T07:27:08.035 INFO 127.0.0.1 <- Mount
+2025-07-28T07:27:08.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10123&Id=1
+2025-07-28T07:27:08.036 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:08.037 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10124&Id=2
+2025-07-28T07:27:08.037 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:08.038 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10125&Id=0
+2025-07-28T07:27:08.038 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:10.030 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=10126
+2025-07-28T07:27:10.030 INFO 127.0.0.1 <- True
+2025-07-28T07:27:10.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10129&Id=2
+2025-07-28T07:27:10.032 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:27:10.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10128&Id=1
+2025-07-28T07:27:10.033 INFO 127.0.0.1 <- Pc
+2025-07-28T07:27:10.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10127&Id=0
+2025-07-28T07:27:10.034 INFO 127.0.0.1 <- Mount
+2025-07-28T07:27:10.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10130&Id=2
+2025-07-28T07:27:10.035 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:10.036 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10131&Id=1
+2025-07-28T07:27:10.036 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:10.037 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10132&Id=0
+2025-07-28T07:27:10.037 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:12.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=10133
+2025-07-28T07:27:12.034 INFO 127.0.0.1 <- True
+2025-07-28T07:27:12.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10135&Id=1
+2025-07-28T07:27:12.036 INFO 127.0.0.1 <- Pc
+2025-07-28T07:27:12.036 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10136&Id=2
+2025-07-28T07:27:12.037 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:27:12.037 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10134&Id=0
+2025-07-28T07:27:12.038 INFO 127.0.0.1 <- Mount
+2025-07-28T07:27:12.038 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10137&Id=1
+2025-07-28T07:27:12.039 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:12.040 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10138&Id=2
+2025-07-28T07:27:12.040 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:12.041 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10139&Id=0
+2025-07-28T07:27:12.041 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:14.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=10140
+2025-07-28T07:27:14.035 INFO 127.0.0.1 <- True
+2025-07-28T07:27:14.037 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10142&Id=1
+2025-07-28T07:27:14.037 INFO 127.0.0.1 <- Pc
+2025-07-28T07:27:14.038 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10141&Id=0
+2025-07-28T07:27:14.038 INFO 127.0.0.1 <- Mount
+2025-07-28T07:27:14.039 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10143&Id=2
+2025-07-28T07:27:14.039 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:27:14.040 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10144&Id=1
+2025-07-28T07:27:14.040 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:14.041 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10145&Id=0
+2025-07-28T07:27:14.041 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:14.042 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10146&Id=2
+2025-07-28T07:27:14.043 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:16.023 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=10147
+2025-07-28T07:27:16.024 INFO 127.0.0.1 <- True
+2025-07-28T07:27:16.025 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10149&Id=1
+2025-07-28T07:27:16.025 INFO 127.0.0.1 <- Pc
+2025-07-28T07:27:16.026 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10150&Id=2
+2025-07-28T07:27:16.026 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:27:16.027 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10148&Id=0
+2025-07-28T07:27:16.028 INFO 127.0.0.1 <- Mount
+2025-07-28T07:27:16.028 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10151&Id=1
+2025-07-28T07:27:16.029 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:16.029 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10152&Id=2
+2025-07-28T07:27:16.030 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:16.030 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10153&Id=0
+2025-07-28T07:27:16.031 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:18.029 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=10154
+2025-07-28T07:27:18.029 INFO 127.0.0.1 <- True
+2025-07-28T07:27:18.030 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10155&Id=0
+2025-07-28T07:27:18.031 INFO 127.0.0.1 <- Mount
+2025-07-28T07:27:18.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10156&Id=1
+2025-07-28T07:27:18.032 INFO 127.0.0.1 <- Pc
+2025-07-28T07:27:18.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10157&Id=2
+2025-07-28T07:27:18.033 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:27:18.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10158&Id=0
+2025-07-28T07:27:18.034 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:18.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10159&Id=1
+2025-07-28T07:27:18.035 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:18.036 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10160&Id=2
+2025-07-28T07:27:18.036 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:20.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=10161
+2025-07-28T07:27:20.032 INFO 127.0.0.1 <- True
+2025-07-28T07:27:20.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10163&Id=1
+2025-07-28T07:27:20.034 INFO 127.0.0.1 <- Pc
+2025-07-28T07:27:20.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10162&Id=0
+2025-07-28T07:27:20.035 INFO 127.0.0.1 <- Mount
+2025-07-28T07:27:20.036 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10164&Id=2
+2025-07-28T07:27:20.036 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:27:20.037 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10165&Id=1
+2025-07-28T07:27:20.037 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:20.038 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10166&Id=0
+2025-07-28T07:27:20.038 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:20.039 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10167&Id=2
+2025-07-28T07:27:20.039 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:22.031 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=10168
+2025-07-28T07:27:22.031 INFO 127.0.0.1 <- True
+2025-07-28T07:27:22.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10169&Id=0
+2025-07-28T07:27:22.033 INFO 127.0.0.1 <- Mount
+2025-07-28T07:27:22.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10171&Id=2
+2025-07-28T07:27:22.034 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:27:22.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10170&Id=1
+2025-07-28T07:27:22.036 INFO 127.0.0.1 <- Pc
+2025-07-28T07:27:22.036 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10172&Id=0
+2025-07-28T07:27:22.037 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:22.037 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10173&Id=2
+2025-07-28T07:27:22.038 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:22.038 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10174&Id=1
+2025-07-28T07:27:22.039 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:24.031 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=10175
+2025-07-28T07:27:24.031 INFO 127.0.0.1 <- True
+2025-07-28T07:27:24.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10178&Id=2
+2025-07-28T07:27:24.033 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:27:24.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10177&Id=1
+2025-07-28T07:27:24.034 INFO 127.0.0.1 <- Pc
+2025-07-28T07:27:24.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10176&Id=0
+2025-07-28T07:27:24.035 INFO 127.0.0.1 <- Mount
+2025-07-28T07:27:24.036 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10179&Id=2
+2025-07-28T07:27:24.036 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:24.037 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10180&Id=1
+2025-07-28T07:27:24.037 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:24.038 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10181&Id=0
+2025-07-28T07:27:24.038 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:26.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=10182
+2025-07-28T07:27:26.032 INFO 127.0.0.1 <- True
+2025-07-28T07:27:26.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10185&Id=2
+2025-07-28T07:27:26.034 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:27:26.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10184&Id=1
+2025-07-28T07:27:26.035 INFO 127.0.0.1 <- Pc
+2025-07-28T07:27:26.036 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10183&Id=0
+2025-07-28T07:27:26.036 INFO 127.0.0.1 <- Mount
+2025-07-28T07:27:26.037 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10186&Id=2
+2025-07-28T07:27:26.038 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:26.038 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10187&Id=1
+2025-07-28T07:27:26.039 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:26.039 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10188&Id=0
+2025-07-28T07:27:26.040 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:28.031 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=10189
+2025-07-28T07:27:28.032 INFO 127.0.0.1 <- True
+2025-07-28T07:27:28.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10191&Id=1
+2025-07-28T07:27:28.033 INFO 127.0.0.1 <- Pc
+2025-07-28T07:27:28.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10192&Id=2
+2025-07-28T07:27:28.034 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:27:28.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10190&Id=0
+2025-07-28T07:27:28.036 INFO 127.0.0.1 <- Mount
+2025-07-28T07:27:28.036 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10193&Id=1
+2025-07-28T07:27:28.037 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:28.038 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10194&Id=2
+2025-07-28T07:27:28.038 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:28.039 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10195&Id=0
+2025-07-28T07:27:28.039 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:30.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=10196
+2025-07-28T07:27:30.033 INFO 127.0.0.1 <- True
+2025-07-28T07:27:30.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10199&Id=2
+2025-07-28T07:27:30.035 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:27:30.036 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10198&Id=1
+2025-07-28T07:27:30.036 INFO 127.0.0.1 <- Pc
+2025-07-28T07:27:30.037 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10197&Id=0
+2025-07-28T07:27:30.037 INFO 127.0.0.1 <- Mount
+2025-07-28T07:27:30.038 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10200&Id=2
+2025-07-28T07:27:30.038 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:30.039 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10201&Id=1
+2025-07-28T07:27:30.040 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:30.040 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10202&Id=0
+2025-07-28T07:27:30.041 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:32.024 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=10203
+2025-07-28T07:27:32.025 INFO 127.0.0.1 <- True
+2025-07-28T07:27:32.026 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10206&Id=2
+2025-07-28T07:27:32.027 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:27:32.027 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10205&Id=1
+2025-07-28T07:27:32.028 INFO 127.0.0.1 <- Pc
+2025-07-28T07:27:32.028 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10204&Id=0
+2025-07-28T07:27:32.029 INFO 127.0.0.1 <- Mount
+2025-07-28T07:27:32.030 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10207&Id=2
+2025-07-28T07:27:32.030 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:32.031 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10208&Id=1
+2025-07-28T07:27:32.031 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:32.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10209&Id=0
+2025-07-28T07:27:32.032 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:34.028 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=10210
+2025-07-28T07:27:34.029 INFO 127.0.0.1 <- True
+2025-07-28T07:27:34.030 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10212&Id=1
+2025-07-28T07:27:34.031 INFO 127.0.0.1 <- Pc
+2025-07-28T07:27:34.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10213&Id=2
+2025-07-28T07:27:34.032 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:27:34.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10211&Id=0
+2025-07-28T07:27:34.033 INFO 127.0.0.1 <- Mount
+2025-07-28T07:27:34.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10214&Id=1
+2025-07-28T07:27:34.034 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:34.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10215&Id=2
+2025-07-28T07:27:34.035 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:34.036 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10216&Id=0
+2025-07-28T07:27:34.036 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:36.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=10217
+2025-07-28T07:27:36.034 INFO 127.0.0.1 <- True
+2025-07-28T07:27:36.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10218&Id=0
+2025-07-28T07:27:36.036 INFO 127.0.0.1 <- Mount
+2025-07-28T07:27:36.036 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10219&Id=1
+2025-07-28T07:27:36.037 INFO 127.0.0.1 <- Pc
+2025-07-28T07:27:36.037 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10220&Id=2
+2025-07-28T07:27:36.038 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:27:36.038 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10221&Id=0
+2025-07-28T07:27:36.039 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:36.040 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10222&Id=1
+2025-07-28T07:27:36.040 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:36.041 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10223&Id=2
+2025-07-28T07:27:36.041 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:38.031 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=10224
+2025-07-28T07:27:38.032 INFO 127.0.0.1 <- True
+2025-07-28T07:27:38.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10227&Id=2
+2025-07-28T07:27:38.033 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:27:38.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10226&Id=1
+2025-07-28T07:27:38.034 INFO 127.0.0.1 <- Pc
+2025-07-28T07:27:38.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10225&Id=0
+2025-07-28T07:27:38.036 INFO 127.0.0.1 <- Mount
+2025-07-28T07:27:38.036 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10228&Id=2
+2025-07-28T07:27:38.037 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:38.038 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10229&Id=1
+2025-07-28T07:27:38.038 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:38.039 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10230&Id=0
+2025-07-28T07:27:38.039 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:40.031 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=10231
+2025-07-28T07:27:40.031 INFO 127.0.0.1 <- True
+2025-07-28T07:27:40.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10234&Id=2
+2025-07-28T07:27:40.033 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:27:40.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10233&Id=1
+2025-07-28T07:27:40.034 INFO 127.0.0.1 <- Pc
+2025-07-28T07:27:40.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10232&Id=0
+2025-07-28T07:27:40.035 INFO 127.0.0.1 <- Mount
+2025-07-28T07:27:40.036 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10235&Id=2
+2025-07-28T07:27:40.036 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:40.037 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10236&Id=1
+2025-07-28T07:27:40.037 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:40.038 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10237&Id=0
+2025-07-28T07:27:40.038 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:42.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=10238
+2025-07-28T07:27:42.032 INFO 127.0.0.1 <- True
+2025-07-28T07:27:42.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10240&Id=1
+2025-07-28T07:27:42.034 INFO 127.0.0.1 <- Pc
+2025-07-28T07:27:42.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10241&Id=2
+2025-07-28T07:27:42.035 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:27:42.036 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10239&Id=0
+2025-07-28T07:27:42.036 INFO 127.0.0.1 <- Mount
+2025-07-28T07:27:42.037 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10242&Id=1
+2025-07-28T07:27:42.037 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:42.038 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10243&Id=2
+2025-07-28T07:27:42.038 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:42.039 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10244&Id=0
+2025-07-28T07:27:42.039 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:44.031 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=10245
+2025-07-28T07:27:44.032 INFO 127.0.0.1 <- True
+2025-07-28T07:27:44.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10247&Id=2
+2025-07-28T07:27:44.033 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:27:44.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10248&Id=1
+2025-07-28T07:27:44.034 INFO 127.0.0.1 <- Pc
+2025-07-28T07:27:44.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10246&Id=0
+2025-07-28T07:27:44.035 INFO 127.0.0.1 <- Mount
+2025-07-28T07:27:44.036 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10249&Id=2
+2025-07-28T07:27:44.037 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:44.037 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10250&Id=1
+2025-07-28T07:27:44.038 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:44.038 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10251&Id=0
+2025-07-28T07:27:44.039 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:46.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=10252
+2025-07-28T07:27:46.036 INFO 127.0.0.1 <- True
+2025-07-28T07:27:46.037 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10254&Id=1
+2025-07-28T07:27:46.038 INFO 127.0.0.1 <- Pc
+2025-07-28T07:27:46.038 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10253&Id=0
+2025-07-28T07:27:46.039 INFO 127.0.0.1 <- Mount
+2025-07-28T07:27:46.039 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10255&Id=2
+2025-07-28T07:27:46.040 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:27:46.040 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10256&Id=1
+2025-07-28T07:27:46.041 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:46.042 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10257&Id=0
+2025-07-28T07:27:46.042 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:46.043 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10258&Id=2
+2025-07-28T07:27:46.043 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:48.026 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=10259
+2025-07-28T07:27:48.027 INFO 127.0.0.1 <- True
+2025-07-28T07:27:48.028 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10261&Id=1
+2025-07-28T07:27:48.029 INFO 127.0.0.1 <- Pc
+2025-07-28T07:27:48.029 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10262&Id=2
+2025-07-28T07:27:48.030 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:27:48.031 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10260&Id=0
+2025-07-28T07:27:48.031 INFO 127.0.0.1 <- Mount
+2025-07-28T07:27:48.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10263&Id=1
+2025-07-28T07:27:48.032 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:48.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10264&Id=2
+2025-07-28T07:27:48.033 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:48.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10265&Id=0
+2025-07-28T07:27:48.034 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:50.028 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=10266
+2025-07-28T07:27:50.028 INFO 127.0.0.1 <- True
+2025-07-28T07:27:50.030 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10268&Id=1
+2025-07-28T07:27:50.030 INFO 127.0.0.1 <- Pc
+2025-07-28T07:27:50.031 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10267&Id=0
+2025-07-28T07:27:50.031 INFO 127.0.0.1 <- Mount
+2025-07-28T07:27:50.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10269&Id=2
+2025-07-28T07:27:50.032 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:27:50.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10270&Id=1
+2025-07-28T07:27:50.033 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:50.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10271&Id=0
+2025-07-28T07:27:50.034 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:50.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10272&Id=2
+2025-07-28T07:27:50.035 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:52.030 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=10273
+2025-07-28T07:27:52.031 INFO 127.0.0.1 <- True
+2025-07-28T07:27:52.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10275&Id=1
+2025-07-28T07:27:52.033 INFO 127.0.0.1 <- Pc
+2025-07-28T07:27:52.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10274&Id=0
+2025-07-28T07:27:52.034 INFO 127.0.0.1 <- Mount
+2025-07-28T07:27:52.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10276&Id=2
+2025-07-28T07:27:52.035 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:27:52.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10277&Id=1
+2025-07-28T07:27:52.036 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:52.036 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10278&Id=0
+2025-07-28T07:27:52.037 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:52.037 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10279&Id=2
+2025-07-28T07:27:52.038 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:54.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=10280
+2025-07-28T07:27:54.032 INFO 127.0.0.1 <- True
+2025-07-28T07:27:54.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10282&Id=1
+2025-07-28T07:27:54.034 INFO 127.0.0.1 <- Pc
+2025-07-28T07:27:54.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10281&Id=0
+2025-07-28T07:27:54.035 INFO 127.0.0.1 <- Mount
+2025-07-28T07:27:54.036 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10283&Id=2
+2025-07-28T07:27:54.036 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:27:54.037 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10284&Id=1
+2025-07-28T07:27:54.037 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:54.038 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10285&Id=0
+2025-07-28T07:27:54.038 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:54.039 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10286&Id=2
+2025-07-28T07:27:54.039 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:56.036 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=10287
+2025-07-28T07:27:56.037 INFO 127.0.0.1 <- True
+2025-07-28T07:27:56.039 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10290&Id=2
+2025-07-28T07:27:56.040 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:27:56.040 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10289&Id=1
+2025-07-28T07:27:56.041 INFO 127.0.0.1 <- Pc
+2025-07-28T07:27:56.042 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10288&Id=0
+2025-07-28T07:27:56.042 INFO 127.0.0.1 <- Mount
+2025-07-28T07:27:56.043 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10291&Id=2
+2025-07-28T07:27:56.043 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:56.044 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10292&Id=1
+2025-07-28T07:27:56.044 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:56.045 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10293&Id=0
+2025-07-28T07:27:56.045 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:58.024 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=10294
+2025-07-28T07:27:58.024 INFO 127.0.0.1 <- True
+2025-07-28T07:27:58.026 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10296&Id=1
+2025-07-28T07:27:58.026 INFO 127.0.0.1 <- Pc
+2025-07-28T07:27:58.027 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10295&Id=0
+2025-07-28T07:27:58.027 INFO 127.0.0.1 <- Mount
+2025-07-28T07:27:58.028 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10297&Id=2
+2025-07-28T07:27:58.028 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:27:58.029 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10298&Id=1
+2025-07-28T07:27:58.029 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:58.030 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10299&Id=0
+2025-07-28T07:27:58.030 INFO 127.0.0.1 <- 0
+2025-07-28T07:27:58.031 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10300&Id=2
+2025-07-28T07:27:58.031 INFO 127.0.0.1 <- 0
+2025-07-28T07:28:00.029 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=10301
+2025-07-28T07:28:00.030 INFO 127.0.0.1 <- True
+2025-07-28T07:28:00.031 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10303&Id=1
+2025-07-28T07:28:00.032 INFO 127.0.0.1 <- Pc
+2025-07-28T07:28:00.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10302&Id=0
+2025-07-28T07:28:00.033 INFO 127.0.0.1 <- Mount
+2025-07-28T07:28:00.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10304&Id=2
+2025-07-28T07:28:00.034 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:28:00.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10305&Id=1
+2025-07-28T07:28:00.035 INFO 127.0.0.1 <- 0
+2025-07-28T07:28:00.036 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10306&Id=0
+2025-07-28T07:28:00.037 INFO 127.0.0.1 <- 0
+2025-07-28T07:28:00.037 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10307&Id=2
+2025-07-28T07:28:00.038 INFO 127.0.0.1 <- 0
+2025-07-28T07:28:02.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=10308
+2025-07-28T07:28:02.035 INFO 127.0.0.1 <- True
+2025-07-28T07:28:02.037 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10311&Id=2
+2025-07-28T07:28:02.037 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:28:02.038 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10310&Id=1
+2025-07-28T07:28:02.038 INFO 127.0.0.1 <- Pc
+2025-07-28T07:28:02.039 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10309&Id=0
+2025-07-28T07:28:02.039 INFO 127.0.0.1 <- Mount
+2025-07-28T07:28:02.040 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10312&Id=2
+2025-07-28T07:28:02.041 INFO 127.0.0.1 <- 0
+2025-07-28T07:28:02.041 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10313&Id=1
+2025-07-28T07:28:02.042 INFO 127.0.0.1 <- 0
+2025-07-28T07:28:02.042 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10314&Id=0
+2025-07-28T07:28:02.043 INFO 127.0.0.1 <- 0
+2025-07-28T07:28:04.029 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=10315
+2025-07-28T07:28:04.029 INFO 127.0.0.1 <- True
+2025-07-28T07:28:04.031 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10316&Id=0
+2025-07-28T07:28:04.031 INFO 127.0.0.1 <- Mount
+2025-07-28T07:28:04.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10318&Id=2
+2025-07-28T07:28:04.032 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:28:04.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10317&Id=1
+2025-07-28T07:28:04.033 INFO 127.0.0.1 <- Pc
+2025-07-28T07:28:04.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10319&Id=0
+2025-07-28T07:28:04.035 INFO 127.0.0.1 <- 0
+2025-07-28T07:28:04.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10320&Id=2
+2025-07-28T07:28:04.036 INFO 127.0.0.1 <- 0
+2025-07-28T07:28:04.036 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10321&Id=1
+2025-07-28T07:28:04.037 INFO 127.0.0.1 <- 0
+2025-07-28T07:28:06.030 INFO 127.0.0.1 -> GET /api/v1/switch/0/connected?ClientID=55014&ClientTransactionID=10322
+2025-07-28T07:28:06.031 INFO 127.0.0.1 <- True
+2025-07-28T07:28:06.032 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10323&Id=0
+2025-07-28T07:28:06.032 INFO 127.0.0.1 <- Mount
+2025-07-28T07:28:06.033 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10324&Id=1
+2025-07-28T07:28:06.033 INFO 127.0.0.1 <- Pc
+2025-07-28T07:28:06.034 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchname?ClientID=55014&ClientTransactionID=10325&Id=2
+2025-07-28T07:28:06.035 INFO 127.0.0.1 <- Dew Heater
+2025-07-28T07:28:06.035 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10326&Id=0
+2025-07-28T07:28:06.036 INFO 127.0.0.1 <- 0
+2025-07-28T07:28:06.036 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10327&Id=1
+2025-07-28T07:28:06.037 INFO 127.0.0.1 <- 0
+2025-07-28T07:28:06.037 INFO 127.0.0.1 -> GET /api/v1/switch/0/getswitchvalue?ClientID=55014&ClientTransactionID=10328&Id=2
+2025-07-28T07:28:06.038 INFO 127.0.0.1 <- 0

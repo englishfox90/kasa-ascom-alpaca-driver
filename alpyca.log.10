@@ -1,0 +1,241 @@
+2025-07-28T07:21:28.925 INFO ==STARTUP== Serving on :5555. Time stamps are UTC.
+2025-07-28T07:21:30.765 INFO 192.168.68.128 -> PUT /api/v1/switch/0/connected
+2025-07-28T07:21:30.765 INFO 192.168.68.128 -> {'Connected': 'True', 'ClientID': '48425', 'ClientTransactionID': '8499'}
+2025-07-28T07:21:31.014 INFO KasaCmd -devicelist parsed device names: ['Mount', 'Pc', 'Dew Heater'] in 0.25s
+2025-07-28T07:21:31.014 INFO Kasa connect: device list loaded in 0.25s: ['Mount', 'Pc', 'Dew Heater']
+2025-07-28T07:21:31.017 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=48425&ClientTransactionID=8500
+2025-07-28T07:21:31.018 INFO 192.168.68.128 <- True
+2025-07-28T07:21:31.020 INFO 192.168.68.128 -> GET /api/v1/switch/0/maxswitch?ClientID=48425&ClientTransactionID=8501
+2025-07-28T07:21:31.020 INFO maxswitch: returning 3
+2025-07-28T07:21:31.020 INFO 192.168.68.128 <- 3
+2025-07-28T07:21:31.022 INFO 192.168.68.128 -> GET /api/v1/switch/0/canwrite?ClientID=48425&ClientTransactionID=8502&Id=0
+2025-07-28T07:21:31.022 INFO 192.168.68.128 <- True
+2025-07-28T07:21:31.023 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=48425&ClientTransactionID=8503&Id=0
+2025-07-28T07:21:31.024 INFO 192.168.68.128 <- Mount
+2025-07-28T07:21:31.025 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchdescription?ClientID=48425&ClientTransactionID=8504&Id=0
+2025-07-28T07:21:31.025 INFO 192.168.68.128 <- Mount
+2025-07-28T07:21:31.026 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=48425&ClientTransactionID=8505&Id=0
+2025-07-28T07:21:31.026 INFO 192.168.68.128 <- 0
+2025-07-28T07:21:31.027 INFO 192.168.68.128 -> GET /api/v1/switch/0/maxswitchvalue?ClientID=48425&ClientTransactionID=8506&Id=0
+2025-07-28T07:21:31.028 INFO 192.168.68.128 <- 0
+2025-07-28T07:21:31.029 INFO 192.168.68.128 -> GET /api/v1/switch/0/minswitchvalue?ClientID=48425&ClientTransactionID=8507&Id=0
+2025-07-28T07:21:31.029 INFO 192.168.68.128 <- 1
+2025-07-28T07:21:31.030 INFO 192.168.68.128 -> GET /api/v1/switch/0/switchstep?ClientID=48425&ClientTransactionID=8508&Id=0
+2025-07-28T07:21:31.030 INFO 192.168.68.128 <- 1
+2025-07-28T07:21:31.031 INFO 192.168.68.128 -> GET /api/v1/switch/0/canwrite?ClientID=48425&ClientTransactionID=8509&Id=1
+2025-07-28T07:21:31.031 INFO 192.168.68.128 <- True
+2025-07-28T07:21:31.032 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=48425&ClientTransactionID=8510&Id=1
+2025-07-28T07:21:31.032 INFO 192.168.68.128 <- Pc
+2025-07-28T07:21:31.033 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchdescription?ClientID=48425&ClientTransactionID=8511&Id=1
+2025-07-28T07:21:31.034 INFO 192.168.68.128 <- Pc
+2025-07-28T07:21:31.035 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=48425&ClientTransactionID=8512&Id=1
+2025-07-28T07:21:31.035 INFO 192.168.68.128 <- 0
+2025-07-28T07:21:31.037 INFO 192.168.68.128 -> GET /api/v1/switch/0/maxswitchvalue?ClientID=48425&ClientTransactionID=8513&Id=1
+2025-07-28T07:21:31.037 INFO 192.168.68.128 <- 0
+2025-07-28T07:21:31.038 INFO 192.168.68.128 -> GET /api/v1/switch/0/minswitchvalue?ClientID=48425&ClientTransactionID=8514&Id=1
+2025-07-28T07:21:31.038 INFO 192.168.68.128 <- 1
+2025-07-28T07:21:31.039 INFO 192.168.68.128 -> GET /api/v1/switch/0/switchstep?ClientID=48425&ClientTransactionID=8515&Id=1
+2025-07-28T07:21:31.039 INFO 192.168.68.128 <- 1
+2025-07-28T07:21:31.040 INFO 192.168.68.128 -> GET /api/v1/switch/0/canwrite?ClientID=48425&ClientTransactionID=8516&Id=2
+2025-07-28T07:21:31.041 INFO 192.168.68.128 <- True
+2025-07-28T07:21:31.041 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=48425&ClientTransactionID=8517&Id=2
+2025-07-28T07:21:31.042 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:21:31.042 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchdescription?ClientID=48425&ClientTransactionID=8518&Id=2
+2025-07-28T07:21:31.043 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:21:31.043 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=48425&ClientTransactionID=8519&Id=2
+2025-07-28T07:21:31.044 INFO 192.168.68.128 <- 0
+2025-07-28T07:21:31.044 INFO 192.168.68.128 -> GET /api/v1/switch/0/maxswitchvalue?ClientID=48425&ClientTransactionID=8520&Id=2
+2025-07-28T07:21:31.045 INFO 192.168.68.128 <- 0
+2025-07-28T07:21:31.045 INFO 192.168.68.128 -> GET /api/v1/switch/0/minswitchvalue?ClientID=48425&ClientTransactionID=8521&Id=2
+2025-07-28T07:21:31.046 INFO 192.168.68.128 <- 1
+2025-07-28T07:21:31.046 INFO 192.168.68.128 -> GET /api/v1/switch/0/switchstep?ClientID=48425&ClientTransactionID=8522&Id=2
+2025-07-28T07:21:31.047 INFO 192.168.68.128 <- 1
+2025-07-28T07:21:31.050 INFO 192.168.68.128 -> GET /api/v1/switch/0/driverinfo?ClientID=48425&ClientTransactionID=8524
+2025-07-28T07:21:31.050 INFO 192.168.68.128 <- Kasa Switch Alpaca Device
+Implements ISwitch
+ASCOM Initiative
+2025-07-28T07:21:31.052 INFO 192.168.68.128 -> GET /api/v1/switch/0/driverversion?ClientID=48425&ClientTransactionID=8525
+2025-07-28T07:21:31.052 INFO 192.168.68.128 <- 1.0.0
+2025-07-28T07:21:31.054 INFO 192.168.68.128 -> GET /api/v1/switch/0/supportedactions?ClientID=48425&ClientTransactionID=8526
+2025-07-28T07:21:31.054 INFO 192.168.68.128 <- []
+2025-07-28T07:21:31.057 INFO 192.168.68.128 -> GET /api/v1/switch/0/driverversion?ClientID=48425&ClientTransactionID=8527
+2025-07-28T07:21:31.058 INFO 192.168.68.128 <- 1.0.0
+2025-07-28T07:21:33.059 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=48425&ClientTransactionID=8528
+2025-07-28T07:21:33.059 INFO 192.168.68.128 <- True
+2025-07-28T07:21:33.063 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=48425&ClientTransactionID=8529&Id=0
+2025-07-28T07:21:33.063 INFO 192.168.68.128 <- Mount
+2025-07-28T07:21:33.064 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=48425&ClientTransactionID=8531&Id=2
+2025-07-28T07:21:33.064 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:21:33.065 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=48425&ClientTransactionID=8530&Id=1
+2025-07-28T07:21:33.065 INFO 192.168.68.128 <- Pc
+2025-07-28T07:21:33.065 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=48425&ClientTransactionID=8532&Id=0
+2025-07-28T07:21:33.066 INFO 192.168.68.128 <- 0
+2025-07-28T07:21:33.066 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=48425&ClientTransactionID=8533&Id=2
+2025-07-28T07:21:33.067 INFO 192.168.68.128 <- 0
+2025-07-28T07:21:33.067 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=48425&ClientTransactionID=8534&Id=1
+2025-07-28T07:21:33.068 INFO 192.168.68.128 <- 0
+2025-07-28T07:21:35.060 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=48425&ClientTransactionID=8535
+2025-07-28T07:21:35.061 INFO 192.168.68.128 <- True
+2025-07-28T07:21:35.063 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=48425&ClientTransactionID=8537&Id=2
+2025-07-28T07:21:35.063 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:21:35.064 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=48425&ClientTransactionID=8538&Id=1
+2025-07-28T07:21:35.064 INFO 192.168.68.128 <- Pc
+2025-07-28T07:21:35.065 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=48425&ClientTransactionID=8536&Id=0
+2025-07-28T07:21:35.066 INFO 192.168.68.128 <- Mount
+2025-07-28T07:21:35.066 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=48425&ClientTransactionID=8539&Id=2
+2025-07-28T07:21:35.067 INFO 192.168.68.128 <- 0
+2025-07-28T07:21:35.067 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=48425&ClientTransactionID=8540&Id=1
+2025-07-28T07:21:35.068 INFO 192.168.68.128 <- 0
+2025-07-28T07:21:35.068 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=48425&ClientTransactionID=8541&Id=0
+2025-07-28T07:21:35.069 INFO 192.168.68.128 <- 0
+2025-07-28T07:21:37.066 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=48425&ClientTransactionID=8542
+2025-07-28T07:21:37.067 INFO 192.168.68.128 <- True
+2025-07-28T07:21:37.069 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=48425&ClientTransactionID=8544&Id=1
+2025-07-28T07:21:37.070 INFO 192.168.68.128 <- Pc
+2025-07-28T07:21:37.071 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=48425&ClientTransactionID=8545&Id=2
+2025-07-28T07:21:37.071 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:21:37.072 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=48425&ClientTransactionID=8543&Id=0
+2025-07-28T07:21:37.073 INFO 192.168.68.128 <- Mount
+2025-07-28T07:21:37.073 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=48425&ClientTransactionID=8546&Id=1
+2025-07-28T07:21:37.074 INFO 192.168.68.128 <- 0
+2025-07-28T07:21:37.075 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=48425&ClientTransactionID=8547&Id=2
+2025-07-28T07:21:37.075 INFO 192.168.68.128 <- 0
+2025-07-28T07:21:37.076 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=48425&ClientTransactionID=8548&Id=0
+2025-07-28T07:21:37.076 INFO 192.168.68.128 <- 0
+2025-07-28T07:21:39.059 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=48425&ClientTransactionID=8550
+2025-07-28T07:21:39.060 INFO 192.168.68.128 <- True
+2025-07-28T07:21:39.063 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=48425&ClientTransactionID=8551&Id=0
+2025-07-28T07:21:39.064 INFO 192.168.68.128 <- Mount
+2025-07-28T07:21:39.064 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=48425&ClientTransactionID=8553&Id=2
+2025-07-28T07:21:39.065 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:21:39.066 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=48425&ClientTransactionID=8552&Id=1
+2025-07-28T07:21:39.066 INFO 192.168.68.128 <- Pc
+2025-07-28T07:21:39.067 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=48425&ClientTransactionID=8554&Id=0
+2025-07-28T07:21:39.068 INFO 192.168.68.128 <- 0
+2025-07-28T07:21:39.068 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=48425&ClientTransactionID=8555&Id=2
+2025-07-28T07:21:39.069 INFO 192.168.68.128 <- 0
+2025-07-28T07:21:39.069 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=48425&ClientTransactionID=8556&Id=1
+2025-07-28T07:21:39.070 INFO 192.168.68.128 <- 0
+2025-07-28T07:21:41.068 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=48425&ClientTransactionID=8557
+2025-07-28T07:21:41.069 INFO 192.168.68.128 <- True
+2025-07-28T07:21:41.071 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=48425&ClientTransactionID=8560&Id=2
+2025-07-28T07:21:41.071 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:21:41.072 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=48425&ClientTransactionID=8558&Id=0
+2025-07-28T07:21:41.072 INFO 192.168.68.128 <- Mount
+2025-07-28T07:21:41.073 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=48425&ClientTransactionID=8559&Id=1
+2025-07-28T07:21:41.074 INFO 192.168.68.128 <- Pc
+2025-07-28T07:21:41.075 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=48425&ClientTransactionID=8561&Id=2
+2025-07-28T07:21:41.075 INFO 192.168.68.128 <- 0
+2025-07-28T07:21:41.076 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=48425&ClientTransactionID=8562&Id=0
+2025-07-28T07:21:41.077 INFO 192.168.68.128 <- 0
+2025-07-28T07:21:41.078 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=48425&ClientTransactionID=8563&Id=1
+2025-07-28T07:21:41.078 INFO 192.168.68.128 <- 0
+2025-07-28T07:21:43.061 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=48425&ClientTransactionID=8564
+2025-07-28T07:21:43.061 INFO 192.168.68.128 <- True
+2025-07-28T07:21:43.063 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=48425&ClientTransactionID=8565&Id=0
+2025-07-28T07:21:43.063 INFO 192.168.68.128 <- Mount
+2025-07-28T07:21:43.064 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=48425&ClientTransactionID=8567&Id=2
+2025-07-28T07:21:43.065 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:21:43.065 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=48425&ClientTransactionID=8566&Id=1
+2025-07-28T07:21:43.066 INFO 192.168.68.128 <- Pc
+2025-07-28T07:21:43.067 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=48425&ClientTransactionID=8568&Id=0
+2025-07-28T07:21:43.067 INFO 192.168.68.128 <- 0
+2025-07-28T07:21:43.068 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=48425&ClientTransactionID=8569&Id=2
+2025-07-28T07:21:43.068 INFO 192.168.68.128 <- 0
+2025-07-28T07:21:43.069 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=48425&ClientTransactionID=8570&Id=1
+2025-07-28T07:21:43.069 INFO 192.168.68.128 <- 0
+2025-07-28T07:21:45.066 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=48425&ClientTransactionID=8571
+2025-07-28T07:21:45.066 INFO 192.168.68.128 <- True
+2025-07-28T07:21:45.068 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=48425&ClientTransactionID=8573&Id=1
+2025-07-28T07:21:45.069 INFO 192.168.68.128 <- Pc
+2025-07-28T07:21:45.069 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=48425&ClientTransactionID=8574&Id=2
+2025-07-28T07:21:45.070 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:21:45.070 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=48425&ClientTransactionID=8572&Id=0
+2025-07-28T07:21:45.071 INFO 192.168.68.128 <- Mount
+2025-07-28T07:21:45.072 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=48425&ClientTransactionID=8575&Id=1
+2025-07-28T07:21:45.072 INFO 192.168.68.128 <- 0
+2025-07-28T07:21:45.073 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=48425&ClientTransactionID=8576&Id=2
+2025-07-28T07:21:45.073 INFO 192.168.68.128 <- 0
+2025-07-28T07:21:45.074 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=48425&ClientTransactionID=8577&Id=0
+2025-07-28T07:21:45.074 INFO 192.168.68.128 <- 0
+2025-07-28T07:21:47.070 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=48425&ClientTransactionID=8578
+2025-07-28T07:21:47.071 INFO 192.168.68.128 <- True
+2025-07-28T07:21:47.072 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=48425&ClientTransactionID=8581&Id=2
+2025-07-28T07:21:47.073 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:21:47.073 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=48425&ClientTransactionID=8579&Id=0
+2025-07-28T07:21:47.074 INFO 192.168.68.128 <- Mount
+2025-07-28T07:21:47.075 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=48425&ClientTransactionID=8580&Id=1
+2025-07-28T07:21:47.075 INFO 192.168.68.128 <- Pc
+2025-07-28T07:21:47.076 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=48425&ClientTransactionID=8582&Id=2
+2025-07-28T07:21:47.076 INFO 192.168.68.128 <- 0
+2025-07-28T07:21:47.077 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=48425&ClientTransactionID=8583&Id=0
+2025-07-28T07:21:47.077 INFO 192.168.68.128 <- 0
+2025-07-28T07:21:47.077 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=48425&ClientTransactionID=8584&Id=1
+2025-07-28T07:21:47.078 INFO 192.168.68.128 <- 0
+2025-07-28T07:21:49.069 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=48425&ClientTransactionID=8585
+2025-07-28T07:21:49.069 INFO 192.168.68.128 <- True
+2025-07-28T07:21:49.071 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=48425&ClientTransactionID=8587&Id=1
+2025-07-28T07:21:49.071 INFO 192.168.68.128 <- Pc
+2025-07-28T07:21:49.072 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=48425&ClientTransactionID=8588&Id=2
+2025-07-28T07:21:49.072 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:21:49.073 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=48425&ClientTransactionID=8586&Id=0
+2025-07-28T07:21:49.073 INFO 192.168.68.128 <- Mount
+2025-07-28T07:21:49.074 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=48425&ClientTransactionID=8589&Id=1
+2025-07-28T07:21:49.074 INFO 192.168.68.128 <- 0
+2025-07-28T07:21:49.075 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=48425&ClientTransactionID=8590&Id=2
+2025-07-28T07:21:49.075 INFO 192.168.68.128 <- 0
+2025-07-28T07:21:49.076 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=48425&ClientTransactionID=8591&Id=0
+2025-07-28T07:21:49.077 INFO 192.168.68.128 <- 0
+2025-07-28T07:21:51.069 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=48425&ClientTransactionID=8592
+2025-07-28T07:21:51.069 INFO 192.168.68.128 <- True
+2025-07-28T07:21:51.071 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=48425&ClientTransactionID=8594&Id=1
+2025-07-28T07:21:51.071 INFO 192.168.68.128 <- Pc
+2025-07-28T07:21:51.072 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=48425&ClientTransactionID=8595&Id=2
+2025-07-28T07:21:51.073 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:21:51.074 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=48425&ClientTransactionID=8593&Id=0
+2025-07-28T07:21:51.074 INFO 192.168.68.128 <- Mount
+2025-07-28T07:21:51.075 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=48425&ClientTransactionID=8596&Id=1
+2025-07-28T07:21:51.075 INFO 192.168.68.128 <- 0
+2025-07-28T07:21:51.076 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=48425&ClientTransactionID=8597&Id=2
+2025-07-28T07:21:51.076 INFO 192.168.68.128 <- 0
+2025-07-28T07:21:51.076 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=48425&ClientTransactionID=8598&Id=0
+2025-07-28T07:21:51.077 INFO 192.168.68.128 <- 0
+2025-07-28T07:21:53.069 INFO 192.168.68.128 -> GET /api/v1/switch/0/connected?ClientID=48425&ClientTransactionID=8599
+2025-07-28T07:21:53.070 INFO 192.168.68.128 <- True
+2025-07-28T07:21:53.073 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=48425&ClientTransactionID=8602&Id=2
+2025-07-28T07:21:53.074 INFO 192.168.68.128 <- Dew Heater
+2025-07-28T07:21:53.075 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=48425&ClientTransactionID=8600&Id=0
+2025-07-28T07:21:53.075 INFO 192.168.68.128 <- Mount
+2025-07-28T07:21:53.076 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchname?ClientID=48425&ClientTransactionID=8601&Id=1
+2025-07-28T07:21:53.076 INFO 192.168.68.128 <- Pc
+2025-07-28T07:21:53.077 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=48425&ClientTransactionID=8603&Id=2
+2025-07-28T07:21:53.077 INFO 192.168.68.128 <- 0
+2025-07-28T07:21:53.078 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=48425&ClientTransactionID=8604&Id=0
+2025-07-28T07:21:53.078 INFO 192.168.68.128 <- 0
+2025-07-28T07:21:53.079 INFO 192.168.68.128 -> GET /api/v1/switch/0/getswitchvalue?ClientID=48425&ClientTransactionID=8605&Id=1
+2025-07-28T07:21:53.079 INFO 192.168.68.128 <- 0
+2025-07-28T07:21:53.321 INFO 192.168.68.128 -> PUT /api/v1/switch/0/connected
+2025-07-28T07:21:53.322 INFO 192.168.68.128 -> {'Connected': 'False', 'ClientID': '48425', 'ClientTransactionID': '8606'}
+2025-07-28T07:23:22.387 INFO Disc rcv alpacadiscovery1 from ('192.168.68.128', 63403)
+2025-07-28T07:23:22.388 INFO Disc rcv alpacadiscovery1 from ('127.0.0.1', 63404)
+2025-07-28T07:23:22.390 INFO 192.168.68.128 <- [1]
+2025-07-28T07:23:22.391 INFO 127.0.0.1 <- [1]
+2025-07-28T07:23:22.392 INFO 192.168.68.128 <- {'ServerName': 'Alpaca Kasa Switch Server', 'Manufacturer': 'ASCOM Initiative', 'Version': '1.0.0', 'Location': 'Anywhere on Earth'}
+2025-07-28T07:23:22.393 INFO 127.0.0.1 <- {'ServerName': 'Alpaca Kasa Switch Server', 'Manufacturer': 'ASCOM Initiative', 'Version': '1.0.0', 'Location': 'Anywhere on Earth'}
+2025-07-28T07:23:27.481 INFO 192.168.68.128 <- []
+2025-07-28T07:23:30.602 INFO Disc rcv alpacadiscovery1 from ('192.168.68.128', 63413)
+2025-07-28T07:23:30.603 INFO Disc rcv alpacadiscovery1 from ('127.0.0.1', 63414)
+2025-07-28T07:23:32.567 INFO 127.0.0.1 <- []
+2025-07-28T07:23:32.569 INFO 192.168.68.128 <- [1]
+2025-07-28T07:23:32.570 INFO 127.0.0.1 <- [1]
+2025-07-28T07:23:32.572 INFO 192.168.68.128 <- {'ServerName': 'Alpaca Kasa Switch Server', 'Manufacturer': 'ASCOM Initiative', 'Version': '1.0.0', 'Location': 'Anywhere on Earth'}
+2025-07-28T07:23:32.573 INFO 127.0.0.1 <- {'ServerName': 'Alpaca Kasa Switch Server', 'Manufacturer': 'ASCOM Initiative', 'Version': '1.0.0', 'Location': 'Anywhere on Earth'}
+2025-07-28T07:23:37.660 INFO 192.168.68.128 <- []
+2025-07-28T07:23:42.746 INFO 127.0.0.1 <- []
+2025-07-28T07:23:45.923 INFO Disc rcv alpacadiscovery1 from ('192.168.68.128', 63431)
+2025-07-28T07:23:45.924 INFO Disc rcv alpacadiscovery1 from ('127.0.0.1', 63432)
+2025-07-28T07:23:45.927 INFO 192.168.68.128 <- [1]
+2025-07-28T07:23:45.928 INFO 127.0.0.1 <- [1]
+2025-07-28T07:23:45.930 INFO 192.168.68.128 <- {'ServerName': 'Alpaca Kasa Switch Server', 'Manufacturer': 'ASCOM Initiative', 'Version': '1.0.0', 'Location': 'Anywhere on Earth'}
+2025-07-28T07:23:45.931 INFO 127.0.0.1 <- {'ServerName': 'Alpaca Kasa Switch Server', 'Manufacturer': 'ASCOM Initiative', 'Version': '1.0.0', 'Location': 'Anywhere on Earth'}
+2025-07-28T07:23:51.016 INFO 192.168.68.128 <- []
