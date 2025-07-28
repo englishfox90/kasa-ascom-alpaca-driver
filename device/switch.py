@@ -6,8 +6,15 @@ import keyring
 from kasa import Discover, SmartPlug
 import threading
 import time
+import logging
+import locale
+from datetime import datetime
+try:
+    from babel.dates import format_datetime
+    BABEL_AVAILABLE = True
+except ImportError:
+    BABEL_AVAILABLE = False
 from falcon import Request, Response, HTTPBadRequest, before
-from logging import Logger
 from .shr import PropertyResponse, MethodResponse, PreProcessRequest, StateValue, get_request_field, to_bool
 from .exceptions import *
 
@@ -141,10 +148,16 @@ class KasaSwitchController:
         if hasattr(self, 'cloud_switch_map') and idx in self.cloud_switch_map:
             parent_idx = self.cloud_switch_map[idx]
             dev = self.device_objs[parent_idx]
-            # Use dev.cloud['connection'] for cloud status (python-kasa)
-            self.loop.run_until_complete(dev.update())
+            run_async(dev.update())
+            # Try to get cloud info robustly
             cloud_info = getattr(dev, 'cloud', None)
             status = None
+            if not cloud_info and hasattr(dev, 'get_cloud_info'):
+                try:
+                    cloud_info = run_async(dev.get_cloud_info())
+                except Exception as ex:
+                    if logger:
+                        logger.warning(f"get_switch: get_cloud_info() failed: {ex}")
             if cloud_info and isinstance(cloud_info, dict):
                 status = cloud_info.get('connection', '').lower()
             if logger:
@@ -152,9 +165,8 @@ class KasaSwitchController:
             return status == 'connected'
         # Power (On Since) readonly switch: always ON
         if hasattr(self, 'readonly_switches') and idx in self.readonly_switches and (not hasattr(self, 'cloud_switch_map') or idx not in self.cloud_switch_map):
-            # Force update to get latest on_since
             dev = self.device_objs[idx]
-            self.loop.run_until_complete(dev.update())
+            run_async(dev.update())
             return True
         dev = self.device_objs[idx]
         if hasattr(self, 'child_map') and idx in self.child_map:
@@ -162,14 +174,14 @@ class KasaSwitchController:
             child = dev.children[cidx]
             if logger:
                 logger.debug(f"get_switch: Updating child {child.alias} of {dev.alias}")
-            self.loop.run_until_complete(child.update())
+            run_async(child.update())
             if logger:
                 logger.debug(f"get_switch: {dev.alias} - {child.alias} is_on={child.is_on}")
             return child.is_on
         else:
             if logger:
                 logger.debug(f"get_switch: Updating device {dev.alias}")
-            self.loop.run_until_complete(dev.update())
+            run_async(dev.update())
             if logger:
                 logger.debug(f"get_switch: {dev.alias} is_on={dev.is_on}")
             return dev.is_on
@@ -456,8 +468,6 @@ class getswitchname:
 @before(PreProcessRequest(maxdev))
 class getswitchdescription:
     def on_get(self, req: Request, resp: Response, devnum: int):
-        import locale
-        import datetime
         if not device.is_connected():
             resp.text = PropertyResponse(None, req, NotConnectedException()).json
             return
@@ -476,39 +486,50 @@ class getswitchdescription:
                 if hasattr(device, 'cloud_switch_map') and id in device.cloud_switch_map:
                     parent_idx = device.cloud_switch_map[id]
                     parent_dev = device.device_objs[parent_idx]
-                    # Force update to get latest cloud status
-                    device.loop.run_until_complete(parent_dev.update())
-                    status = False
-                    if hasattr(parent_dev, 'has_cloud_connection') and parent_dev.has_cloud_connection:
-                        status = bool(getattr(parent_dev, 'is_cloud_connected', False))
-                    desc = f"Cloud Connection (readonly) | Status: {'Connected' if status else 'Disconnected'}"
+                    run_async(parent_dev.update())
+                    # Try to get cloud info robustly
+                    cloud_info = getattr(parent_dev, 'cloud', None)
+                    status = None
+                    if not cloud_info and hasattr(parent_dev, 'get_cloud_info'):
+                        try:
+                            cloud_info = run_async(parent_dev.get_cloud_info())
+                        except Exception as ex:
+                            if logger:
+                                logger.warning(f"getswitchdescription: get_cloud_info() failed: {ex}")
+                    if cloud_info and isinstance(cloud_info, dict):
+                        status = cloud_info.get('connection', '').lower()
+                    desc = f"Cloud Connection (readonly) | Status: {'Connected' if status == 'connected' else 'Disconnected'}"
+                    resp.text = PropertyResponse(desc, req).json
+                    return
                 # Power (On Since) readonly switch description
                 elif hasattr(device, 'readonly_switches') and id in device.readonly_switches and (not hasattr(device, 'cloud_switch_map') or id not in device.cloud_switch_map):
                     on_since = getattr(dev, 'on_since', None) if dev else None
-                    desc = f"Power (readonly)"
+                    # Localize the date/time with fallback
+                    formatted = None
                     if on_since:
                         try:
-                            from dateutil import tz
-                            import datetime as dt
-                            if isinstance(on_since, str):
-                                on_since_dt = dt.datetime.fromisoformat(on_since)
+                            # Use babel if available, else fallback
+                            if BABEL_AVAILABLE:
+                                try:
+                                    formatted = format_datetime(on_since, locale=locale.getdefaultlocale()[0] or 'en_US')
+                                except Exception:
+                                    formatted = format_datetime(on_since, locale='en_US')
                             else:
-                                on_since_dt = on_since
-                            # Localize to system timezone using astimezone(None)
-                            local_dt = on_since_dt.astimezone(None)
-                            formatted = local_dt.strftime('%c')
-                            desc += f" | On since: {formatted}"
-                        except Exception as dt_ex:
-                            desc += f" | On since: {on_since}"
+                                # Fallback: US format
+                                formatted = on_since.strftime('%Y-%m-%d %I:%M:%S %p %Z')
+                        except Exception as ex:
+                            formatted = str(on_since)
+                    desc = f"Power (readonly) | On since: {formatted if formatted else 'Unknown'}"
+                    resp.text = PropertyResponse(desc, req).json
+                    return
+                # Child/regular switch
                 else:
-                    parent_name = getattr(dev, 'alias', None) if dev else None
-                    display_parent = parent_name.replace('_', ' ') if parent_name else None
-                    display_name = name.replace('_', ' ') if name else None
-                    desc = f"{display_parent} - {display_name}" if display_parent and display_parent != display_name else f"{display_name}"
-                resp.text = PropertyResponse(desc, req).json
+                    desc = f"{getattr(dev, 'alias', name)}"
+                    resp.text = PropertyResponse(desc, req).json
+                    return
             else:
-                desc = f"Switch {id} (Invalid index)"
-                resp.text = PropertyResponse(desc, req).json
+                resp.text = PropertyResponse(None, req, InvalidValueException(f'Switch id {id} not found.')).json
+                return
         except Exception as ex:
             resp.text = PropertyResponse(None, req, DriverException(0x500, 'Switch.GetSwitchDescription failed', ex)).json
 
