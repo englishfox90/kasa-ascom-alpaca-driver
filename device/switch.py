@@ -468,8 +468,16 @@ class connected:
         try:
             is_conn = device.is_connected()
             resp.text = PropertyResponse(is_conn, req).json
+            if logger:
+                logger.info(f"GET /connected response: {resp.text}")
+            else:
+                print(f"GET /connected response: {resp.text}")
         except Exception as ex:
             resp.text = MethodResponse(req, DriverException(0x500, 'Switch.Connected failed', ex)).json
+            if logger:
+                logger.error(f"GET /connected error response: {resp.text}")
+            else:
+                print(f"GET /connected error response: {resp.text}")
 
     def on_put(self, req: Request, resp: Response, devnum: int):
         conn_str = get_request_field('Connected', req)
@@ -480,8 +488,16 @@ class connected:
             else:
                 device.disconnect()
             resp.text = MethodResponse(req).json
+            if logger:
+                logger.info(f"PUT /connected response: {resp.text}")
+            else:
+                print(f"PUT /connected response: {resp.text}")
         except Exception as ex:
             resp.text = MethodResponse(req, DriverException(0x500, 'Switch.Connected failed', ex)).json
+            if logger:
+                logger.error(f"PUT /connected error response: {resp.text}")
+            else:
+                print(f"PUT /connected error response: {resp.text}")
 
 @before(PreProcessRequest(maxdev))
 class disconnect:
