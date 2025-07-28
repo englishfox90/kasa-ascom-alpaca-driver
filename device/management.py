@@ -97,16 +97,12 @@ class configureddevices():
                 logger.warning("configureddevices: device list not ready after waiting 5s")
             confarray = []
         else:
-            confarray = []
-            for idx, name in enumerate(device.device_list):
-                # Generate a unique ID for each outlet/device
-                unique_id = str(uuid.uuid5(uuid.NAMESPACE_DNS, name))
-                confarray.append({
-                    'DeviceName': name,
-                    'DeviceType': SwitchMetadata.DeviceType,
-                    'DeviceNumber': idx,
-                    'UniqueID': unique_id
-                })
+            confarray = [{
+                'DeviceName': SwitchMetadata.Name,
+                'DeviceType': SwitchMetadata.DeviceType,
+                'DeviceNumber': 0,
+                'UniqueID': SwitchMetadata.DeviceID
+            }]
             if logger:
-                logger.info(f"configureddevices: returning {len(confarray)} device(s)")
+                logger.info("configureddevices: returning 1 device (multi-channel switch)")
         resp.text = PropertyResponse(confarray, req).json
