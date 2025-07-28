@@ -141,6 +141,20 @@ class KasaSwitchController:
             logger.info(f"python-kasa discovered devices: {devices}")
         return devices, device_objs
 
+    def _safe_async(self, coro):
+        """Run an async coroutine safely from sync context, even if an event loop is running."""
+        try:
+            loop = asyncio.get_running_loop()
+        except RuntimeError:
+            loop = None
+        if loop and loop.is_running():
+            # Already in an event loop (e.g., Falcon/Gunicorn)
+            # Use asyncio.run_coroutine_threadsafe in a thread pool
+            fut = asyncio.run_coroutine_threadsafe(coro, self.loop)
+            return fut.result()
+        else:
+            return self.loop.run_until_complete(coro)
+
     def get_switch(self, id=0):
         name = self._resolve_id(id)
         idx = self.device_list.index(name)
@@ -148,16 +162,16 @@ class KasaSwitchController:
         if hasattr(self, 'cloud_switch_map') and idx in self.cloud_switch_map:
             parent_idx = self.cloud_switch_map[idx]
             dev = self.device_objs[parent_idx]
-            run_async(dev.update())
-            # Try to get cloud info robustly
+            self._safe_async(dev.update())
             cloud_info = getattr(dev, 'cloud', None)
             status = None
-            if not cloud_info and hasattr(dev, 'get_cloud_info'):
+            if not cloud_info:
+                # Try to fetch cloud info if missing
                 try:
-                    cloud_info = run_async(dev.get_cloud_info())
+                    cloud_info = self._safe_async(dev.get_cloud_info())
                 except Exception as ex:
                     if logger:
-                        logger.warning(f"get_switch: get_cloud_info() failed: {ex}")
+                        logger.warning(f"[WARN] get_switch: get_cloud_info() failed: {ex}")
             if cloud_info and isinstance(cloud_info, dict):
                 status = cloud_info.get('connection', '').lower()
             if logger:
@@ -166,7 +180,7 @@ class KasaSwitchController:
         # Power (On Since) readonly switch: always ON
         if hasattr(self, 'readonly_switches') and idx in self.readonly_switches and (not hasattr(self, 'cloud_switch_map') or idx not in self.cloud_switch_map):
             dev = self.device_objs[idx]
-            run_async(dev.update())
+            self._safe_async(dev.update())
             return True
         dev = self.device_objs[idx]
         if hasattr(self, 'child_map') and idx in self.child_map:
@@ -174,14 +188,14 @@ class KasaSwitchController:
             child = dev.children[cidx]
             if logger:
                 logger.debug(f"get_switch: Updating child {child.alias} of {dev.alias}")
-            run_async(child.update())
+            self._safe_async(child.update())
             if logger:
                 logger.debug(f"get_switch: {dev.alias} - {child.alias} is_on={child.is_on}")
             return child.is_on
         else:
             if logger:
                 logger.debug(f"get_switch: Updating device {dev.alias}")
-            run_async(dev.update())
+            self._safe_async(dev.update())
             if logger:
                 logger.debug(f"get_switch: {dev.alias} is_on={dev.is_on}")
             return dev.is_on
@@ -486,50 +500,44 @@ class getswitchdescription:
                 if hasattr(device, 'cloud_switch_map') and id in device.cloud_switch_map:
                     parent_idx = device.cloud_switch_map[id]
                     parent_dev = device.device_objs[parent_idx]
-                    run_async(parent_dev.update())
-                    # Try to get cloud info robustly
+                    device._safe_async(parent_dev.update())
                     cloud_info = getattr(parent_dev, 'cloud', None)
                     status = None
-                    if not cloud_info and hasattr(parent_dev, 'get_cloud_info'):
+                    if not cloud_info:
                         try:
-                            cloud_info = run_async(parent_dev.get_cloud_info())
+                            cloud_info = device._safe_async(parent_dev.get_cloud_info())
                         except Exception as ex:
                             if logger:
-                                logger.warning(f"getswitchdescription: get_cloud_info() failed: {ex}")
+                                logger.warning(f"[WARN] getswitchdescription: get_cloud_info() failed: {ex}")
                     if cloud_info and isinstance(cloud_info, dict):
-                        status = cloud_info.get('connection', '').lower()
-                    desc = f"Cloud Connection (readonly) | Status: {'Connected' if status == 'connected' else 'Disconnected'}"
-                    resp.text = PropertyResponse(desc, req).json
-                    return
+                        status = cloud_info.get('connection', '').lower() == 'connected'
+                    desc = f"Cloud Connection (readonly) | Status: {'Connected' if status else 'Disconnected'}"
                 # Power (On Since) readonly switch description
                 elif hasattr(device, 'readonly_switches') and id in device.readonly_switches and (not hasattr(device, 'cloud_switch_map') or id not in device.cloud_switch_map):
                     on_since = getattr(dev, 'on_since', None) if dev else None
-                    # Localize the date/time with fallback
-                    formatted = None
-                    if on_since:
+                    # Format with localization, fallback to US
+                    if on_since and isinstance(on_since, datetime):
                         try:
-                            # Use babel if available, else fallback
-                            if BABEL_AVAILABLE:
-                                try:
-                                    formatted = format_datetime(on_since, locale=locale.getdefaultlocale()[0] or 'en_US')
-                                except Exception:
-                                    formatted = format_datetime(on_since, locale='en_US')
-                            else:
-                                # Fallback: US format
-                                formatted = on_since.strftime('%Y-%m-%d %I:%M:%S %p %Z')
+                            # Try to use system locale
+                            loc = locale.getdefaultlocale()[0] or 'en_US'
+                            try:
+                                locale.setlocale(locale.LC_TIME, loc)
+                                formatted = on_since.astimezone().strftime('%c %Z')
+                            except Exception:
+                                # Fallback to US
+                                locale.setlocale(locale.LC_TIME, 'en_US.UTF-8')
+                                formatted = on_since.astimezone().strftime('%m/%d/%Y %I:%M:%S %p %Z')
                         except Exception as ex:
-                            formatted = str(on_since)
-                    desc = f"Power (readonly) | On since: {formatted if formatted else 'Unknown'}"
-                    resp.text = PropertyResponse(desc, req).json
-                    return
-                # Child/regular switch
+                            formatted = on_since.strftime('%Y-%m-%d %H:%M:%S%z')
+                        desc = f"Power (readonly) | On since: {formatted}"
+                    else:
+                        desc = "Power (readonly) | On since: Unknown"
                 else:
-                    desc = f"{getattr(dev, 'alias', name)}"
-                    resp.text = PropertyResponse(desc, req).json
-                    return
+                    # Child or other switch
+                    desc = f"{getattr(dev, 'alias', name)} - {name}"
+                resp.text = PropertyResponse(desc, req).json
             else:
                 resp.text = PropertyResponse(None, req, InvalidValueException(f'Switch id {id} not found.')).json
-                return
         except Exception as ex:
             resp.text = PropertyResponse(None, req, DriverException(0x500, 'Switch.GetSwitchDescription failed', ex)).json
 
