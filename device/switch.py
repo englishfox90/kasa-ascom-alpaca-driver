@@ -488,9 +488,11 @@ class connected:
         conn = to_bool(conn_str)
         try:
             if conn:
-                device.connect()
+                if not device.is_connected():
+                    device.connect()
             else:
-                device.disconnect()
+                if device.is_connected():
+                    device.disconnect()
             resp.status = "200 OK"
             resp.content_type = "application/json"
             resp.text = MethodResponse(req).json
