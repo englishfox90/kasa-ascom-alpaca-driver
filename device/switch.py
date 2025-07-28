@@ -97,19 +97,34 @@ class KasaSwitchController:
                             self.child_map[len(new_device_list)-1] = (idx, cidx)
                             new_device_objs.append(dev)
                             # Gauge support logging for child
-                            if hasattr(child, 'emeter_realtime'):
+                            child_has_emeter = hasattr(child, 'emeter_realtime')
+                            parent_has_emeter = hasattr(dev, 'emeter_realtime')
+                            mapped_gauge = False
+                            if child_has_emeter:
                                 for suffix, label in self.METRIC_SUFFIXES:
                                     if hasattr(child.emeter_realtime, suffix[1:]):
-                                        self.gauge_map[len(new_device_list)-1] = (idx, suffix)
+                                        self.gauge_map[len(new_device_list)-1] = (idx, suffix, 'child')
                                         gauge_count += 1
+                                        mapped_gauge = True
                                         if logger:
                                             logger.info(f"Gauge support: Child '{child.alias}' of '{dev.alias}' supports {label} (suffix: {suffix})")
                                     else:
                                         if logger:
                                             logger.info(f"Gauge support: Child '{child.alias}' of '{dev.alias}' does NOT support {label} (suffix: {suffix})")
-                            else:
+                            # If child does not have emeter, but parent does, map to parent
+                            if not mapped_gauge and parent_has_emeter:
+                                for suffix, label in self.METRIC_SUFFIXES:
+                                    if hasattr(dev.emeter_realtime, suffix[1:]):
+                                        self.gauge_map[len(new_device_list)-1] = (idx, suffix, 'parent')
+                                        gauge_count += 1
+                                        if logger:
+                                            logger.info(f"Gauge support: Child '{child.alias}' of '{dev.alias}' does NOT support {label}, but parent does. Mapping gauge to parent (suffix: {suffix})")
+                                    else:
+                                        if logger:
+                                            logger.info(f"Gauge support: Neither child '{child.alias}' nor parent '{dev.alias}' support {label} (suffix: {suffix})")
+                            elif not mapped_gauge:
                                 if logger:
-                                    logger.info(f"Gauge support: Child '{child.alias}' of '{dev.alias}' does NOT support emeter (no emeter_realtime)")
+                                    logger.info(f"Gauge support: Neither child '{child.alias}' of '{dev.alias}' nor parent '{dev.alias}' support emeter (no emeter_realtime)")
                     else:
                         new_device_list.append(dev.alias)
                         new_device_objs.append(dev)
@@ -117,7 +132,7 @@ class KasaSwitchController:
                         if hasattr(dev, 'emeter_realtime'):
                             for suffix, label in self.METRIC_SUFFIXES:
                                 if hasattr(dev.emeter_realtime, suffix[1:]):
-                                    self.gauge_map[len(new_device_list)-1] = (idx, suffix)
+                                    self.gauge_map[len(new_device_list)-1] = (idx, suffix, 'parent')
                                     gauge_count += 1
                                     if logger:
                                         logger.info(f"Gauge support: Device '{dev.alias}' supports {label} (suffix: {suffix})")
@@ -182,26 +197,27 @@ class KasaSwitchController:
             if logger:
                 logger.warning(f"Gauge value requested for unmapped id={id}")
             return None
-        idx, suffix = self.gauge_map[id]
+        idx, suffix, source = self.gauge_map[id]
         dev = self.device_objs[idx]
         try:
             if logger:
-                logger.info(f"get_gauge_value: Updating device '{dev.alias}' for gauge '{suffix}' (id={id})")
+                logger.info(f"get_gauge_value: Updating device '{dev.alias}' for gauge '{suffix}' (id={id}, source={source})")
             self.loop.run_until_complete(dev.update())
+            emeter = dev.emeter_realtime if source == 'parent' else dev.children[self.child_map[id][1]].emeter_realtime
             if suffix == "_consumption":
-                val = getattr(dev.emeter_realtime, 'power', None)
+                val = getattr(emeter, 'power', None)
             elif suffix == "_voltage":
-                val = getattr(dev.emeter_realtime, 'voltage', None)
+                val = getattr(emeter, 'voltage', None)
             elif suffix == "_current":
-                val = getattr(dev.emeter_realtime, 'current', None)
+                val = getattr(emeter, 'current', None)
             else:
                 val = None
             if logger:
-                logger.info(f"get_gauge_value: {dev.alias} {suffix} value={val}")
+                logger.info(f"get_gauge_value: {dev.alias} {suffix} value={val} (source={source})")
             return val
         except Exception as ex:
             if logger:
-                logger.error(f"get_gauge_value: Exception for device '{dev.alias}' gauge '{suffix}' (id={id}): {ex}")
+                logger.error(f"get_gauge_value: Exception for device '{dev.alias}' gauge '{suffix}' (id={id}, source={source}): {ex}")
             return None
 
     def get_gauge_description(self, id):
@@ -211,19 +227,20 @@ class KasaSwitchController:
             if logger:
                 logger.warning(f"Gauge description requested for unmapped id={id}")
             return f"Gauge {id} (unmapped)"
-        idx, suffix = self.gauge_map[id]
+        idx, suffix, source = self.gauge_map[id]
         dev = self.device_objs[idx]
         try:
             if logger:
-                logger.info(f"get_gauge_description: Updating device '{dev.alias}' for gauge '{suffix}' (id={id})")
+                logger.info(f"get_gauge_description: Updating device '{dev.alias}' for gauge '{suffix}' (id={id}, source={source})")
             self.loop.run_until_complete(dev.update())
-            desc = f"{dev.alias} metric: "
+            emeter = dev.emeter_realtime if source == 'parent' else dev.children[self.child_map[id][1]].emeter_realtime
+            desc = f"{dev.alias} metric (source: {source}): "
             if suffix == "_consumption":
-                desc += f"Current Consumption: {getattr(dev.emeter_realtime, 'power', 'N/A')} W"
+                desc += f"Current Consumption: {getattr(emeter, 'power', 'N/A')} W"
             elif suffix == "_voltage":
-                desc += f"Voltage: {getattr(dev.emeter_realtime, 'voltage', 'N/A')} V"
+                desc += f"Voltage: {getattr(emeter, 'voltage', 'N/A')} V"
             elif suffix == "_current":
-                desc += f"Current: {getattr(dev.emeter_realtime, 'current', 'N/A')} A"
+                desc += f"Current: {getattr(emeter, 'current', 'N/A')} A"
             # Add on_since if available
             if hasattr(dev, 'on_since') and dev.on_since:
                 desc += f" | On since: {dev.on_since}"
@@ -232,7 +249,7 @@ class KasaSwitchController:
             return desc
         except Exception as ex:
             if logger:
-                logger.error(f"get_gauge_description: Exception for device '{dev.alias}' gauge '{suffix}' (id={id}): {ex}")
+                logger.error(f"get_gauge_description: Exception for device '{dev.alias}' gauge '{suffix}' (id={id}, source={source}): {ex}")
             return f"Gauge {id} (error: {ex})"
 
     def get_switch(self, id=0):
