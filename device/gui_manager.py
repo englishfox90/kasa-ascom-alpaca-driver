@@ -203,9 +203,8 @@ def main():
 
 if __name__ == '__main__':
     if '--server' in sys.argv:
-        # Run the server directly in this process
-        import app
         try:
+            from device import app
             app.main()
         except Exception as ex:
             # Log to file in exe dir if possible
