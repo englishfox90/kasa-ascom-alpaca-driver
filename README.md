@@ -2,6 +2,8 @@
 
 A Python package that exposes TP-Link Kasa smart plugs as ASCOM Alpaca Switch devices, enabling integration with astronomy automation tools like N.I.N.A. and other Alpaca clients. This project uses the official [python-kasa](https://python-kasa.readthedocs.io/en/latest/) library for device control.
 
+> **This project implements the [ASCOM Alpaca API](https://ascom-standards.org/alpyca/index.html) for Switch devices.**
+
 ## Features
 - **Expose Kasa smart plugs as ASCOM Alpaca Switches** (on/off control)
 - **Credential management** using the Windows keyring, with CLI batch file for easy updating
