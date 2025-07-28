@@ -8,12 +8,13 @@ import threading
 import time
 import logging
 import locale
-from datetime import datetime
+from datetime import datetime, timezone
 try:
-    from babel.dates import format_datetime
-    BABEL_AVAILABLE = True
+    from tzlocal import get_localzone
+    TZLOCAL_AVAILABLE = True
 except ImportError:
-    BABEL_AVAILABLE = False
+    TZLOCAL_AVAILABLE = False
+from babel.dates import format_datetime
 from falcon import Request, Response, HTTPBadRequest, before
 from .shr import PropertyResponse, MethodResponse, PreProcessRequest, StateValue, get_request_field, to_bool
 from .exceptions import *
@@ -163,15 +164,13 @@ class KasaSwitchController:
             parent_idx = self.cloud_switch_map[idx]
             dev = self.device_objs[parent_idx]
             self._safe_async(dev.update())
-            cloud_info = getattr(dev, 'cloud', None)
+            try:
+                cloud_info = self._safe_async(dev.get_cloud_info())
+            except Exception as ex:
+                if logger:
+                    logger.warning(f"[WARN] get_switch: get_cloud_info() failed: {ex}")
+                cloud_info = None
             status = None
-            if not cloud_info:
-                # Try to fetch cloud info if missing
-                try:
-                    cloud_info = self._safe_async(dev.get_cloud_info())
-                except Exception as ex:
-                    if logger:
-                        logger.warning(f"[WARN] get_switch: get_cloud_info() failed: {ex}")
             if cloud_info and isinstance(cloud_info, dict):
                 status = cloud_info.get('connection', '').lower()
             if logger:
@@ -501,37 +500,39 @@ class getswitchdescription:
                     parent_idx = device.cloud_switch_map[id]
                     parent_dev = device.device_objs[parent_idx]
                     device._safe_async(parent_dev.update())
-                    cloud_info = getattr(parent_dev, 'cloud', None)
+                    try:
+                        cloud_info = device._safe_async(parent_dev.get_cloud_info())
+                    except Exception as ex:
+                        if logger:
+                            logger.warning(f"[WARN] getswitchdescription: get_cloud_info() failed: {ex}")
+                        cloud_info = None
                     status = None
-                    if not cloud_info:
-                        try:
-                            cloud_info = device._safe_async(parent_dev.get_cloud_info())
-                        except Exception as ex:
-                            if logger:
-                                logger.warning(f"[WARN] getswitchdescription: get_cloud_info() failed: {ex}")
                     if cloud_info and isinstance(cloud_info, dict):
                         status = cloud_info.get('connection', '').lower() == 'connected'
-                    desc = f"Cloud Connection (readonly) | Status: {'Connected' if status else 'Disconnected'}"
+                    desc = f"Status: {'Connected' if status else 'Disconnected'}"
                 # Power (On Since) readonly switch description
                 elif hasattr(device, 'readonly_switches') and id in device.readonly_switches and (not hasattr(device, 'cloud_switch_map') or id not in device.cloud_switch_map):
                     on_since = getattr(dev, 'on_since', None) if dev else None
-                    # Format with localization, fallback to US
+                    # Format with robust local timezone handling, fallback to UTC/US
                     if on_since and isinstance(on_since, datetime):
                         try:
-                            # Try to use system locale
-                            loc = locale.getdefaultlocale()[0] or 'en_US'
-                            try:
-                                locale.setlocale(locale.LC_TIME, loc)
-                                formatted = on_since.astimezone().strftime('%c %Z')
-                            except Exception:
-                                # Fallback to US
-                                locale.setlocale(locale.LC_TIME, 'en_US.UTF-8')
-                                formatted = on_since.astimezone().strftime('%m/%d/%Y %I:%M:%S %p %Z')
+                            # Convert to local timezone if possible
+                            if TZLOCAL_AVAILABLE:
+                                local_tz = get_localzone()
+                                local_dt = on_since.replace(tzinfo=timezone.utc).astimezone(local_tz)
+                                formatted = local_dt.strftime('%c %Z')
+                            else:
+                                # Fallback to UTC
+                                formatted = on_since.replace(tzinfo=timezone.utc).strftime('%Y-%m-%d %H:%M:%S UTC')
                         except Exception as ex:
-                            formatted = on_since.strftime('%Y-%m-%d %H:%M:%S%z')
-                        desc = f"Power (readonly) | On since: {formatted}"
+                            # Fallback to US format
+                            try:
+                                formatted = on_since.strftime('%m/%d/%Y %I:%M:%S %p UTC')
+                            except Exception:
+                                formatted = str(on_since)
+                        desc = f"On since: {formatted}"
                     else:
-                        desc = "Power (readonly) | On since: Unknown"
+                        desc = "On since: Unknown"
                 else:
                     # Child or other switch
                     desc = f"{getattr(dev, 'alias', name)} - {name}"
