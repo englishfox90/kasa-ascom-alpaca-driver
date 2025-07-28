@@ -48,21 +48,32 @@ import toml
 import logging
 
 _dict = {}
+
+# Add logger for config loading
+_config_logger = logging.getLogger("config")
+
 def get_config_path():
     # If running as a PyInstaller exe, look in exe dir
     if getattr(sys, 'frozen', False):
         exe_dir = os.path.dirname(sys.executable)
         candidate = os.path.join(exe_dir, 'config.toml')
+        _config_logger.info(f"[config] Checking for config.toml in exe dir: {candidate}")
         if os.path.exists(candidate):
+            _config_logger.info(f"[config] Using config.toml: {candidate}")
             return candidate
     # Otherwise, look in the same dir as this file
     candidate = os.path.join(os.path.dirname(__file__), 'config.toml')
+    _config_logger.info(f"[config] Checking for config.toml in source dir: {candidate}")
     if os.path.exists(candidate):
+        _config_logger.info(f"[config] Using config.toml: {candidate}")
         return candidate
     # Try one directory up (project root)
     candidate = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'config.toml')
+    _config_logger.info(f"[config] Checking for config.toml in parent dir: {candidate}")
     if os.path.exists(candidate):
+        _config_logger.info(f"[config] Using config.toml: {candidate}")
         return candidate
+    _config_logger.error("[config] config.toml not found in any expected location!")
     raise FileNotFoundError("config.toml not found")
 
 config_path = get_config_path()
