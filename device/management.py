@@ -61,14 +61,20 @@ def set_management_logger(lgr):
 # -----------
 class apiversions:
     def on_get(self, req: Request, resp: Response):
+        if logger:
+            logger.info("apiversions: handler entry")
         apis = [ 1 ]                            # TODO MAKE CONFIG OR GLOBAL
         resp.text = PropertyResponse(apis, req).json
+        if logger:
+            logger.info("apiversions: handler exit")
 
 # -------------------------
 # Alpaca Server Description
 # -------------------------
 class description:
     def on_get(self, req: Request, resp: Response):
+        if logger:
+            logger.info("description: handler entry")
         desc = {
             'ServerName'   : DeviceMetadata.Description,
             'Manufacturer' : DeviceMetadata.Manufacturer,
@@ -76,12 +82,16 @@ class description:
             'Location'     : Config.location
         }
         resp.text = PropertyResponse(desc, req).json
+        if logger:
+            logger.info("description: handler exit")
 
 # -----------------
 # ConfiguredDevices
 # -----------------
 class configureddevices():
     def on_get(self, req: Request, resp: Response):
+        if logger:
+            logger.info("configureddevices: handler entry")
         import time
         from .switch import device
         import uuid
@@ -106,3 +116,5 @@ class configureddevices():
             if logger:
                 logger.info("configureddevices: returning 1 device (multi-channel switch)")
         resp.text = PropertyResponse(confarray, req).json
+        if logger:
+            logger.info("configureddevices: handler exit")
