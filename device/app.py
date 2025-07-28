@@ -56,13 +56,19 @@
 # 03-Jan-2025   rbd 1.1 Clarify devices vs device types at import site. Comment only,
 #               no logic changes.
 #
+import os
 import sys
 import traceback
 import inspect
 from wsgiref.simple_server import WSGIRequestHandler, make_server
 from enum import IntEnum
+import logging
 
-from falcon import App, Request, Response  # Add Request, Response to the import
+try:
+    from falcon import App, Request, Response, HTTPInternalServerError
+except ImportError:
+    App = Request = Response = HTTPInternalServerError = None
+    # This will fail at runtime if falcon is not present, but allows packaging to proceed
 
 # Use relative imports for local modules
 from . import discovery
@@ -214,8 +220,18 @@ def falcon_uncaught_exception_handler(req: Request, resp: Response, ex: BaseExce
 # ===========
 def main():
     """ Application startup"""
-
-    logger = log.init_logging()
+    # Set up logging to the same file as the GUI if running as a frozen exe
+    if getattr(sys, 'frozen', False):
+        exe_dir = os.path.dirname(sys.executable)
+        log_file = os.path.join(exe_dir, 'kasa_alpaca_gui.log')
+        logging.basicConfig(
+            level=logging.INFO,
+            format='%(asctime)s %(levelname)s: %(message)s',
+            handlers=[logging.FileHandler(log_file, encoding='utf-8'), logging.StreamHandler()]
+        )
+        logger = logging.getLogger()
+    else:
+        logger = log.init_logging()
     # Share this logger throughout
     log.logger = logger
     exceptions.logger = logger
@@ -241,7 +257,12 @@ def main():
     # ---------
     # DISCOVERY
     # ---------
-    _DSC = DiscoveryResponder(Config.ip_address, Config.port)
+    try:
+        # Always bind to 0.0.0.0 for network discovery
+        _DSC = DiscoveryResponder('0.0.0.0', Config.port)
+    except Exception as ex:
+        logger.error(f"DiscoveryResponder failed: {ex}")
+        raise
 
     # ----------------------------------
     # MAIN HTTP/REST API ENGINE (FALCON)
@@ -271,9 +292,13 @@ def main():
     # ------------------
     # SERVER APPLICATION
     # ------------------
-    with make_server(Config.ip_address, Config.port, falc_app, handler_class=LoggingWSGIRequestHandler) as httpd:
-        logger.info(f'==STARTUP== Serving on {Config.ip_address}:{Config.port}. Time stamps are UTC.')
-        httpd.serve_forever()
+    try:
+        with make_server('0.0.0.0', Config.port, falc_app, handler_class=LoggingWSGIRequestHandler) as httpd:
+            logger.info(f'==STARTUP== Serving on 0.0.0.0:{Config.port}. Time stamps are UTC.')
+            httpd.serve_forever()
+    except Exception as ex:
+        logger.error(f"Server failed to start: {ex}")
+        raise
 
 # ========================
 if __name__ == '__main__':
