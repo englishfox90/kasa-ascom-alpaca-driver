@@ -75,23 +75,22 @@ class KasaSwitchController:
             start = time.time()
             try:
                 self.device_list, self.device_objs = self.loop.run_until_complete(self._get_device_list())
-                # Add virtual gauge switches for each device, only if metrics are available
                 self.gauge_map = {}
+                self.child_map = {}  # Map device_list index to (dev_idx, child_idx)
+                new_device_list = []
+                new_device_objs = []
                 for idx, dev in enumerate(self.device_objs):
-                    # Check for emeter support
-                    has_emeter = hasattr(dev, 'emeter_realtime') and dev.emeter_realtime is not None
-                    if has_emeter:
-                        for suffix, _ in self.METRIC_SUFFIXES:
-                            # Only add if the metric is present in emeter_realtime
-                            metric_name = suffix[1:]  # e.g. 'consumption' from '_consumption'
-                            metric_attr = {
-                                '_consumption': 'power',
-                                '_voltage': 'voltage',
-                                '_current': 'current',
-                            }[suffix]
-                            if hasattr(dev.emeter_realtime, metric_attr):
-                                self.device_list.append(f"{dev.alias}{suffix}")
-                                self.gauge_map[len(self.device_list)-1] = (idx, suffix)
+                    if hasattr(dev, 'children') and dev.children:
+                        for cidx, child in enumerate(dev.children):
+                            name = f"{dev.alias} - {child.alias}"
+                            new_device_list.append(name)
+                            self.child_map[len(new_device_list)-1] = (idx, cidx)
+                            new_device_objs.append(dev)
+                    else:
+                        new_device_list.append(dev.alias)
+                        new_device_objs.append(dev)
+                self.device_list = new_device_list
+                self.device_objs = new_device_objs
                 self.connected = True
                 maxdev = len(self.device_list)
                 SwitchMetadata.MaxDeviceNumber = maxdev
@@ -169,31 +168,43 @@ class KasaSwitchController:
 
     def get_switch(self, id=0):
         name = self._resolve_id(id)
-        for dev in self.device_objs:
-            if dev.alias == name:
-                if logger:
-                    logger.debug(f"get_switch: Updating device {dev.alias}")
-                self.loop.run_until_complete(dev.update())
-                if logger:
-                    logger.debug(f"get_switch: {dev.alias} is_on={dev.is_on}")
-                return dev.is_on
-        if logger:
-            logger.error(f"get_switch: Switch '{name}' not found.")
-        raise InvalidValueException(f"Switch '{name}' not found.")
+        idx = self.device_list.index(name)
+        dev = self.device_objs[idx]
+        if hasattr(self, 'child_map') and idx in self.child_map:
+            dev_idx, cidx = self.child_map[idx]
+            child = dev.children[cidx]
+            if logger:
+                logger.debug(f"get_switch: Updating child {child.alias} of {dev.alias}")
+            self.loop.run_until_complete(child.update())
+            if logger:
+                logger.debug(f"get_switch: {dev.alias} - {child.alias} is_on={child.is_on}")
+            return child.is_on
+        else:
+            if logger:
+                logger.debug(f"get_switch: Updating device {dev.alias}")
+            self.loop.run_until_complete(dev.update())
+            if logger:
+                logger.debug(f"get_switch: {dev.alias} is_on={dev.is_on}")
+            return dev.is_on
 
     def set_switch(self, state, id=0):
         name = self._resolve_id(id)
-        for dev in self.device_objs:
-            if dev.alias == name:
-                if logger:
-                    logger.debug(f"set_switch: Setting {dev.alias} to {'ON' if state else 'OFF'}")
-                self.loop.run_until_complete(dev.turn_on() if state else dev.turn_off())
-                if logger:
-                    logger.debug(f"set_switch: {dev.alias} set to {'ON' if state else 'OFF'}")
-                return
-        if logger:
-            logger.error(f"set_switch: Switch '{name}' not found.")
-        raise InvalidValueException(f"Switch '{name}' not found.")
+        idx = self.device_list.index(name)
+        dev = self.device_objs[idx]
+        if hasattr(self, 'child_map') and idx in self.child_map:
+            dev_idx, cidx = self.child_map[idx]
+            child = dev.children[cidx]
+            if logger:
+                logger.debug(f"set_switch: Setting child {child.alias} of {dev.alias} to {'ON' if state else 'OFF'}")
+            self.loop.run_until_complete(child.turn_on() if state else child.turn_off())
+            if logger:
+                logger.debug(f"set_switch: {dev.alias} - {child.alias} set to {'ON' if state else 'OFF'}")
+        else:
+            if logger:
+                logger.debug(f"set_switch: Setting {dev.alias} to {'ON' if state else 'OFF'}")
+            self.loop.run_until_complete(dev.turn_on() if state else dev.turn_off())
+            if logger:
+                logger.debug(f"set_switch: {dev.alias} set to {'ON' if state else 'OFF'}")
 
     def _resolve_id(self, id):
         if not self.device_list:
@@ -379,6 +390,12 @@ class getswitchname:
             return
         try:
             name = device.device_list[id] if 0 <= id < len(device.device_list) else None
+            if logger:
+                logger.info(f"getswitchname: id={id}, name={name}")
+            # Defensive: if name is None, return a clear error
+            if name is None:
+                resp.text = PropertyResponse(None, req, InvalidValueException(f'Switch id {id} not found.')).json
+                return
             resp.text = PropertyResponse(name, req).json
         except Exception as ex:
             resp.text = PropertyResponse(None, req, DriverException(0x500, 'Switch.Getswitchname failed', ex)).json

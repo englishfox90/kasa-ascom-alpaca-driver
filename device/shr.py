@@ -234,8 +234,9 @@ class PropertyResponse():
         """
         self.ServerTransactionID = getNextTransId()
         self.ClientTransactionID = int(get_request_field('ClientTransactionID', req, False, 0))  #Caseless on GET
-        if err.Number == 0 and not value is None:
-            self.Value = value
+        # Always include Value field for Alpaca compliance
+        self.Value = value
+        if err.Number == 0 and value is not None:
             logger.info(f'{req.remote_addr} <- {str(value)}')
         self.ErrorNumber = err.Number
         self.ErrorMessage = err.Message
