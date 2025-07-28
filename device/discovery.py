@@ -98,10 +98,36 @@ class DiscoveryResponder(Thread):
         self.start()
 
     def run(self):
-        """Discovery responder forever loop"""
+        """Discovery responder forever loop, robust to socket errors"""
+        import time
         while True:
-            data, addr = self.rsock.recvfrom(1024)
-            datascii = str(data, 'ascii')
-            logger.info(f'Disc rcv {datascii} from {str(addr)}')
-            if 'alpacadiscovery1' in datascii:
-                self.tsock.sendto(self.alpaca_response.encode(), addr)
+            try:
+                data, addr = self.rsock.recvfrom(1024)
+                datascii = str(data, 'ascii')
+                logger.info(f'Disc rcv {datascii} from {str(addr)}')
+                if 'alpacadiscovery1' in datascii:
+                    self.tsock.sendto(self.alpaca_response.encode(), addr)
+            except Exception as ex:
+                logger.error(f'DiscoveryResponder socket error: {ex}, restarting in 2s')
+                time.sleep(2)
+                try:
+                    self.rsock.close()
+                except Exception:
+                    pass
+                try:
+                    self.tsock.close()
+                except Exception:
+                    pass
+                # Re-bind sockets
+                try:
+                    self.rsock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+                    self.rsock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+                    if os.name != 'nt':
+                        self.rsock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEPORT, 1)
+                    self.rsock.bind(self.device_address)
+                    self.tsock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+                    self.tsock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+                    self.tsock.bind((self.device_address[0], 0))
+                except Exception as rebind_ex:
+                    logger.error(f'DiscoveryResponder failed to rebind sockets: {rebind_ex}, retrying in 5s')
+                    time.sleep(5)

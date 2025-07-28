@@ -43,16 +43,29 @@
 #               write-Connected behavior.
 #
 import sys
+import os
 import toml
 import logging
-import os
 
 _dict = {}
-# Look for config.toml in the same directory as this config.py file
-config_path = os.path.join(os.path.dirname(__file__), 'config.toml')
-if not os.path.exists(config_path):
+def get_config_path():
+    # If running as a PyInstaller exe, look in exe dir
+    if getattr(sys, 'frozen', False):
+        exe_dir = os.path.dirname(sys.executable)
+        candidate = os.path.join(exe_dir, 'config.toml')
+        if os.path.exists(candidate):
+            return candidate
+    # Otherwise, look in the same dir as this file
+    candidate = os.path.join(os.path.dirname(__file__), 'config.toml')
+    if os.path.exists(candidate):
+        return candidate
     # Try one directory up (project root)
-    config_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'config.toml')
+    candidate = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'config.toml')
+    if os.path.exists(candidate):
+        return candidate
+    raise FileNotFoundError("config.toml not found")
+
+config_path = get_config_path()
 _dict = toml.load(config_path)    # Errors here are fatal.
 _dict2 = {}
 try:
