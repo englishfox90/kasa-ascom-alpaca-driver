@@ -14,8 +14,8 @@ REM Install required packages
 pip install --upgrade pip
 pip install keyring keyrings.alt
 
-REM Run credential update prompt
-python device\switch.py credentials
+REM Run credential update prompt as a module to support relative imports
+python -m device.switch credentials
 
 REM Pause so the window stays open if there's an error
 pause

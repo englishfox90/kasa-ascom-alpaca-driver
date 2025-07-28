@@ -14,8 +14,8 @@ REM Install required packages
 pip install --upgrade pip
 pip install python-kasa keyring keyrings.alt falcon pillow
 
-REM Run the Alpaca service
-python device\app.py
+REM Run the Alpaca service as a module to support relative imports
+python -m device.app
 
 REM Pause so the window stays open if there's an error
 pause
