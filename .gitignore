@@ -5,7 +5,6 @@ __pycache__/
 *.pyd
 *.egg-info/
 build/
-dist/
 
 # Ignore logs directory and its contents
 logs/
