@@ -163,18 +163,10 @@ class KasaSwitchController:
             parent_idx = self.cloud_switch_map[idx]
             dev = self.device_objs[parent_idx]
             self._safe_async(dev.update())
-            try:
-                cloud_info = self._safe_async(dev.get_cloud_info())
-            except Exception as ex:
-                if logger:
-                    logger.warning(f"[WARN] get_switch: get_cloud_info() failed: {ex}")
-                cloud_info = None
-            status = None
-            if cloud_info and isinstance(cloud_info, dict):
-                status = cloud_info.get('connection', '').lower()
+            status = getattr(dev, 'cloud_connection', None)
             if logger:
-                logger.info(f"[DEBUG] get_switch: cloud_info={cloud_info} status={status} for {getattr(dev, 'alias', dev)}")
-            return status == 'connected'
+                logger.info(f"[DEBUG] get_switch: cloud_connection={status} for {getattr(dev, 'alias', dev)}")
+            return bool(status)
         # Power (On Since) readonly switch: always ON
         if hasattr(self, 'readonly_switches') and idx in self.readonly_switches and (not hasattr(self, 'cloud_switch_map') or idx not in self.cloud_switch_map):
             dev = self.device_objs[idx]
@@ -499,15 +491,7 @@ class getswitchdescription:
                     parent_idx = device.cloud_switch_map[id]
                     parent_dev = device.device_objs[parent_idx]
                     device._safe_async(parent_dev.update())
-                    try:
-                        cloud_info = device._safe_async(parent_dev.get_cloud_info())
-                    except Exception as ex:
-                        if logger:
-                            logger.warning(f"[WARN] getswitchdescription: get_cloud_info() failed: {ex}")
-                        cloud_info = None
-                    status = None
-                    if cloud_info and isinstance(cloud_info, dict):
-                        status = cloud_info.get('connection', '').lower() == 'connected'
+                    status = getattr(parent_dev, 'cloud_connection', None)
                     desc = f"Status: {'Connected' if status else 'Disconnected'}"
                 # Power (On Since) readonly switch description
                 elif hasattr(device, 'readonly_switches') and id in device.readonly_switches and (not hasattr(device, 'cloud_switch_map') or id not in device.cloud_switch_map):
