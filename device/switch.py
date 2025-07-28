@@ -16,6 +16,12 @@ from .exceptions import *
 # --------------------
 
 logger: Logger = None
+if logger is None:
+    import logging
+    logger = logging.getLogger("kasa-alpaca")
+    if not logger.hasHandlers():
+        logging.basicConfig(level=logging.INFO)
+
 maxdev = 0  # Single instance
 
 class SwitchMetadata:
@@ -70,6 +76,8 @@ class KasaSwitchController:
         self._prompt_and_store_credentials()
 
     def connect(self):
+        if logger:
+            logger.info("connect() called. Logger is active.")
         global maxdev
         with self.lock:
             start = time.time()
@@ -159,6 +167,8 @@ class KasaSwitchController:
         return devices, device_objs
 
     def is_gauge(self, id):
+        if logger:
+            logger.info(f"is_gauge({id}) called.")
         # id is int index
         is_g = hasattr(self, 'gauge_map') and id in self.gauge_map
         if logger:
@@ -166,6 +176,8 @@ class KasaSwitchController:
         return is_g
 
     def get_gauge_value(self, id):
+        if logger:
+            logger.info(f"get_gauge_value({id}) called.")
         if not hasattr(self, 'gauge_map') or id not in self.gauge_map:
             if logger:
                 logger.warning(f"Gauge value requested for unmapped id={id}")
@@ -193,6 +205,8 @@ class KasaSwitchController:
             return None
 
     def get_gauge_description(self, id):
+        if logger:
+            logger.info(f"get_gauge_description({id}) called.")
         if not hasattr(self, 'gauge_map') or id not in self.gauge_map:
             if logger:
                 logger.warning(f"Gauge description requested for unmapped id={id}")
@@ -250,16 +264,27 @@ class KasaSwitchController:
             dev_idx, cidx = self.child_map[idx]
             child = dev.children[cidx]
             if logger:
-                logger.debug(f"set_switch: Setting child {child.alias} of {dev.alias} to {'ON' if state else 'OFF'}")
+                logger.info(f"set_switch: Setting child {child.alias} of {dev.alias} to {'ON' if state else 'OFF'}")
             self.loop.run_until_complete(child.turn_on() if state else child.turn_off())
+            # Immediately update and log state
+            self.loop.run_until_complete(child.update())
             if logger:
-                logger.debug(f"set_switch: {dev.alias} - {child.alias} set to {'ON' if state else 'OFF'}")
+                logger.info(f"set_switch: {dev.alias} - {child.alias} is now {'ON' if child.is_on else 'OFF'} (expected {'ON' if state else 'OFF'})")
+            if child.is_on != state:
+                if logger:
+                    logger.error(f"set_switch: State mismatch after set for {child.alias} of {dev.alias}: expected {state}, got {child.is_on}")
+                raise DriverException(0x501, f"Failed to set switch state for {child.alias} of {dev.alias}")
         else:
             if logger:
-                logger.debug(f"set_switch: Setting {dev.alias} to {'ON' if state else 'OFF'}")
+                logger.info(f"set_switch: Setting {dev.alias} to {'ON' if state else 'OFF'}")
             self.loop.run_until_complete(dev.turn_on() if state else dev.turn_off())
+            self.loop.run_until_complete(dev.update())
             if logger:
-                logger.debug(f"set_switch: {dev.alias} set to {'ON' if state else 'OFF'}")
+                logger.info(f"set_switch: {dev.alias} is now {'ON' if dev.is_on else 'OFF'} (expected {'ON' if state else 'OFF'})")
+            if dev.is_on != state:
+                if logger:
+                    logger.error(f"set_switch: State mismatch after set for {dev.alias}: expected {state}, got {dev.is_on}")
+                raise DriverException(0x501, f"Failed to set switch state for {dev.alias}")
 
     def _resolve_id(self, id):
         if not self.device_list:
