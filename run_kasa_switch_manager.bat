@@ -12,7 +12,7 @@ call venv\Scripts\activate
 
 REM Install required packages
 pip install --upgrade pip
-pip install python-kasa keyring keyrings.alt falcon pillow
+pip install python-kasa keyring keyrings.alt falcon pillow toml
 
 REM Run the Alpaca service as a module to support relative imports
 python -m device.app

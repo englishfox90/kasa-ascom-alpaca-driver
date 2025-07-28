@@ -12,7 +12,7 @@ call venv\Scripts\activate
 
 REM Install required packages
 pip install --upgrade pip
-pip install keyring keyrings.alt
+pip install keyring keyrings.alt toml
 
 REM Run credential update prompt as a module to support relative imports
 python -m device.switch credentials
