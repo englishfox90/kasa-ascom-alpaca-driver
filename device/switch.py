@@ -141,12 +141,20 @@ class KasaSwitchController:
         if hasattr(self, 'cloud_switch_map') and idx in self.cloud_switch_map:
             parent_idx = self.cloud_switch_map[idx]
             dev = self.device_objs[parent_idx]
-            # Use dev.has_cloud_connection and dev.is_cloud_connected per python-kasa docs
-            if hasattr(dev, 'has_cloud_connection') and dev.has_cloud_connection:
-                return bool(getattr(dev, 'is_cloud_connected', False))
-            return False
+            # Use dev.cloud['connection'] for cloud status (python-kasa)
+            self.loop.run_until_complete(dev.update())
+            cloud_info = getattr(dev, 'cloud', None)
+            status = None
+            if cloud_info and isinstance(cloud_info, dict):
+                status = cloud_info.get('connection', '').lower()
+            if logger:
+                logger.info(f"[DEBUG] get_switch: cloud_info={cloud_info} status={status} for {getattr(dev, 'alias', dev)}")
+            return status == 'connected'
         # Power (On Since) readonly switch: always ON
         if hasattr(self, 'readonly_switches') and idx in self.readonly_switches and (not hasattr(self, 'cloud_switch_map') or idx not in self.cloud_switch_map):
+            # Force update to get latest on_since
+            dev = self.device_objs[idx]
+            self.loop.run_until_complete(dev.update())
             return True
         dev = self.device_objs[idx]
         if hasattr(self, 'child_map') and idx in self.child_map:
@@ -247,8 +255,8 @@ class maxswitchvalue:
         except:
             resp.text = PropertyResponse(1, req).json
             return
-        # For Power (readonly) switch, set max value to 1 (toggle)
-        if hasattr(device, 'readonly_switches') and id in device.readonly_switches and (not hasattr(device, 'cloud_switch_map') or id not in device.cloud_switch_map):
+        # For Power and Cloud Connection (readonly) switches, set max value to 1 (toggle)
+        if hasattr(device, 'readonly_switches') and id in device.readonly_switches:
             resp.text = PropertyResponse(1, req).json
         else:
             resp.text = PropertyResponse(1, req).json
@@ -263,8 +271,8 @@ class minswitchvalue:
         except:
             resp.text = PropertyResponse(0, req).json
             return
-        # For Power (readonly) switch, set min value to 0 (toggle)
-        if hasattr(device, 'readonly_switches') and id in device.readonly_switches and (not hasattr(device, 'cloud_switch_map') or id not in device.cloud_switch_map):
+        # For Power and Cloud Connection (readonly) switches, set min value to 0 (toggle)
+        if hasattr(device, 'readonly_switches') and id in device.readonly_switches:
             resp.text = PropertyResponse(0, req).json
         else:
             resp.text = PropertyResponse(0, req).json
@@ -279,8 +287,8 @@ class switchstep:
         except:
             resp.text = PropertyResponse(1, req).json
             return
-        # For Power (readonly) switch, step is 1
-        if hasattr(device, 'readonly_switches') and id in device.readonly_switches and (not hasattr(device, 'cloud_switch_map') or id not in device.cloud_switch_map):
+        # For Power and Cloud Connection (readonly) switches, step is 1
+        if hasattr(device, 'readonly_switches') and id in device.readonly_switches:
             resp.text = PropertyResponse(1, req).json
         else:
             resp.text = PropertyResponse(1, req).json
@@ -468,30 +476,30 @@ class getswitchdescription:
                 if hasattr(device, 'cloud_switch_map') and id in device.cloud_switch_map:
                     parent_idx = device.cloud_switch_map[id]
                     parent_dev = device.device_objs[parent_idx]
+                    # Force update to get latest cloud status
+                    device.loop.run_until_complete(parent_dev.update())
                     status = False
                     if hasattr(parent_dev, 'has_cloud_connection') and parent_dev.has_cloud_connection:
-                        status = bool(getattr(parent_dev, 'cloud_connection', False))
-                    desc = f"Status: {'Connected' if status else 'Disconnected'}"
+                        status = bool(getattr(parent_dev, 'is_cloud_connected', False))
+                    desc = f"Cloud Connection (readonly) | Status: {'Connected' if status else 'Disconnected'}"
                 # Power (On Since) readonly switch description
                 elif hasattr(device, 'readonly_switches') and id in device.readonly_switches and (not hasattr(device, 'cloud_switch_map') or id not in device.cloud_switch_map):
                     on_since = getattr(dev, 'on_since', None) if dev else None
+                    desc = f"Power (readonly)"
                     if on_since:
                         try:
                             from dateutil import tz
-                            import pytz
                             import datetime as dt
                             if isinstance(on_since, str):
                                 on_since_dt = dt.datetime.fromisoformat(on_since)
                             else:
                                 on_since_dt = on_since
-                            # Localize to system timezone
-                            local_tz = tz.tzlocal()
-                            local_dt = on_since_dt.astimezone(local_tz)
-                            locale.setlocale(locale.LC_TIME, '')
+                            # Localize to system timezone using astimezone(None)
+                            local_dt = on_since_dt.astimezone(None)
                             formatted = local_dt.strftime('%c')
-                            desc = f" On since: {formatted}"
+                            desc += f" | On since: {formatted}"
                         except Exception as dt_ex:
-                            desc = f"On since: {on_since}"
+                            desc += f" | On since: {on_since}"
                 else:
                     parent_name = getattr(dev, 'alias', None) if dev else None
                     display_parent = parent_name.replace('_', ' ') if parent_name else None
