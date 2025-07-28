@@ -79,19 +79,27 @@ class KasaManagerApp:
         self.progress.start()
         def run():
             try:
-                # Set working directory to script/exe dir
                 exe_dir = os.path.dirname(sys.executable if getattr(sys, 'frozen', False) else __file__)
                 os.chdir(exe_dir)
-                python_exe = sys.executable.replace('python.exe', 'pythonw.exe') if sys.platform == 'win32' else sys.executable
-                app_path = os.path.join(exe_dir, 'app.py')
-                creationflags = 0
-                if sys.platform == 'win32':
-                    creationflags = getattr(subprocess, 'CREATE_NO_WINDOW', 0)
-                self.server_process = subprocess.Popen(
-                    [python_exe, app_path],
-                    stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True,
-                    creationflags=creationflags, cwd=exe_dir
-                )
+                if getattr(sys, 'frozen', False):
+                    exe_path = sys.executable
+                    # Launch the same exe with --server argument
+                    creationflags = 0
+                    if sys.platform == 'win32':
+                        creationflags = getattr(subprocess, 'CREATE_NO_WINDOW', 0)
+                    self.server_process = subprocess.Popen(
+                        [exe_path, '--server'],
+                        stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True,
+                        creationflags=creationflags, cwd=exe_dir
+                    )
+                else:
+                    python_exe = sys.executable.replace('python.exe', 'pythonw.exe') if sys.platform == 'win32' else sys.executable
+                    app_path = os.path.join(exe_dir, 'app.py')
+                    self.server_process = subprocess.Popen(
+                        [python_exe, app_path],
+                        stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True,
+                        cwd=exe_dir
+                    )
                 self.status_var.set('Server running.')
             except Exception as ex:
                 logging.error(f"Failed to start server: {ex}")
@@ -194,4 +202,20 @@ def main():
     root.mainloop()
 
 if __name__ == '__main__':
-    main()
+    if '--server' in sys.argv:
+        # Run the server directly in this process
+        import app
+        try:
+            app.main()
+        except Exception as ex:
+            # Log to file in exe dir if possible
+            try:
+                exe_dir = os.path.dirname(sys.executable if getattr(sys, 'frozen', False) else __file__)
+                log_file = os.path.join(exe_dir, 'kasa_alpaca_gui.log')
+                with open(log_file, 'a', encoding='utf-8') as f:
+                    f.write(f'FATAL: Server failed to start: {ex}\n')
+            except Exception:
+                pass
+            raise
+    else:
+        main()
