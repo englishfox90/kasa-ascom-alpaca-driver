@@ -470,12 +470,11 @@ class getswitchdescription:
                     parent_dev = device.device_objs[parent_idx]
                     status = False
                     if hasattr(parent_dev, 'has_cloud_connection') and parent_dev.has_cloud_connection:
-                        status = bool(getattr(parent_dev, 'is_cloud_connected', False))
-                    desc = f"Cloud Connection (readonly) | Status: {'Connected' if status else 'Disconnected'}"
+                        status = bool(getattr(parent_dev, 'cloud_connection', False))
+                    desc = f"Status: {'Connected' if status else 'Disconnected'}"
                 # Power (On Since) readonly switch description
                 elif hasattr(device, 'readonly_switches') and id in device.readonly_switches and (not hasattr(device, 'cloud_switch_map') or id not in device.cloud_switch_map):
                     on_since = getattr(dev, 'on_since', None) if dev else None
-                    desc = f"Power (readonly)"
                     if on_since:
                         try:
                             from dateutil import tz
@@ -490,9 +489,9 @@ class getswitchdescription:
                             local_dt = on_since_dt.astimezone(local_tz)
                             locale.setlocale(locale.LC_TIME, '')
                             formatted = local_dt.strftime('%c')
-                            desc += f" | On since: {formatted}"
+                            desc = f" On since: {formatted}"
                         except Exception as dt_ex:
-                            desc += f" | On since: {on_since}"
+                            desc = f"On since: {on_since}"
                 else:
                     parent_name = getattr(dev, 'alias', None) if dev else None
                     display_parent = parent_name.replace('_', ' ') if parent_name else None
