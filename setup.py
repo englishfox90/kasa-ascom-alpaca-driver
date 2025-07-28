@@ -9,6 +9,10 @@ setup(
     install_requires=[
         "falcon",
         "toml",
+        "python-kasa",
+        "keyring",
+        "pystray",
+        "Pillow",
     ],
     package_data={
         # include your config TOML so it ends up in the wheel
@@ -19,6 +23,8 @@ setup(
         "console_scripts": [
             # installs a `kasa-switch` CLI that launches your app
             "kasa-switch = device.app:main",
+            # Add a GUI manager entry point
+            "kasa-switch-gui = device.gui_manager:main",
         ],
     },
     python_requires=">=3.7",
