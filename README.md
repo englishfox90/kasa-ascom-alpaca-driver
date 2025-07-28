@@ -43,16 +43,19 @@ A Python package that exposes TP-Link Kasa smart plugs as ASCOM Alpaca Switch de
    ```
    This will install all required dependencies, including `pystray` and `Pillow` for tray support.
 
-### Build a Standalone Windows Executable (Recommended for End Users)
+### Build a Standalone Windows Executable
 1. Install [PyInstaller](https://pyinstaller.org/):
    ```sh
    pip install pyinstaller
    ```
 2. Build the GUI manager as a single EXE:
    ```sh
-   pyinstaller --noconsole --onefile device/gui_manager.py --name "KasaSwitchManager"
+   pyinstaller --noconsole --onefile device/gui_manager.py --name "KasaSwitchManager" --hidden-import=keyring --hidden-import=pystray --hidden-import=PIL
    ```
    The output will be in the `dist/` folder.
+   
+   **If you see errors about missing modules (e.g., `No module named 'keyring'`), add them with `--hidden-import=<module>` as shown above.**
+   
 3. (Optional) Use [Inno Setup](https://jrsoftware.org/isinfo.php) or [NSIS](https://nsis.sourceforge.io/) to create a Windows installer that:
    - Installs the EXE
    - Creates Start Menu/Desktop shortcuts

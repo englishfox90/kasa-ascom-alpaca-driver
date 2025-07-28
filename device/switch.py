@@ -132,18 +132,26 @@ class KasaSwitchController:
     def get_gauge_value(self, id):
         idx, suffix = self.gauge_map[id]
         dev = self.device_objs[idx]
+        if logger:
+            logger.debug(f"get_gauge_value: Updating device {dev.alias} for gauge {suffix}")
         self.loop.run_until_complete(dev.update())
         if suffix == "_consumption":
-            return getattr(dev.emeter_realtime, 'power', None)
+            val = getattr(dev.emeter_realtime, 'power', None)
         elif suffix == "_voltage":
-            return getattr(dev.emeter_realtime, 'voltage', None)
+            val = getattr(dev.emeter_realtime, 'voltage', None)
         elif suffix == "_current":
-            return getattr(dev.emeter_realtime, 'current', None)
-        return None
+            val = getattr(dev.emeter_realtime, 'current', None)
+        else:
+            val = None
+        if logger:
+            logger.debug(f"get_gauge_value: {dev.alias} {suffix} value={val}")
+        return val
 
     def get_gauge_description(self, id):
         idx, suffix = self.gauge_map[id]
         dev = self.device_objs[idx]
+        if logger:
+            logger.debug(f"get_gauge_description: Updating device {dev.alias} for gauge {suffix}")
         self.loop.run_until_complete(dev.update())
         desc = f"{dev.alias} metric: "
         if suffix == "_consumption":
@@ -155,22 +163,36 @@ class KasaSwitchController:
         # Add on_since if available
         if hasattr(dev, 'on_since') and dev.on_since:
             desc += f" | On since: {dev.on_since}"
+        if logger:
+            logger.debug(f"get_gauge_description: {desc}")
         return desc
 
     def get_switch(self, id=0):
         name = self._resolve_id(id)
         for dev in self.device_objs:
             if dev.alias == name:
+                if logger:
+                    logger.debug(f"get_switch: Updating device {dev.alias}")
                 self.loop.run_until_complete(dev.update())
+                if logger:
+                    logger.debug(f"get_switch: {dev.alias} is_on={dev.is_on}")
                 return dev.is_on
+        if logger:
+            logger.error(f"get_switch: Switch '{name}' not found.")
         raise InvalidValueException(f"Switch '{name}' not found.")
 
     def set_switch(self, state, id=0):
         name = self._resolve_id(id)
         for dev in self.device_objs:
             if dev.alias == name:
+                if logger:
+                    logger.debug(f"set_switch: Setting {dev.alias} to {'ON' if state else 'OFF'}")
                 self.loop.run_until_complete(dev.turn_on() if state else dev.turn_off())
+                if logger:
+                    logger.debug(f"set_switch: {dev.alias} set to {'ON' if state else 'OFF'}")
                 return
+        if logger:
+            logger.error(f"set_switch: Switch '{name}' not found.")
         raise InvalidValueException(f"Switch '{name}' not found.")
 
     def _resolve_id(self, id):
