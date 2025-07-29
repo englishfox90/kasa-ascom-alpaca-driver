@@ -4,11 +4,11 @@
 import asyncio
 import keyring
 from kasa import Discover, SmartPlug
+from datetime import datetime, timezone
+import sys
 import threading
 import time
 import logging
-import locale
-from datetime import datetime, timezone
 try:
     from tzlocal import get_localzone
     TZLOCAL_AVAILABLE = True
@@ -24,10 +24,12 @@ from .exceptions import *
 
 logger: Logger = None
 if logger is None:
-    import logging
     logger = logging.getLogger("kasa-alpaca")
     if not logger.hasHandlers():
-        logging.basicConfig(level=logging.INFO)
+        logging.basicConfig(
+            level=logging.INFO,
+            format='%(asctime)s %(levelname)s [%(filename)s:%(lineno)d] %(message)s'
+        )
 
 maxdev = 0  # Single instance
 
@@ -53,9 +55,15 @@ class KasaSwitchController:
         self.device_objs = []
         self.lock = threading.RLock()
         self.loop = asyncio.new_event_loop()
+        self._loop_thread = threading.Thread(target=self._run_loop, daemon=True)
+        self._loop_thread.start()
         self.email = None
         self.password = None
         self._load_credentials()
+
+    def _run_loop(self):
+        asyncio.set_event_loop(self.loop)
+        self.loop.run_forever()
 
     def _load_credentials(self):
         self.email = keyring.get_password('kasa-alpaca', 'email')
@@ -65,8 +73,7 @@ class KasaSwitchController:
 
     def _prompt_and_store_credentials(self):
         import getpass
-        print('Enter Kasa account email:')
-        email = input('Email: ')
+        email = input('Enter Kasa account email: ')
         password = getpass.getpass('Password: ')
         keyring.set_password('kasa-alpaca', 'email', email)
         keyring.set_password('kasa-alpaca', 'password', password)
@@ -77,13 +84,23 @@ class KasaSwitchController:
         self._prompt_and_store_credentials()
 
     def connect(self):
+        import time as _time
         if logger:
-            logger.info("connect() called. Logger is active.")
+            logger.info(f"connect() called. Event loop closed? {self.loop.is_closed()}")
         global maxdev
         with self.lock:
+            # Ensure the event loop is set as current for this thread
+            if self.loop.is_closed():
+                logger.info("Event loop was closed, creating new event loop.")
+                self.loop = asyncio.new_event_loop()
+            asyncio.set_event_loop(self.loop)
+            logger.info(f"connect() using event loop: {self.loop}")
+            # Add a short delay to allow OS resources to settle after disconnect
+            _time.sleep(0.5)
             start = time.time()
             try:
-                self.device_list, self.device_objs = self.loop.run_until_complete(self._get_device_list())
+                fut = asyncio.run_coroutine_threadsafe(self._get_device_list(), self.loop)
+                self.device_list, self.device_objs = fut.result()
                 self.child_map = {}  # Map device_list index to (dev_idx, child_idx)
                 new_device_list = []
                 new_device_objs = []
@@ -113,18 +130,39 @@ class KasaSwitchController:
                 SwitchMetadata.MaxDeviceNumber = maxdev
                 elapsed = time.time() - start
                 if logger:
-                    logger.info(f"Kasa connect: device list loaded in {elapsed:.2f}s: {self.device_list}")
+                    logger.info(f"Device list loaded in {elapsed:.2f}s: {self.device_list}")
             except Exception as ex:
                 self.connected = False
                 if logger:
-                    logger.error(f"Kasa connect failed after {time.time()-start:.2f}s: {ex}")
+                    logger.error(f"Connect failed after {time.time()-start:.2f}s: {ex}")
                 raise DriverException(0x500, f"python-kasa devicelist failed: {ex}")
 
     def disconnect(self):
+        import gc
         with self.lock:
+            logger.info(f"disconnect() called. Event loop running? {self.loop.is_running()} closed? {self.loop.is_closed()}")
             self.connected = False
             self.device_list = []
             self.device_objs = []
+            # Gracefully close asyncio event loop if running
+            try:
+                if self.loop.is_running():
+                    self.loop.call_soon_threadsafe(self.loop.stop)
+                if hasattr(self, '_loop_thread') and self._loop_thread.is_alive():
+                    self._loop_thread.join(timeout=2)
+                if not self.loop.is_closed():
+                    self.loop.close()
+                logger.info("Graceful disconnect: asyncio event loop closed and thread joined.")
+            except Exception as ex:
+                logger.error(f"Graceful disconnect: error closing event loop: {ex}")
+            # Recreate a new event loop for future connections
+            self.loop = asyncio.new_event_loop()
+            # Start the new event loop in a background thread
+            self._loop_thread = threading.Thread(target=self._run_loop, daemon=True)
+            self._loop_thread.start()
+            logger.info(f"disconnect() created new event loop: {self.loop}")
+            # Force garbage collection to clean up sockets/resources
+            gc.collect()
 
     def is_connected(self):
         return self.connected
@@ -132,28 +170,32 @@ class KasaSwitchController:
     async def _get_device_list(self):
         devices = []
         device_objs = []
-        found = await Discover.discover()
-        for addr, dev in found.items():
-            await dev.update()
-            devices.append(dev.alias)
-            device_objs.append(dev)
-        if logger:
-            logger.info(f"python-kasa discovered devices: {devices}")
-        return devices, device_objs
+        try:
+            found = await Discover.discover()
+            logger.info(f"Discover.discover() returned: {found}")
+            if not found:
+                logger.warning("No devices discovered.")
+                return devices, device_objs
+            for addr, dev in found.items():
+                try:
+                    await dev.update()
+                    logger.info(f"Device updated: {getattr(dev, 'alias', addr)}")
+                    devices.append(dev.alias)
+                    device_objs.append(dev)
+                except Exception as ex:
+                    logger.error(f"Device update failed for {getattr(dev, 'alias', addr)}: {ex}")
+            if logger:
+                logger.info(f"Discovered devices: {devices}")
+            return devices, device_objs
+        except Exception as ex:
+            logger.error(f"Device discovery failed: {ex}")
+            return devices, device_objs
 
     def _safe_async(self, coro):
-        """Run an async coroutine safely from sync context, even if an event loop is running."""
-        try:
-            loop = asyncio.get_running_loop()
-        except RuntimeError:
-            loop = None
-        if loop and loop.is_running():
-            # Already in an event loop (e.g., Falcon/Gunicorn)
-            # Use asyncio.run_coroutine_threadsafe in a thread pool
-            fut = asyncio.run_coroutine_threadsafe(coro, self.loop)
-            return fut.result()
-        else:
-            return self.loop.run_until_complete(coro)
+        """Run an async coroutine safely from sync context using the dedicated event loop."""
+        # Always use run_coroutine_threadsafe for self.loop
+        fut = asyncio.run_coroutine_threadsafe(coro, self.loop)
+        return fut.result()
 
     def get_switch(self, id=0):
         name = self._resolve_id(id)
@@ -162,35 +204,59 @@ class KasaSwitchController:
         if hasattr(self, 'cloud_switch_map') and idx in self.cloud_switch_map:
             parent_idx = self.cloud_switch_map[idx]
             dev = self.device_objs[parent_idx]
-            self._safe_async(dev.update())
-            status = getattr(dev, 'cloud_connection', None)
-            if logger:
-                logger.info(f"[DEBUG] get_switch: cloud_connection={status} for {getattr(dev, 'alias', dev)}")
+            try:
+                self._safe_async(dev.update())
+            except Exception as update_ex:
+                import types
+                if isinstance(update_ex, types.CoroutineType):
+                    logger.error(f"get_switch: update failed for {getattr(dev, 'alias', dev)}: coroutine was never awaited")
+                else:
+                    logger.error(f"get_switch: update failed for {getattr(dev, 'alias', dev)}: {update_ex}")
+            cloudstatus = dev.features.get('cloud_connection')
+            status = cloudstatus.value
             return bool(status)
         # Power (On Since) readonly switch: always ON
         if hasattr(self, 'readonly_switches') and idx in self.readonly_switches and (not hasattr(self, 'cloud_switch_map') or idx not in self.cloud_switch_map):
             dev = self.device_objs[idx]
-            self._safe_async(dev.update())
+            try:
+                self._safe_async(dev.update())
+            except Exception as update_ex:
+                import types
+                if isinstance(update_ex, types.CoroutineType):
+                    logger.error(f"get_switch: update failed for {getattr(dev, 'alias', dev)}: coroutine was never awaited")
+                else:
+                    logger.error(f"get_switch: update failed for {getattr(dev, 'alias', dev)}: {update_ex}")
             return True
         dev = self.device_objs[idx]
         if hasattr(self, 'child_map') and idx in self.child_map:
             dev_idx, cidx = self.child_map[idx]
             child = dev.children[cidx]
-            if logger:
-                logger.debug(f"get_switch: Updating child {child.alias} of {dev.alias}")
-            self._safe_async(child.update())
-            if logger:
-                logger.debug(f"get_switch: {dev.alias} - {child.alias} is_on={child.is_on}")
+            logger.debug(f"get_switch: Updating child {child.alias} of {dev.alias}")
+            try:
+                self._safe_async(child.update())
+            except Exception as update_ex:
+                import types
+                if isinstance(update_ex, types.CoroutineType):
+                    logger.error(f"get_switch: update failed for child {child.alias} of {dev.alias}: coroutine was never awaited")
+                else:
+                    logger.error(f"get_switch: update failed for child {child.alias} of {dev.alias}: {update_ex}")
+            logger.debug(f"get_switch: {dev.alias} - {child.alias} is_on={child.is_on}")
             return child.is_on
         else:
-            if logger:
-                logger.debug(f"get_switch: Updating device {dev.alias}")
-            self._safe_async(dev.update())
-            if logger:
-                logger.debug(f"get_switch: {dev.alias} is_on={dev.is_on}")
+            logger.debug(f"get_switch: Updating device {dev.alias}")
+            try:
+                self._safe_async(dev.update())
+            except Exception as update_ex:
+                import types
+                if isinstance(update_ex, types.CoroutineType):
+                    logger.error(f"get_switch: update failed for {getattr(dev, 'alias', dev)}: coroutine was never awaited")
+                else:
+                    logger.error(f"get_switch: update failed for {getattr(dev, 'alias', dev)}: {update_ex}")
+            logger.debug(f"get_switch: {dev.alias} is_on={dev.is_on}")
             return dev.is_on
 
     def set_switch(self, state, id=0):
+        import time as _time
         name = self._resolve_id(id)
         idx = self.device_list.index(name)
         # Prevent setting state for readonly (parent) and cloud switches
@@ -204,34 +270,30 @@ class KasaSwitchController:
             dev = self.device_objs[dev_idx]
             for attempt in range(max_retries):
                 child = dev.children[cidx]
-                if logger:
-                    logger.info(f"set_switch: Setting child {child.alias} of {dev.alias} to {'ON' if state else 'OFF'} (attempt {attempt+1})")
-                self.loop.run_until_complete(child.turn_on() if state else child.turn_off())
-                import time as _time
+                logger.info(f"set_switch: Setting child {child.alias} of {dev.alias} to {'ON' if state else 'OFF'} (attempt {attempt+1})")
+                fut = asyncio.run_coroutine_threadsafe(child.turn_on() if state else child.turn_off(), self.loop)
+                fut.result()
                 _time.sleep(delay)
-                self.loop.run_until_complete(dev.update())
+                fut_update = asyncio.run_coroutine_threadsafe(dev.update(), self.loop)
+                fut_update.result()
                 child = dev.children[cidx]
-                if logger:
-                    logger.info(f"set_switch: {dev.alias} - {child.alias} is now {'ON' if child.is_on else 'OFF'} (expected {'ON' if state else 'OFF'})")
+                logger.info(f"set_switch: {dev.alias} - {child.alias} is now {'ON' if child.is_on else 'OFF'} (expected {'ON' if state else 'OFF'})")
                 if child.is_on == state:
                     return
-            if logger:
-                logger.error(f"set_switch: State mismatch after {max_retries} attempts for {child.alias} of {dev.alias}: expected {state}, got {child.is_on}")
+            logger.error(f"set_switch: State mismatch after {max_retries} attempts for {child.alias} of {dev.alias}: expected {state}, got {child.is_on}")
             raise DriverException(0x501, f"Failed to set switch state for {child.alias} of {dev.alias}")
         else:
             for attempt in range(max_retries):
-                if logger:
-                    logger.info(f"set_switch: Setting {dev.alias} to {'ON' if state else 'OFF'} (attempt {attempt+1})")
-                self.loop.run_until_complete(dev.turn_on() if state else dev.turn_off())
-                import time as _time
+                logger.info(f"set_switch: Setting {dev.alias} to {'ON' if state else 'OFF'} (attempt {attempt+1})")
+                fut = asyncio.run_coroutine_threadsafe(dev.turn_on() if state else dev.turn_off(), self.loop)
+                fut.result()
                 _time.sleep(delay)
-                self.loop.run_until_complete(dev.update())
-                if logger:
-                    logger.info(f"set_switch: {dev.alias} is now {'ON' if dev.is_on else 'OFF'} (expected {'ON' if state else 'OFF'})")
+                fut_update = asyncio.run_coroutine_threadsafe(dev.update(), self.loop)
+                fut_update.result()
+                logger.info(f"set_switch: {dev.alias} is now {'ON' if dev.is_on else 'OFF'} (expected {'ON' if state else 'OFF'})")
                 if dev.is_on == state:
                     return
-            if logger:
-                logger.error(f"set_switch: State mismatch after {max_retries} attempts for {dev.alias}: expected {state}, got {dev.is_on}")
+            logger.error(f"set_switch: State mismatch after {max_retries} attempts for {dev.alias}: expected {state}, got {dev.is_on}")
             raise DriverException(0x501, f"Failed to set switch state for {dev.alias}")
 
     def _resolve_id(self, id):
@@ -249,13 +311,11 @@ class KasaSwitchController:
         else:
             raise InvalidValueException(f"Invalid switch id: {id}")
 
-# Instantiate controller
 device = KasaSwitchController()
 try:
     device.connect()
 except Exception as ex:
-    if logger:
-        logger.error(f"Startup device.connect() failed: {ex}")
+    logger.error(f"Startup device.connect() failed: {ex}")
 
 # --------------------
 # Alpaca API Endpoints
@@ -490,9 +550,14 @@ class getswitchdescription:
                 if hasattr(device, 'cloud_switch_map') and id in device.cloud_switch_map:
                     parent_idx = device.cloud_switch_map[id]
                     parent_dev = device.device_objs[parent_idx]
-                    device._safe_async(parent_dev.update())
-                    status = getattr(parent_dev, 'cloud_connection', None)
-                    desc = f"Status: {'Connected' if status else 'Disconnected'}"
+                    # Ensure update is awaited
+                    try:
+                        device._safe_async(parent_dev.update())
+                    except Exception as update_ex:
+                        logger.error(f"getswitchdescription: update failed for {getattr(parent_dev, 'alias', parent_dev)}: {update_ex}")
+                    cloudstatus = parent_dev.features.get('cloud_connection')
+                    status_bool = cloudstatus.value
+                    desc = f"Status: {'Connected' if status_bool else 'Disconnected'}"
                 # Power (On Since) readonly switch description
                 elif hasattr(device, 'readonly_switches') and id in device.readonly_switches and (not hasattr(device, 'cloud_switch_map') or id not in device.cloud_switch_map):
                     on_since = getattr(dev, 'on_since', None) if dev else None
@@ -581,20 +646,30 @@ class connected:
     def on_put(self, req: Request, resp: Response, devnum: int):
         conn_str = get_request_field('Connected', req)
         conn = to_bool(conn_str)
+        import os
         try:
             if conn:
                 if not device.is_connected():
                     device.connect()
+                resp.status = "200 OK"
+                resp.content_type = "application/json"
+                resp.text = MethodResponse(req).json
+                if logger:
+                    logger.info(f"PUT /connected response: {resp.text}")
+                else:
+                    print(f"PUT /connected response: {resp.text}")
             else:
                 if device.is_connected():
                     device.disconnect()
-            resp.status = "200 OK"
-            resp.content_type = "application/json"
-            resp.text = MethodResponse(req).json
-            if logger:
-                logger.info(f"PUT /connected response: {resp.text}")
-            else:
-                print(f"PUT /connected response: {resp.text}")
+                resp.status = "200 OK"
+                resp.content_type = "application/json"
+                resp.text = MethodResponse(req).json
+                if logger:
+                    logger.info(f"PUT /connected response: {resp.text}")
+                else:
+                    print(f"PUT /connected response: {resp.text}")
+                logger.info("Connected endpoint: shutting down Python process after disconnect.")
+                os._exit(0)
         except Exception as ex:
             resp.status = "200 OK"
             resp.content_type = "application/json"
@@ -607,9 +682,12 @@ class connected:
 @before(PreProcessRequest(maxdev))
 class disconnect:
     def on_put(self, req: Request, resp: Response, devnum: int):
+        import os
         try:
             device.disconnect()
             resp.text = MethodResponse(req).json
+            logger.info("Disconnect endpoint: shutting down Python process.")
+            os._exit(0)
         except Exception as ex:
             resp.text = MethodResponse(req, DriverException(0x500, 'Switch.Disconnect failed', ex)).json
 

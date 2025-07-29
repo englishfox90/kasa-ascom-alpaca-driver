@@ -74,6 +74,25 @@ A Python package that exposes TP-Link Kasa smart plugs as ASCOM Alpaca Switch de
 - If credentials change or expire, use the credential batch file to update them.
 - If you see missing dependencies, re-run the batch file or ensure all requirements are installed.
 
+## Usage in Imaging Sequences
+
+For best results, run the `run_kasa_switch_manager.bat` batch file at the start of your imaging or automation sequence. This will start the Alpaca Switch Manager and make your Kasa devices available to Alpaca clients (e.g., N.I.N.A., ASCOM Switch clients).
+
+- **Start the service before your imaging sequence:**
+  - Double-click `run_kasa_switch_manager.bat` or run it from your automation script.
+  - The server will remain running and devices will be available for control.
+
+- **Control your Kasa switches as needed during your sequence.**
+
+- **End the session by disconnecting the switch device via Alpaca/ASCOM client:**
+  - When you disconnect the switch (using the Alpaca API or your client), the Python service will automatically shut down and the terminal window will close.
+  - This ensures all resources are released and the service is ready for the next session.
+
+**Recommended automation:**
+- Add a step in your imaging automation to start the batch file before imaging begins.
+- Use your Alpaca/ASCOM client to control switches as needed.
+- Disconnect the switch at the end of your sequence to close the Python service cleanly.
+
 ## License
 MIT License. See [LICENSE](LICENSE) for details.
 
