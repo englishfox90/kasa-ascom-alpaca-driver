@@ -17,5 +17,7 @@ pip install python-kasa keyring keyrings.alt falcon pillow toml
 REM Run the Alpaca service as a module to support relative imports
 python -m device.app
 
-REM Pause so the window stays open if there's an error
-pause
+REM Only pause if Python exited with error
+if not %ERRORLEVEL%==0 (
+    pause
+)
